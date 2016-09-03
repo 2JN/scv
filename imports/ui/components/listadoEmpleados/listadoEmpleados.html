@@ -1,0 +1,12 @@
+<ul>
+  <li ng-repeat="empleado in listadoEmpleados.empleados">
+    {{ empleado.pnombre }}
+    {{ empleado.snombre }}
+    {{ empleado.papellido }}
+    {{ empleado.sapellido }}
+    {{ empleado.cargo }}
+    {{ empleado.sueldoMensual }}
+    {{ empleado._id}}
+    <eliminar-empleado empleado="empleado"></eliminar-empleado>
+  </li>
+</ul>

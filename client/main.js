@@ -1,9 +1,9 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import scvList from '../imports/ui/components/scv/scv.js';
+import scv from '../imports/ui/components/scv/scv';
 
 angular.module('root', [
   angularMeteor,
-  scvList.name
+  scv.name
 ]);
