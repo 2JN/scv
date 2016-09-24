@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import uiRouter from 'angular-ui-router';
 
 import template from './nuevoEmpleado.html';
 import { Empleados } from '../../../api/empleados';
@@ -22,10 +23,21 @@ class NuevoEmpleadoCtrl {
 const name = 'nuevoEmpleado';
 
 export default angular.module(name, [
-  angularMeteor
+  angularMeteor,
+  uiRouter
 ])
   .component(name, {
     templateUrl: template,
     controllerAs: name,
     controller: NuevoEmpleadoCtrl
+  })
+  .config(config);
+
+function config($stateProvider) {
+  'ngInject';
+
+  $stateProvider.state('agregarEmpleado', {
+    url: '/agregar-empleado',
+    template: '<nuevo-empleado></nuevo-empleado>'
   });
+}

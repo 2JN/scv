@@ -1,11 +1,12 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import uiRouter from 'angular-ui-router';
 
 import template from './listadoEmpleados.html';
 import { Empleados } from '../../../api/empleados';
-import eliminarEmpleado from '../eliminarEmpleado/eliminarEmpleado'
+import { name as eliminarEmpleado } from '../eliminarEmpleado/eliminarEmpleado'
 
-class listadoEmpleadosCtrl {
+class ListadoEmpleadosCtrl {
   constructor($scope) {
     $scope.viewModel(this);
 
@@ -21,10 +22,21 @@ const name = 'listadoEmpleados';
 
 export default angular.module(name, [
   angularMeteor,
-  eliminarEmpleado.name
+  uiRouter,
+  eliminarEmpleado
 ])
   .component(name, {
     templateUrl: template,
     controllerAs: name,
-    controller: listadoEmpleadosCtrl
+    controller: ListadoEmpleadosCtrl
+  })
+  .config(config);
+
+function config($stateProvider) {
+  'ngInject';
+
+  $stateProvider.state('listadoEmpleados', {
+    url: '/modificar-empelados',
+    template: '<listado-empleados></listado-empleados>'
   });
+}
