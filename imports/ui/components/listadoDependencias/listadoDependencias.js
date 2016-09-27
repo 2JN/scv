@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router';
 
 import template from './listadoDependencias.html';
 import { Dependencias } from '../../../api/dependencias';
+import { name as eliminarDependencia } from '../eliminarDependencia/eliminarDependencia';
 
 class ListadoDependenciasCtrl {
   constructor($scope) {
@@ -21,7 +22,8 @@ const name = 'listadoDependencias';
 
 export default angular.module(name, [
   angularMeteor,
-  uiRouter
+  uiRouter,
+  eliminarDependencia
 ])
   .component(name, {
     templateUrl: template,

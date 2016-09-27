@@ -4,7 +4,7 @@ import angularMeteor from 'angular-meteor';
 import template from './eliminarEmpleado.html';
 import { Empleados } from '../../../api/empleados';
 
-class eliminarEmpleadoCtrl {
+class EliminarEmpleadoCtrl {
   eliminar() {
     if(this.empleado) {
       Empleados.remove(this.empleado._id);
@@ -23,5 +23,5 @@ export default angular.module(name, [
       empleado: '<'
     },
     controllerAs: name,
-    controller: eliminarEmpleadoCtrl
+    controller: EliminarEmpleadoCtrl
   });
