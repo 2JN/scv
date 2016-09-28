@@ -1,1 +1,25 @@
-El empleado elegido es: {{ detallesEmpleado.empleadoId }}
+Detalles de Empleado:
+
+<form>
+  <label>Primer Nombre</label>
+  <input type="text" ng-model="detallesEmpleado.empleado.pnombre" />
+  <label>Segundo Nombre</label>
+  <input type="text" ng-model="detallesEmpleado.empleado.snombre" />
+  <label>Primer Apellido</label>
+  <input type="text" ng-model="detallesEmpleado.empleado.papellido" />
+  <label>Segundo Apellido</label>
+  <input type="text" ng-model="detallesEmpleado.empleado.sapellido" />
+  <label>Dependencia</label>
+  <input type="text" ng-model="detallesEmpleado.empleado.dependencia" />
+  <label>Cargo</label>
+  <input type="text" ng-model="detallesEmpleado.empleado.cargo" />
+  <label>Renglon</label>
+  <input type="text" ng-model="detallesEmpleado.empleado.renglon" />
+  <label>Sueldo</label>
+  <input type="text" ng-model="detallesEmpleado.empleado.sueldoMensual" />
+  <label>NIT</label>
+  <input type="text" ng-model="detallesEmpleado.empleado._id" />
+  <button ng-click="detallesEmpleado.guardar()">Guardar</button>
+</form>
+
+<button ui-sref="listadoEmpleados">Cancelar</button>

@@ -11,7 +11,13 @@ class NuevaDependenciaCtrl {
   }
 
   ingresar() {
-    Dependencias.insert(this.dependencia);
+    Dependencias.insert(this.dependencia, (error) => {
+      if (error) {
+        console.log('Oops, dependencia no agregada...');
+      } else {
+        console.log('Hecho!');
+      }
+    });
     this.reset()
   }
 

@@ -3,12 +3,55 @@ import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
 import template from './detallesEmpleado.html';
+import { Empleados } from '../../../api/empleados';
 
 class DetallesEmpleadoCtrl {
-  constructor($stateParams) {
+  constructor($stateParams, $scope, $reactive, $state) {
     'ngInject';
 
+    this.$state = $state;
+
+    $reactive(this).attach($scope);
+
     this.empleadoId = $stateParams.empleadoId;
+
+    this.helpers({
+      empleado() {
+        return Empleados.findOne({
+          _id: $stateParams.empleadoId
+        })
+      }
+    });
+  }
+
+  guardar() {
+    if (this.empleadoId === this.empleado._id){
+      Empleados.update({
+        _id: this.empleado._id
+      }, {
+        $set: {
+          pnombre: this.empleado.pnombre,
+          snombre: this.empleado.snombre,
+          papellido: this.empleado.papellido,
+          sapellido: this.empleado.sapellido,
+          dependencia: this.empleado.dependencia,
+          cargo: this.empleado.cargo,
+          renglon: this.empleado.renglon,
+          sueldoMensual: this.empleado.sueldoMensual,
+        }
+      });
+    } else {
+      Empleados.insert(this.empleado, (error) => {
+        if (error) {
+          console.log('Oops, actualización no realizada');
+        } else {
+          console.log('Hecho!');
+        }
+      });
+      Empleados.remove(this.empleadoId);
+    }
+
+    this.$state.go('listadoEmpleados');
   }
 }
 

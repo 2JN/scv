@@ -1,1 +1,16 @@
-La dependencia elegida es: {{ detallesDependencia.dependenciaId }}
+Detalles de Dependencia:
+<form>
+  <label>Código de Depedencia</label>
+  <input type="text" ng-model="detallesDependencia.dependencia._id" />
+  <label>Nombre de Dependencia</label>
+  <input type="text" ng-model="detallesDependencia.dependencia.nombre" />
+  <label>Municipio de Dependencia</label>
+  <input type="text" ng-model="detallesDependencia.dependencia.municipio" />
+  <label>Departamento de Dependencia</label>
+  <input type="text" ng-model="detallesDependencia.dependencia.departamento" />
+  <label>Encargado de la Depedencia</label>
+  <input type="text" ng-model="detallesDependencia.dependencia.encargado" />
+  <button ng-click="detallesDependencia.guardar()">Guardar</button>
+</form>
+
+<button ui-sref="listadoDependencias">Cancelar</button>
