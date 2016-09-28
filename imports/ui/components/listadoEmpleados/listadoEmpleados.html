@@ -9,6 +9,7 @@
     {{ empleado.renglon }}
     {{ empleado.sueldoMensual }}
     {{ empleado._id}}
+    <a ui-sref="detallesEmpleado({ empleadoId: empleado._id })">Editar</a>
     <eliminar-empleado empleado="empleado"></eliminar-empleado>
   </li>
 </ul>

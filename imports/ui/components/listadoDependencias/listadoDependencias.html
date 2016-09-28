@@ -5,6 +5,7 @@
     {{ dependencia.municipio }}
     {{ dependencia.departamento }}
     {{ dependencia.encargado }}
+    <a ui-sref="detallesDependencia({ dependenciaId: dependencia._id })">Editar</a>
     <eliminar-dependencia dependencia="dependencia"></eliminar-dependencia>
   </li>
 </ul>
