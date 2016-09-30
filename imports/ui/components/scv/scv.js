@@ -24,7 +24,8 @@ export default angular.module('scv', [
   NuevoEmpleado,
   NuevaDependencia,
   ListadoDependencias,
-  DetallesDependencia
+  DetallesDependencia,
+  'accounts.ui'
 ])
   .component('scv', {
     templateUrl: template,

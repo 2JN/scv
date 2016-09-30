@@ -1,6 +1,11 @@
-<a href="agregar-empleado">Agregar Empleado</a>
-<a href="modificar-empelados">Modificar Empleados</a>
-<a href="agregar-dependencia">Agregar Dependencia</a>
-<a href="modificar-dependencias">Modificar Dependencias</a>
+<div ng-if="navigation.usuarioActual.admin">
+  <a href="agregar-empleado">Agregar Empleado</a>
+  <a href="modificar-empelados">Modificar Empleados</a>
+  <a href="agregar-dependencia">Agregar Dependencia</a>
+  <a href="modificar-dependencias">Modificar Dependencias</a>
+</div>
+<div ng-repeat="usuario in navigation.usuarioActual">
+  {{usuario.admin}}
+</div>
 <a>Crear Comision</a>
 <a>Ver Todas las Comisiones</a>
