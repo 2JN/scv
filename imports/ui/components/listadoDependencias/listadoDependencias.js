@@ -10,6 +10,8 @@ class ListadoDependenciasCtrl {
   constructor($scope) {
     $scope.viewModel(this);
 
+    this.subscribe('dependencias');
+
     this.helpers({
       dependencias() {
         return Dependencias.find({});

@@ -14,6 +14,7 @@ class DetallesDependenciaCtrl {
     $reactive(this).attach($scope);
 
     this.dependenciaId = $stateParams.dependenciaId;
+    this.subscribe('dependencias');
 
     this.helpers({
       dependencia() {

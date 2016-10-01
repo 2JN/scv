@@ -12,6 +12,7 @@ class DetallesEmpleadoCtrl {
     this.$state = $state;
 
     $reactive(this).attach($scope);
+    this.subscribe('empleados');
 
     this.empleadoId = $stateParams.empleadoId;
 
@@ -34,7 +35,7 @@ class DetallesEmpleadoCtrl {
           snombre: this.empleado.snombre,
           papellido: this.empleado.papellido,
           sapellido: this.empleado.sapellido,
-          dependencia: this.empleado.dependencia,
+          dependencia_id: this.empleado.dependencia_id,
           cargo: this.empleado.cargo,
           renglon: this.empleado.renglon,
           sueldoMensual: this.empleado.sueldoMensual,

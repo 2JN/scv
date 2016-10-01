@@ -8,13 +8,25 @@ import template from './nuevoEmpleado.html';
 import { Empleados } from '../../../api/empleados';
 
 class NuevoEmpleadoCtrl {
-  constructor() {
+  constructor($scope) {
+    $scope.viewModel(this);
+
     this.empleado = {};
+
+    this.subscribe('users', () => {
+      return [Meteor.userId()];
+    });
+
+    this.helpers({
+      usuario() {
+        return Meteor.user();
+      }
+    });
   }
 
   ingresar() {
     Empleados.insert(this.empleado);
-    this.reset()
+    this.reset();
   }
 
   reset() {
@@ -40,6 +52,18 @@ function config($stateProvider) {
 
   $stateProvider.state('agregarEmpleado', {
     url: '/agregar-empleado',
-    template: '<nuevo-empleado></nuevo-empleado>'
+    template: '<nuevo-empleado></nuevo-empleado>',
+    resolve: {
+      adminUser($q, $meteor) {
+        /**
+        *TODO: Implementar auntenticacion por rutas
+        */
+        if (true) {
+          return $q.resolve();
+        } else {
+          return $q.reject();
+        }
+      }
+    }
   });
 }

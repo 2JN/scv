@@ -9,11 +9,13 @@ class NavigationCtrl {
   constructor($scope) {
     $scope.viewModel(this);
 
-    this.subscribe('users');
+    this.subscribe('users', () => {
+      return [Meteor.userId()]
+    });
 
     this.helpers({
-      usuarioActual() {
-        return Meteor.users.find({});
+      usuario() {
+        return Meteor.user();
       }
     })
   }

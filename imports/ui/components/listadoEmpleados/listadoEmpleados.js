@@ -10,6 +10,8 @@ class ListadoEmpleadosCtrl {
   constructor($scope) {
     $scope.viewModel(this);
 
+    this.subscribe('empleados');
+
     this.helpers({
       empleados() {
         return Empleados.find({});

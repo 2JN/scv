@@ -8,6 +8,7 @@ import { Dependencias } from '../../../api/dependencias';
 class NuevaDependenciaCtrl {
   constructor() {
     this.dependencia = {};
+    this.dependencia.nombramiento = 0;
   }
 
   ingresar() {
