@@ -73,6 +73,23 @@ function config($stateProvider) {
 
   $stateProvider.state('detallesEmpleado', {
     url: '/empleados/:empleadoId',
-    template: '<detalles-empleado></detalles-empleado>'
+    template: '<detalles-empleado></detalles-empleado>',
+    resolve: {
+      currentUser: ($q) => {
+        var deferred = $q.defer();
+
+        Meteor.autorun(function() {
+          if(!Meteor.loggingIn()) {
+            if(!Meteor.user().admin) {
+              deferred.reject('PERMISSION_REQUIRED');
+            } else {
+              deferred.resolve();
+            }
+          }
+        });
+
+        return deferred.promise;
+      }
+    }
   });
 }

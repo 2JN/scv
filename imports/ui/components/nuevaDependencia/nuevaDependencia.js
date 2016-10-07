@@ -45,6 +45,23 @@ function config($stateProvider) {
 
   $stateProvider.state('agregarDependencia', {
     url: '/agregar-dependencia',
-    template: '<nueva-dependencia></nueva-dependencia>'
+    template: '<nueva-dependencia></nueva-dependencia>',
+    resolve: {
+      currentUser: ($q) => {
+        var deferred = $q.defer();
+
+        Meteor.autorun(function() {
+          if(!Meteor.loggingIn()) {
+            if(!Meteor.user().admin) {
+              deferred.reject('PERMISSION_REQUIRED');
+            } else {
+              deferred.resolve();
+            }
+          }
+        });
+
+        return deferred.promise;
+      }
+    }
   })
 }

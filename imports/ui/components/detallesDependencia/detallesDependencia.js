@@ -69,6 +69,23 @@ function config($stateProvider) {
 
   $stateProvider.state('detallesDependencia', {
     url: '/dependencia/:dependenciaId',
-    template: '<detalles-dependencia></detalles-dependencia>'
+    template: '<detalles-dependencia></detalles-dependencia>',
+    resolve: {
+      currentUser: ($q) => {
+        var deferred = $q.defer();
+
+        Meteor.autorun(function() {
+          if(!Meteor.loggingIn()) {
+            if(!Meteor.user().admin) {
+              deferred.reject('PERMISSION_REQUIRED');
+            } else {
+              deferred.resolve();
+            }
+          }
+        });
+
+        return deferred.promise;
+      }
+    }
   });
 }

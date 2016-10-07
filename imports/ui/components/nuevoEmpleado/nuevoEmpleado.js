@@ -16,12 +16,6 @@ class NuevoEmpleadoCtrl {
     this.subscribe('users', () => {
       return [Meteor.userId()];
     });
-
-    this.helpers({
-      usuario() {
-        return Meteor.user();
-      }
-    });
   }
 
   ingresar() {
@@ -54,15 +48,20 @@ function config($stateProvider) {
     url: '/agregar-empleado',
     template: '<nuevo-empleado></nuevo-empleado>',
     resolve: {
-      adminUser($q, $meteor) {
-        /**
-        *TODO: Implementar auntenticacion por rutas
-        */
-        if (true) {
-          return $q.resolve();
-        } else {
-          return $q.reject();
-        }
+      currentUser: ($q) => {
+        var deferred = $q.defer();
+
+        Meteor.autorun(function() {
+          if(!Meteor.loggingIn()) {
+            if(!Meteor.user().admin) {
+              deferred.reject('PERMISSION_REQUIRED');
+            } else {
+              deferred.resolve();
+            }
+          }
+        });
+
+        return deferred.promise;
       }
     }
   });

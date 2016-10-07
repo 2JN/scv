@@ -39,6 +39,23 @@ function config($stateProvider) {
 
   $stateProvider.state('listadoEmpleados', {
     url: '/modificar-empelados',
-    template: '<listado-empleados></listado-empleados>'
+    template: '<listado-empleados></listado-empleados>',
+    resolve: {
+      currentUser: ($q) => {
+        var deferred = $q.defer();
+
+        Meteor.autorun(function() {
+          if(!Meteor.loggingIn()) {
+            if(!Meteor.user().admin) {
+              deferred.reject('PERMISSION_REQUIRED');
+            } else {
+              deferred.resolve();
+            }
+          }
+        });
+
+        return deferred.promise;
+      }
+    }
   });
 }

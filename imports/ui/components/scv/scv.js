@@ -32,7 +32,8 @@ export default angular.module('scv', [
     controllerAs: 'scv',
     controller: SCVCtrl
   })
-  .config(config);
+  .config(config)
+  .run(run);
 
 function config($locationProvider, $urlRouterProvider) {
   'ngInject';
@@ -40,4 +41,16 @@ function config($locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
 
   $urlRouterProvider.otherwise('/comision-nombramiento');
+}
+
+function run($rootScope, $state) {
+  'ngInject';
+
+  $rootScope.$on('$stateChangeError',
+    (event, toState, toParams, fromState, fromParams, error) => {
+      if(error === 'PERMISSION_REQUIRED') {
+        $state.go('/comision-nombramiento');
+      }
+    }
+  );
 }

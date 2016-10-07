@@ -39,6 +39,23 @@ function config($stateProvider) {
 
   $stateProvider.state('listadoDependencias', {
     url: '/modificar-dependencias',
-    template: '<listado-dependencias></listado-dependencias>'
+    template: '<listado-dependencias></listado-dependencias>',
+    resolve: {
+      currentUser: ($q) => {
+        var deferred = $q.defer();
+
+        Meteor.autorun(function() {
+          if(!Meteor.loggingIn()) {
+            if(!Meteor.user().admin) {
+              deferred.reject('PERMISSION_REQUIRED')
+            } else {
+              deferred.resolve();
+            }
+          }
+        });
+
+        return deferred.promise;
+      }
+    }
   });
 }
