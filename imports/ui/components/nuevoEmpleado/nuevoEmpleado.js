@@ -3,28 +3,49 @@ import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 
 import template from './nuevoEmpleado.html';
 import { Empleados } from '../../../api/empleados';
 
 class NuevoEmpleadoCtrl {
-  constructor($scope) {
-    $scope.viewModel(this);
+  constructor($scope, $reactive, $state) {
+    'ngInject';
+
+    $reactive(this).attach($scope);
 
     this.empleado = {};
 
-    this.subscribe('users', () => {
-      return [Meteor.userId()];
-    });
+    this.credentials = {
+      user: '',
+      password: ''
+    };
+
+    this.error = '';
   }
 
   ingresar() {
+    this.empleado.user = this.credentials.username;
     Empleados.insert(this.empleado);
+    this.register();
     this.reset();
   }
 
   reset() {
-    this.empleado = {}
+    this.empleado = {};
+    this.credentials = {};
+  }
+
+  register() {
+    Accounts.createUser(this.credentials,
+      this.$bindToContext((err) => {
+        if (err) {
+          this.error = err;
+        } else {
+          console.log('Usuario registrado');
+        }
+      })
+    );
   }
 }
 

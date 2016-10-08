@@ -2,6 +2,8 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
+import { Accounts } from 'meteor/accounts-base';
+
 import template from './detallesEmpleado.html';
 import { Empleados } from '../../../api/empleados';
 
@@ -10,9 +12,12 @@ class DetallesEmpleadoCtrl {
     'ngInject';
 
     this.$state = $state;
+    this.password = '';
 
     $reactive(this).attach($scope);
+    
     this.subscribe('empleados');
+    this.subscribe('users');
 
     this.empleadoId = $stateParams.empleadoId;
 
@@ -21,6 +26,10 @@ class DetallesEmpleadoCtrl {
         return Empleados.findOne({
           _id: $stateParams.empleadoId
         })
+      },
+
+      usuario() {
+        return Meteor.users.findOne({username: this.empleado.user});
       }
     });
   }
@@ -42,6 +51,7 @@ class DetallesEmpleadoCtrl {
         }
       });
     } else {
+      Empleados.remove(this.empleadoId);
       Empleados.insert(this.empleado, (error) => {
         if (error) {
           console.log('Oops, actualización no realizada');
@@ -49,10 +59,18 @@ class DetallesEmpleadoCtrl {
           console.log('Hecho!');
         }
       });
-      Empleados.remove(this.empleadoId);
     }
 
     this.$state.go('listadoEmpleados');
+  }
+
+  changePassword() {
+    if(this.password) {
+      if(Meteor.user().admin) {
+        Meteor.call('resetPass', this.usuario._id, this.password);
+        this.$state.go('listadoEmpleados');
+      }
+    }
   }
 }
 

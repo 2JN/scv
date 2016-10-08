@@ -9,9 +9,7 @@ class NavigationCtrl {
   constructor($scope) {
     $scope.viewModel(this);
 
-    this.subscribe('users', () => {
-      return [Meteor.userId()]
-    });
+    this.subscribe('users');
 
     this.helpers({
       usuario() {

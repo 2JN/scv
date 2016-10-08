@@ -22,4 +22,10 @@ Detalles de Empleado:
   <button ng-click="detallesEmpleado.guardar()">Guardar</button>
 </form>
 
+<form>
+  <label>Change Password</label>
+  <input type="password" ng-model="detallesEmpleado.password" />
+  <button ng-click="detallesEmpleado.changePassword()">Cambiar</button>
+</form>
+
 <button ui-sref="listadoEmpleados">Cancelar</button>

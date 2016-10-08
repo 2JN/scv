@@ -1,0 +1,30 @@
+<md-content layout="row" layout-align="center start" layout-fill layout-margin>
+
+  <md-whiteframe layout="column" flex flex-md="50" flex-lg="50" flex-gt-lg="33" class="md-whiteframe-z2" layout-fill>
+
+    <md-toolbar class="md-primary" layout="column" layout-align="end" layout-fill>
+      <div layout="row" class="md-toolbar-tools ">
+        <h3> Iniciar Sesion </h3>
+      </div>
+    </md-toolbar>
+
+    <form layout="column" layout-fill layout-padding layout-margin>
+      <md-input-container>
+        <label> Usuario </label>
+        <input type="text" ng-model="login.credentials.user" aria-label="usuario" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label> Contraseña </label>
+        <input type="password" ng-model="login.credentials.password" aria-label="" required />
+      </md-input-container>
+
+      <div layout="row" layout-align="end">
+        <md-button class="md-raised md-primary" ng-click="login.login()"  aria-label="login" ng-disabled="login.loginForm.$invalid()">Iniciar Sesion</md-button>
+      </div>
+
+    </form>
+
+  </md-whiteframe>
+
+</md-content>

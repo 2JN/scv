@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import ngMaterial from 'angular-material';
 import uiRouter from 'angular-ui-router';
 
 import template from './scv.html';
@@ -10,6 +11,7 @@ import { name as DetallesEmpleado } from '../detallesEmpleado/detallesEmpleado';
 import { name as NuevaDependencia } from '../nuevaDependencia/nuevaDependencia';
 import { name as ListadoDependencias } from '../listadoDependencias/listadoDependencias';
 import { name as DetallesDependencia } from '../detallesDependencia/detallesDependencia';
+import { name as Auth } from '../auth/auth';
 
 class SCVCtrl {
   constructor() {}
@@ -17,6 +19,7 @@ class SCVCtrl {
 
 export default angular.module('scv', [
   angularMeteor,
+  ngMaterial,
   uiRouter,
   Navigation,
   ListadoEmpleados,
@@ -25,6 +28,7 @@ export default angular.module('scv', [
   NuevaDependencia,
   ListadoDependencias,
   DetallesDependencia,
+  Auth,
   'accounts.ui'
 ])
   .component('scv', {
@@ -49,7 +53,7 @@ function run($rootScope, $state) {
   $rootScope.$on('$stateChangeError',
     (event, toState, toParams, fromState, fromParams, error) => {
       if(error === 'PERMISSION_REQUIRED') {
-        $state.go('/comision-nombramiento');
+        $state.go('comisionNombramiento');
       }
     }
   );
