@@ -1,5 +1,5 @@
 <div layout="row">
   <md-button flex ui-sref="login" ng-hide="auth.isLoggedIn">Iniciar Sesion</md-button>
-  <md-button flex ui-sref="login" ng-click="auth.logout()" ng-show="auth.isLoggedIn">Cerrar Sesion</md-button>
-  <div ng-show="auth.isLoggedIn">{{ auth.currentUser }}</div>
+  <md-button flex ui-sref="login" ng-click="auth.logout()" ng-show="auth.isLoggedIn" class="md-accent md-raised">Cerrar Sesion</md-button>
+  <div ng-show="auth.isLoggedIn" layout-margin>{{ auth.currentUser.username }}</div>
 </div>

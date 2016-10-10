@@ -6,9 +6,9 @@ import { Meteor } from 'meteor/meteor';
 import template from './navigation.html';
 
 class NavigationCtrl {
-  constructor($scope) {
+  constructor($scope, $mdSidenav) {
     $scope.viewModel(this);
-
+    this.$mdSidenav = $mdSidenav;
     this.subscribe('users');
 
     this.helpers({

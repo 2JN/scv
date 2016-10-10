@@ -14,7 +14,14 @@ import { name as DetallesDependencia } from '../detallesDependencia/detallesDepe
 import { name as Auth } from '../auth/auth';
 
 class SCVCtrl {
-  constructor() {}
+  constructor($scope, $reactive, $mdSidenav) {
+    $reactive(this).attach($scope);
+    this.$mdSidenav = $mdSidenav;
+  }
+
+  toggleLeft() {
+    this.$mdSidenav('left').toggle();
+  }
 }
 
 export default angular.module('scv', [
@@ -53,7 +60,7 @@ function run($rootScope, $state) {
   $rootScope.$on('$stateChangeError',
     (event, toState, toParams, fromState, fromParams, error) => {
       if(error === 'PERMISSION_REQUIRED') {
-        $state.go('comisionNombramiento');
+        $state.go('login');
       }
     }
   );

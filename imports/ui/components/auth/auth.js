@@ -7,13 +7,13 @@ import { Accounts } from 'meteor/accounts-base';
 import template from './auth.html';
 import { name as Login } from '../login/login';
 
-const name = 'auth';
-
 class AuthCtrl {
   constructor($scope, $reactive) {
     'ngInject';
 
     $reactive(this).attach($scope);
+
+    this.subscribe('users');
 
     this.helpers({
       isLoggedIn() {
@@ -31,12 +31,14 @@ class AuthCtrl {
   }
 }
 
+const name = 'auth';
+
 export default angular.module(name, [
   angularMeteor,
   Login
 ])
   .component(name, {
     templateUrl: template,
-    contrllerAs: name,
+    controllerAs: name,
     controller: AuthCtrl
   });

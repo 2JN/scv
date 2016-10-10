@@ -1,9 +1,19 @@
-<div ng-if="navigation.usuario.admin">
-  <a href="agregar-empleado">Agregar Empleado</a>
-  <a href="modificar-empelados">Modificar Empleados</a>
-  <a href="agregar-dependencia">Agregar Dependencia</a>
-  <a href="modificar-dependencias">Modificar Dependencias</a>
-</div>
-<a>Crear Comision</a>
-<a>Ver Todas las Comisiones</a>
-<auth></auth>
+<section layout-fill>
+  <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4" layout-fill>
+    <md-toolbar>
+      <h4 layout="row" layout-align="center center">Menu</h4>
+    </md-toolbar>
+
+    <md-content layout-padding>
+      <ul ng-if="navigation.usuario.admin" ng-class="side-menu">
+        <li><a class="md-button" href="agregar-empleado" layout-fill>Agregar Empleado</a></li>
+        <li><a class="md-button" href="modificar-empelados" layout-fill>Modificar Empleados</a></li>
+        <li><a class="md-button" href="agregar-dependencia" layout-fill>Agregar Dependencia</a></li>
+        <li><a class="md-button" href="modificar-dependencias" layout-fill>Modificar Dependencias</a></li>
+      </ul>
+      <a>Crear Comision</a>
+      <a>Ver Todas las Comisiones</a>
+    </md-content>
+
+  </md-sidenav>
+</section>

@@ -1,3 +1,21 @@
-<login-buttons></login-buttons>
 <navigation></navigation>
-<div ui-view=""></div>
+<div layout="column" flex>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button ng-click="scv.toggleLeft()" hide-gt-md aria-label="Menu">
+          <ng-md-icon icon="menu"></ng-md-icon>
+      </md-button>
+      <h2>
+        <span>Sistema de Control de Viaticos</span>
+      </h2>
+      <span flex></span>
+      <auth></auth>
+    </div>
+  </md-toolbar>
+
+  <div layout="row" layout-sm="column" flex="100">
+    <md-content flex layout-margin>
+      <div ui-view="" layout-margin layout-fill></div>
+    </md-content>
+  </div>
+</div>
