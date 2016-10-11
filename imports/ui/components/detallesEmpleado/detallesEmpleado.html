@@ -1,31 +1,90 @@
-Detalles de Empleado:
+<div layout="column">
+  <div flex layout="row" layout-align="center" layout-margin>
+    <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
 
-<form>
-  <label>Primer Nombre</label>
-  <input type="text" ng-model="detallesEmpleado.empleado.pnombre" />
-  <label>Segundo Nombre</label>
-  <input type="text" ng-model="detallesEmpleado.empleado.snombre" />
-  <label>Primer Apellido</label>
-  <input type="text" ng-model="detallesEmpleado.empleado.papellido" />
-  <label>Segundo Apellido</label>
-  <input type="text" ng-model="detallesEmpleado.empleado.sapellido" />
-  <label>Código de Dependencia</label>
-  <input type="text" ng-model="detallesEmpleado.empleado.dependencia_id" />
-  <label>Cargo</label>
-  <input type="text" ng-model="detallesEmpleado.empleado.cargo" />
-  <label>Renglon</label>
-  <input type="text" ng-model="detallesEmpleado.empleado.renglon" />
-  <label>Sueldo</label>
-  <input type="text" ng-model="detallesEmpleado.empleado.sueldoMensual" />
-  <label>NIT</label>
-  <input type="text" ng-model="detallesEmpleado.empleado._id" />
-  <button ng-click="detallesEmpleado.guardar()">Guardar</button>
-</form>
+      <md-toolbar class="md-primary" layout="column" layout-laign="end">
+        <div layout="row" class="md-toolbar-tools">
+          <h3> Detalles de Empleado </h3>
+        </div>
+      </md-toolbar>
 
-<form>
-  <label>Change Password</label>
-  <input type="password" ng-model="detallesEmpleado.password" />
-  <button ng-click="detallesEmpleado.changePassword()">Cambiar</button>
-</form>
+      <form layout="column" layout-padding layout-margin>
+        <md-input-container>
+          <label>Primer Nombre</label>
+          <input type="text" ng-model="detallesEmpleado.empleado.pnombre" aria-label="p. nombre" required />
+        </md-input-container>
 
-<button ui-sref="listadoEmpleados">Cancelar</button>
+        <md-input-container>
+          <label>Segundo Nombre</label>
+          <input type="text" ng-model="detallesEmpleado.empleado.snombre" aria-label="s. nombre" />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Primer Apellido</label>
+          <input type="text" ng-model="detallesEmpleado.empleado.papellido" aria-label="p. apellido" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Segundo Apellido</label>
+          <input type="text" ng-model="detallesEmpleado.empleado.sapellido" aria-label="s. apellido" />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Código de Dependencia</label>
+          <input type="text" ng-model="detallesEmpleado.empleado.dependencia_id" aria-label="c. dependencia" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Cargo</label>
+          <input type="text" ng-model="detallesEmpleado.empleado.cargo" aria-label="cargo" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Renglon</label>
+          <input type="text" ng-model="detallesEmpleado.empleado.renglon" aria-label="renglon" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Sueldo</label>
+          <input type="text" ng-model="detallesEmpleado.empleado.sueldoMensual" aria-label="sueldo" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>NIT</label>
+          <input type="text" ng-model="detallesEmpleado.empleado._id" aria-label="nit" required />
+        </md-input-container>
+
+        <div layout="row" layout-align="end">
+          <md-button class="md-accent" ui-sref="listadoEmpleados">Cancelar</md-button>
+          <md-button class="md-raised md-primary" ng-click="detallesEmpleado.guardar()">Guardar</md-button>
+        </div>
+      </form>
+
+    </md-whiteframe>
+  </div>
+
+  <div layout="row" layout-align="center" layout-margin>
+    <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
+
+      <md-toolbar class="md-primary" layout="column" layout-laign="end">
+        <div layout="row" class="md-toolbar-tools">
+          <h3> Cambiar Contraseña </h3>
+        </div>
+      </md-toolbar>
+
+      <form layout="column" layout-padding layout-margin>
+
+        <md-input-container>
+          <label>Change Password</label>
+          <input type="password" ng-model="detallesEmpleado.password" aria-label="password" />
+        </md-input-container>
+
+        <div layout="row" layout-align="end">
+          <md-button class="md-accent" ui-sref="listadoEmpleados">Cancelar</md-button>
+          <md-button class="md-raised md-primary" ng-click="detallesEmpleado.changePassword()">Cambiar</md-button>
+        </div>
+
+      </form>
+    </md-whiteframe>
+  </div>
+</div>

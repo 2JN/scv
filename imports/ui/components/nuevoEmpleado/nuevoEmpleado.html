@@ -1,25 +1,72 @@
-<form>
-  <label>Primer Nombre</label>
-  <input type="text" ng-model="nuevoEmpleado.empleado.pnombre" />
-  <label>Segundo Nombre</label>
-  <input type="text" ng-model="nuevoEmpleado.empleado.snombre" />
-  <label>Primer Apellido</label>
-  <input type="text" ng-model="nuevoEmpleado.empleado.papellido" />
-  <label>Segundo Apellido</label>
-  <input type="text" ng-model="nuevoEmpleado.empleado.sapellido" />
-  <label>Código de Dependencia</label>
-  <input type="text" ng-model="nuevoEmpleado.empleado.dependencia_id" />
-  <label>Cargo</label>
-  <input type="text" ng-model="nuevoEmpleado.empleado.cargo" />
-  <label>Renglon</label>
-  <input type="text" ng-model="nuevoEmpleado.empleado.renglon" />
-  <label>Sueldo</label>
-  <input type="text" ng-model="nuevoEmpleado.empleado.sueldoMensual" />
-  <label>NIT</label>
-  <input type="text" ng-model="nuevoEmpleado.empleado._id" />
-  <label>Usuario</label>
-  <input type="text" ng-model="nuevoEmpleado.credentials.username" />
-  <label>Contraseña</label>
-  <input type="password" ng-model="nuevoEmpleado.credentials.password" />
-  <button ng-click="nuevoEmpleado.ingresar()"> + </button>
-</form>
+<div layout="row" layout-align="center">
+  <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
+
+    <md-toolbar class="md-primary" layout="column" layout-align="end">
+      <div layout="row" class="md-toolbar-tools">
+        <h3> Agregar Empleado </h3>
+      </div>
+    </md-toolbar>
+
+    <form layout="column" layout-padding layout-margin>
+      <md-input-container>
+        <label>Primer Nombre</label>
+        <input type="text" ng-model="nuevoEmpleado.empleado.pnombre" aria-label="p. nombre" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Segundo Nombre</label>
+        <input type="text" ng-model="nuevoEmpleado.empleado.snombre" aria-label="s. nombre" />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Primer Apellido</label>
+        <input type="text" ng-model="nuevoEmpleado.empleado.papellido" aria-label="p. apellido" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Segundo Apellido</label>
+        <input type="text" ng-model="nuevoEmpleado.empleado.sapellido" aria-label="s. apellido" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Código de Dependencia</label>
+        <input type="text" ng-model="nuevoEmpleado.empleado.dependencia_id" aria-label="c. dependencia" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Cargo</label>
+        <input type="text" ng-model="nuevoEmpleado.empleado.cargo" aria-label="cargo" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Renglon</label>
+        <input type="text" ng-model="nuevoEmpleado.empleado.renglon" aria-label="renglon" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Sueldo</label>
+        <input type="text" ng-model="nuevoEmpleado.empleado.sueldoMensual" arai-label="sueldo" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>NIT</label>
+        <input type="text" ng-model="nuevoEmpleado.empleado._id" aria-label="nit" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Usuario</label>
+        <input type="text" ng-model="nuevoEmpleado.credentials.username" aria-label="usuario" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Contraseña</label>
+        <input type="password" ng-model="nuevoEmpleado.credentials.password" />
+      </md-input-container>
+
+      <div layout="row" layout-align="end">
+        <md-button class="md-raised md-primary" ng-click="nuevoEmpleado.ingresar()"> Agregar </md-button>
+      </div>
+    </form>
+
+  </md-whiteframe>
+</div>

@@ -1,9 +1,9 @@
-<navigation></navigation>
+<navigation layout="column"></navigation>
 <div layout="column" flex>
   <md-toolbar>
     <div class="md-toolbar-tools">
       <md-button ng-click="scv.toggleLeft()" hide-gt-md aria-label="Menu">
-          <ng-md-icon icon="menu"></ng-md-icon>
+          <md-icon md-svg-icon="navigation:ic_menu_24px"></md-icon>
       </md-button>
       <h2>
         <span>Sistema de Control de Viaticos</span>
@@ -13,9 +13,7 @@
     </div>
   </md-toolbar>
 
-  <div layout="row" layout-sm="column" flex="100">
-    <md-content flex layout-margin>
-      <div ui-view="" layout-margin layout-fill></div>
-    </md-content>
-  </div>
+  <md-content flex layout-margin>
+    <div ui-view="" layout-margin></div>
+  </md-content>
 </div>

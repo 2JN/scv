@@ -1,16 +1,43 @@
-Detalles de Dependencia:
-<form>
-  <label>Código de Depedencia</label>
-  <input type="text" ng-model="detallesDependencia.dependencia._id" />
-  <label>Nombre de Dependencia</label>
-  <input type="text" ng-model="detallesDependencia.dependencia.nombre" />
-  <label>Municipio de Dependencia</label>
-  <input type="text" ng-model="detallesDependencia.dependencia.municipio" />
-  <label>Departamento de Dependencia</label>
-  <input type="text" ng-model="detallesDependencia.dependencia.departamento" />
-  <label>Encargado de la Depedencia</label>
-  <input type="text" ng-model="detallesDependencia.dependencia.encargado" />
-  <button ng-click="detallesDependencia.guardar()">Guardar</button>
-</form>
+<div layout="row" layout-align="center" layout-margin>
+  <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-lg-gt="33" class="md-whiteframe-2dp">
 
-<button ui-sref="listadoDependencias">Cancelar</button>
+    <md-toolbar class="md-primary" layout="column" layout-align="end">
+      <div layout="row" class="md-toolbar-tools">
+        <h3> Detalles de Dependencia </h3>
+      </div>
+    </md-toolbar>
+
+    <form layout="column" layout-padding layout-margin>
+      <md-input-container>
+        <label>Código de Depedencia</label>
+        <input type="text" ng-model="detallesDependencia.dependencia._id" aria-label="c. dependencia" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Nombre de Dependencia</label>
+        <input type="text" ng-model="detallesDependencia.dependencia.nombre" aria-label="n. dependencia" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Municipio de Dependencia</label>
+        <input type="text" ng-model="detallesDependencia.dependencia.municipio" aria-label="m. dependencia" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Departamento de Dependencia</label>
+        <input type="text" ng-model="detallesDependencia.dependencia.departamento" aria-label="d. dependencia" required />
+      </md-input-container>
+
+      <md-input-container>
+        <label>Encargado de la Depedencia</label>
+        <input type="text" ng-model="detallesDependencia.dependencia.encargado" aria-label="e. dependencia" required />
+      </md-input-container>
+
+      <div layout="row" layout-align="end">
+        <md-button class="md-accent" ui-sref="listadoDependencias">Cancelar</md-button>
+        <md-button class="md-raised md-primary" ng-click="detallesDependencia.guardar()">Guardar</md-button>
+      </div>
+    </form>
+
+  </md-whiteframe>
+</div>

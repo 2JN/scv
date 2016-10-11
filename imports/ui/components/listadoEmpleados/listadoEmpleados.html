@@ -1,16 +1,42 @@
-<ul>
-  <li ng-repeat="empleado in listadoEmpleados.empleados">
-    {{ empleado.pnombre }}
-    {{ empleado.snombre }}
-    {{ empleado.papellido }}
-    {{ empleado.sapellido }}
-    {{ empleado.dependencia_id }}
-    {{ empleado.cargo }}
-    {{ empleado.renglon }}
-    {{ empleado.sueldoMensual }}
-    {{ empleado._id }}
-    {{ empleado.user }}
-    <a ui-sref="detallesEmpleado({ empleadoId: empleado._id })">Editar</a>
-    <eliminar-empleado empleado="empleado"></eliminar-empleado>
-  </li>
-</ul>
+<div layout="row" layout-align="center">
+  <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
+
+    <md-toolbar class="md-hue-3" layout="colum" layout-align="end">
+      <div layout="row" class="md-toolbar-tools">
+        <h3> Empleados </h3>
+      </div>
+    </md-toolbar>
+
+    <md-content>
+      <md-list flex layout-margin>
+        <md-list-item class="md-3-line" ng-repeat="empleado in listadoEmpleados.empleados">
+          <div class="md-list-item-text" layout="column">
+            <h3>
+              {{ empleado.pnombre }}
+              {{ empleado.snombre }}
+              {{ empleado.papellido }}
+              {{ empleado.sapellido }}
+            </h3>
+            <h4>
+              {{ empleado.dependencia_id }}
+              {{ empleado.cargo }}
+              {{ empleado.renglon }}
+              {{ empleado.sueldoMensual }}
+            </h4>
+            <p>
+              {{ empleado._id }}
+              {{ empleado.user }}
+            </p>
+          </div>
+
+          <div layout="row" layout-align="end center" layout-margin>
+            <md-button ui-sref="detallesEmpleado({ empleadoId: empleado._id })">Editar</md-button>
+
+            <eliminar-empleado empleado="empleado"></eliminar-empleado>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-content>
+
+  </md-whiteframe>
+</div>

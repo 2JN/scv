@@ -46,12 +46,17 @@ export default angular.module('scv', [
   .config(config)
   .run(run);
 
-function config($locationProvider, $urlRouterProvider) {
+function config($locationProvider, $urlRouterProvider, $mdIconProvider) {
   'ngInject';
 
   $locationProvider.html5Mode(true);
 
   $urlRouterProvider.otherwise('/comision-nombramiento');
+
+  const iconPath = '/packages/planettraining_material-design-icons/bower_components/material-design-icons/sprites/svg-sprite/';
+
+  $mdIconProvider
+    .iconSet('navigation', iconPath + 'svg-sprite-navigation.svg');
 }
 
 function run($rootScope, $state) {

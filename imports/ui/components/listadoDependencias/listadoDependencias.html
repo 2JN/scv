@@ -1,11 +1,34 @@
-<ul>
-  <li ng-repeat="dependencia in listadoDependencias.dependencias">
-    {{ dependencia._id  }}
-    {{ dependencia.nombre }}
-    {{ dependencia.municipio }}
-    {{ dependencia.departamento }}
-    {{ dependencia.encargado }}
-    <a ui-sref="detallesDependencia({ dependenciaId: dependencia._id })">Editar</a>
-    <eliminar-dependencia dependencia="dependencia"></eliminar-dependencia>
-  </li>
-</ul>
+<div layout="row" layout-align="center">
+  <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
+
+    <md-toolbar class="md-hue-3" layout="colum" layout-align="end">
+      <div layout="row" class="md-toolbar-tools">
+        <h3> Dependencias </h3>
+      </div>
+    </md-toolbar>
+
+    <md-content>
+      <md-list flex layout-margin>
+        <md-list-item class="md-3-line" ng-repeat="dependencia in listadoDependencias.dependencias">
+          <div class="md-list-item-text" layout="column">
+            <h3> {{ dependencia.nombre }} </h3>
+            <h4>
+              {{ dependencia._id  }}
+              {{ dependencia.encargado }}
+            </h4>
+            <p>
+              {{ dependencia.municipio }}
+              {{ dependencia.departamento }}
+            </p>
+          </div>
+
+          <div layout="row" layout-align="end center" layout-margin>
+            <md-button ui-sref="detallesDependencia({ dependenciaId: dependencia._id })">Editar</md-button>
+            <eliminar-dependencia dependencia="dependencia"></eliminar-dependencia>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-content>
+
+  </md-whiteframe>
+</div>
