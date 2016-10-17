@@ -11,6 +11,7 @@ import { name as DetallesEmpleado } from '../detallesEmpleado/detallesEmpleado';
 import { name as NuevaDependencia } from '../nuevaDependencia/nuevaDependencia';
 import { name as ListadoDependencias } from '../listadoDependencias/listadoDependencias';
 import { name as DetallesDependencia } from '../detallesDependencia/detallesDependencia';
+import { name as NombramientoComision } from '../nombramientoComision/nombramientoComision';
 import { name as Auth } from '../auth/auth';
 
 class SCVCtrl {
@@ -35,6 +36,7 @@ export default angular.module('scv', [
   NuevaDependencia,
   ListadoDependencias,
   DetallesDependencia,
+  NombramientoComision,
   Auth,
   'accounts.ui'
 ])
@@ -51,7 +53,7 @@ function config($locationProvider, $urlRouterProvider, $mdIconProvider) {
 
   $locationProvider.html5Mode(true);
 
-  $urlRouterProvider.otherwise('/comision-nombramiento');
+  $urlRouterProvider.otherwise('/nombramiento-comision');
 
   const iconPath = '/packages/planettraining_material-design-icons/bower_components/material-design-icons/sprites/svg-sprite/';
 

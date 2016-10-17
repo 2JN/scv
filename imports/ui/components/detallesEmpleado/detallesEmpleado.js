@@ -2,8 +2,6 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
-import { Accounts } from 'meteor/accounts-base';
-
 import template from './detallesEmpleado.html';
 import { Empleados } from '../../../api/empleados';
 
@@ -11,11 +9,11 @@ class DetallesEmpleadoCtrl {
   constructor($stateParams, $scope, $reactive, $state) {
     'ngInject';
 
+    $reactive(this).attach($scope);
+
     this.$state = $state;
     this.password = '';
 
-    $reactive(this).attach($scope);
-    
     this.subscribe('empleados');
     this.subscribe('users');
 
