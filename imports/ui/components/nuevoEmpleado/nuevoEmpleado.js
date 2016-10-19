@@ -27,25 +27,13 @@ class NuevoEmpleadoCtrl {
   ingresar() {
     this.empleado.user = this.credentials.username;
     Empleados.insert(this.empleado);
-    this.register();
+    Meteor.call('newUser', this.credentials);
     this.reset();
   }
 
   reset() {
     this.empleado = {};
     this.credentials = {};
-  }
-
-  register() {
-    Accounts.createUser(this.credentials,
-      this.$bindToContext((err) => {
-        if (err) {
-          this.error = err;
-        } else {
-          console.log('Usuario registrado');
-        }
-      })
-    );
   }
 }
 

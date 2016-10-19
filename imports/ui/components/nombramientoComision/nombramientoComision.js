@@ -21,6 +21,30 @@ class NombramientoComisionCtrl {
     this.dependencia = {};
     this.comision = {};
     this.comision.fecha = new Date;
+    this.isDisabled = true;
+
+    this.comision.fechaI = new Date (
+      this.comision.fecha.getFullYear(),
+      this.comision.fecha.getMonth(),
+      this.getReactively('this.comision.fecha').getDate() + 1
+    );
+
+    // get date reactively
+    this.autorun( () => {
+      this.minDate = new Date(
+        this.comision.fecha.getFullYear(),
+        this.comision.fecha.getMonth(),
+        this.getReactively('this.comision.fecha').getDate() + 1
+      );
+    });
+
+    this.autorun( () => {
+      this.otherMinDate = new Date(
+        this.comision.fechaI.getFullYear(),
+        this.comision.fechaI.getMonth(),
+        this.getReactively('this.comision.fechaI').getDate()
+      );
+    });
 
     this.helpers({
       datosUsuario() {
@@ -45,7 +69,7 @@ class NombramientoComisionCtrl {
 
     Nombramientos.insert(datosComision);
     this.actualizarDependencia();
-    this.reset();
+    this.isDisabled = false;
   }
 
   reset() {

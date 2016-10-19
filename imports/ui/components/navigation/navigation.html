@@ -4,16 +4,73 @@
       <h4 layout="row" layout-align="center center">Menu</h4>
     </md-toolbar>
 
+    <md-list>
+      <md-list-item ng-if="navigation.usuario.admin" md-ink-ripple >
+        <a href="agregar-empleado">
+          <md-item-content layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon></ng-md-icon>
+            </div>
+            <div class="inset"> Agregar Empleado </div>
+          </md-item-content>
+        </a>
+      </md-list-item>
+
+      <md-list-item ng-if="navigation.usuario.admin" md-ink-ripple >
+        <a href="modificar-empelados">
+          <md-item-content layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon></ng-md-icon>
+            </div>
+            <div class="inset"> Modificar Empleados </div>
+          </md-item-content>
+        </a>
+      </md-list-item>
+
+      <md-list-item ng-if="navigation.usuario.admin" md-ink-ripple >
+        <a href="agregar-dependencia">
+          <md-item-content layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon></ng-md-icon>
+            </div>
+            <div class="inset"> Agregar Dependencia </div>
+          </md-item-content>
+        </a>
+      </md-list-item>
+
+      <md-list-item ng-if="navigation.usuario.admin" md-ink-ripple >
+        <a href="modificar-dependencias">
+          <md-item-content layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon></ng-md-icon>
+            </div>
+            <div class="inset"> Modificar Dependencia </div>
+          </md-item-content>
+        </a>
+      </md-list-item>
+
+      <md-list-item ng-if="navigation.usuario" md-ink-ripple >
+        <a href="comision-nombramiento">
+          <md-item-content layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon></ng-md-icon>
+            </div>
+            <div class="inset"> Nombramiento Comision </div>
+          </md-item-content>
+        </a>
+      </md-list-item>
+
+    </md-list>
+
+    <!--
     <md-content layout-padding>
       <ul ng-if="navigation.usuario.admin" ng-class="side-menu">
-        <li><a class="md-button" href="agregar-empleado" layout-fill>Agregar Empleado</a></li>
-        <li><a class="md-button" href="modificar-empelados" layout-fill>Modificar Empleados</a></li>
-        <li><a class="md-button" href="agregar-dependencia" layout-fill>Agregar Dependencia</a></li>
-        <li><a class="md-button" href="modificar-dependencias" layout-fill>Modificar Dependencias</a></li>
+
       </ul>
       <a>Crear Comision</a>
       <a>Ver Todas las Comisiones</a>
     </md-content>
+  -->
 
   </md-sidenav>
 </section>
