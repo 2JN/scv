@@ -21,7 +21,17 @@ class NombramientoComisionCtrl {
     this.dependencia = {};
     this.comision = {};
     this.comision.fecha = new Date;
+
     this.isDisabled = true;
+    this.comision.lugares = [
+      {
+        dependencia: '',
+        municipio: '',
+        departamento: ''
+      }
+    ];
+
+    // get dates reactively
 
     this.comision.fechaI = new Date (
       this.comision.fecha.getFullYear(),
@@ -29,7 +39,6 @@ class NombramientoComisionCtrl {
       this.getReactively('this.comision.fecha').getDate() + 1
     );
 
-    // get date reactively
     this.autorun( () => {
       this.minDate = new Date(
         this.comision.fecha.getFullYear(),
@@ -64,7 +73,7 @@ class NombramientoComisionCtrl {
       _id: noNombramiento,
       datos_empleado: this.datosUsuario,
       datos_dependencia: this.dependencia,
-      datos_comision: this.comision
+      datos_comision: angular.copy(this.comision)
     }
 
     Nombramientos.insert(datosComision);
@@ -83,6 +92,18 @@ class NombramientoComisionCtrl {
     }, {
       $set: { nombramiento: this.dependencia.nombramiento }
     });
+  }
+
+  addLugar() {
+    this.comision.lugares.push({
+      dependencia: '',
+      municipio: '',
+      departamento: ''
+    });
+  }
+
+  removeLugar(index) {
+    this.comision.lugares.splice(index, 1);
   }
 
   modificarFecha(fechamod) {
@@ -192,13 +213,11 @@ class NombramientoComisionCtrl {
       {title: "Departamento", key: "departamento"}
     ];
 
-    let rowsc = [
-      {
-        dependencia: this.comision.dependencia,
-        municipio: this.comision.municipio,
-        departamento: this.comision.departamento
-      }
-    ];
+    let rowsc = [];
+
+    for (let obj of this.comision.lugares) {
+      rowsc.push(obj);
+    }
 
     doc.autoTable(columnsc, rowsc, {
       theme: 'plain',
@@ -208,7 +227,7 @@ class NombramientoComisionCtrl {
       bodyStyles: {valign: 'top'},
     });
 
-    doc.text(30, 340, "Por el período comprendido:\t" + dateI +
+    doc.text(30, 387, "Por el período comprendido:\t" + dateI +
       "\tal\t" + dateF);
 
     doc.text(30, 410, "Motivo de la comisión:");
@@ -241,11 +260,15 @@ class NombramientoComisionCtrl {
 
     doc.text(455, 525, 'Transporte urbano');
 
-    let observaciones = doc.splitTextToSize(this.comision.observaciones, 515);
-    doc.text(30, 580, 'Observaciones: ');
-    doc.text(30, 600, observaciones);
+    if(this.comision.observaciones) {
+      let observaciones = doc.splitTextToSize(this.comision.observaciones, 515);
+      doc.text(30, 580, 'Observaciones: ');
+      doc.text(30, 600, observaciones);
+    } else {
+      doc.text(30, 580, 'Observaciones: ');
+    }
 
-    doc.text(30, 650, `Lugar y Fecha: ${this.comision.lugar}, ${date}`);
+    doc.text(30, 650, `Lugar y Fecha: ${this.comision.localizacion}, ${date}`);
 
     doc.text(210, 700, "(f).");
     doc.line(230, 705, 400, 705);
