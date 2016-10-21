@@ -12,42 +12,42 @@
         <div layout="column" layout-padding layout-margin>
           <md-input-container>
             <label>Primer Nombre</label>
-            <input type="text" ng-model="nombramientoComision.datosUsuario.pnombre" required />
+            <input type="text" ng-model="detallesNombramiento.nombramiento.datos_empleado.pnombre" required />
           </md-input-container>
 
           <md-input-container>
             <label>Segundo Nombre</label>
-            <input type="text" ng-model="nombramientoComision.datosUsuario.snombre" />
+            <input type="text" ng-model="detallesNombramiento.nombramiento.datos_empleado.snombre" />
           </md-input-container>
 
           <md-input-container>
             <label>Primer Apellido</label>
-            <input type="text" ng-model="nombramientoComision.datosUsuario.papellido" required />
+            <input type="text" ng-model="detallesNombramiento.nombramiento.datos_empleado.papellido" required />
           </md-input-container>
 
           <md-input-container>
             <label>Segundo Apellido</label>
-            <input type="text" ng-model="nombramientoComision.datosUsuario.sapellido" />
+            <input type="text" ng-model="detallesNombramiento.nombramiento.datos_empleado.sapellido" />
           </md-input-container>
 
           <md-input-container>
             <label>Cargo</label>
-            <input type="text" ng-model="nombramientoComision.datosUsuario.cargo" required />
+            <input type="text" ng-model="detallesNombramiento.nombramiento.datos_empleado.cargo" required />
           </md-input-container>
 
           <md-input-container>
             <label>Renglon</label>
-            <input type="text" ng-model="nombramientoComision.datosUsuario.renglon" required />
+            <input type="text" ng-model="detallesNombramiento.nombramiento.datos_empleado.renglon" required />
           </md-input-container>
 
           <md-input-container>
             <label>Sueldo Mensual</label>
-            <input type="text" ng-model="nombramientoComision.datosUsuario.sueldoMensual" required />
+            <input type="text" ng-model="detallesNombramiento.nombramiento.datos_empleado.sueldoMensual" required />
           </md-input-container>
 
           <md-input-container>
             <label>NIT</label>
-            <input type="text" ng-model="nombramientoComision.datosUsuario._id" required />
+            <input type="text" ng-model="detallesNombramiento.nombramiento.datos_empleado._id" required />
           </md-input-container>
         </div>
 
@@ -60,30 +60,28 @@
         <md-toolbar class="md-primary" layout="column" layout-align="end">
           <div layout="row" class="md-toolbar-tools">
             <h3> Dependencia de Usuario </h3>
-            <span flex></span>
-            <md-button ng-click="nombramientoComision.datosDependencia()"> Llenar Formulario </md-button>
           </div>
         </md-toolbar>
 
         <div layout="column" layout-padding layout-margin>
           <md-input-container>
             <label>Nombre</label>
-            <input type="text" ng-model="nombramientoComision.dependencia.nombre" required />
+            <input type="text" ng-model="detallesNombramiento.nombramiento.datos_dependencia.nombre" required />
           </md-input-container>
 
           <md-input-container>
             <label>Municipio</label>
-            <input type="text" ng-model="nombramientoComision.dependencia.municipio" required />
+            <input type="text" ng-model="detallesNombramiento.nombramiento.datos_dependencia.municipio" required />
           </md-input-container>
 
           <md-input-container>
             <label>Departamento</label>
-            <input type="text" ng-model="nombramientoComision.dependencia.departamento" required />
+            <input type="text" ng-model="detallesNombramiento.nombramiento.datos_dependencia.departamento" required />
           </md-input-container>
 
           <md-input-container>
             <label>Encargado</label>
-            <input type="text" ng-model="nombramientoComision.dependencia.encargado" required />
+            <input type="text" ng-model="detallesNombramiento.nombramiento.datos_dependencia.encargado" required />
           </md-input-container>
         </div>
 
@@ -104,7 +102,7 @@
           <!-- Tab form  -->
           <md-content>
             <md-tabs md-selected="1" md-border-bottom md-autoselect>
-              <md-tab label="{{$index + 1}}" ng-repeat="lugar in nombramientoComision.comision.lugares">
+              <md-tab label="{{$index + 1}}" ng-repeat="lugar in detallesNombramiento.nombramiento.datos_comision.lugares">
 
                 <div layout="column" flex="90">
                   <md-input-container>
@@ -124,61 +122,62 @@
                 </div>
 
                 <div layout='row' layout-align="end">
-                  <md-button class="md-accent md-raised" ng-if="$index" ng-click="nombramientoComision.removeLugar($index)">Remover Lugar</md-button>
+                  <md-button class="md-accent md-raised" ng-if="$index" ng-click="detallesNombramiento.removeLugar($index)">Remover Lugar</md-button>
                 </div>
 
               </md-tab>
             </md-tabs>
 
-            <md-button class="md-primary md-raised" ng-if="nombramientoComision.comision.lugares.length < 5" ng-click="nombramientoComision.addLugar()" ng-disabled="false">Añadir Lugar</md-button>
+            <md-button class="md-primary md-raised" ng-if="detallesNombramiento.nombramiento.datos_comision.lugares.length < 5" ng-click="nombramientoComision.addLugar()" ng-disabled="false">Añadir Lugar</md-button>
           </md-content>
           <!-- End tab form -->
 
           <div layout-margin>
             <p>Por el Periodo Comprendido</p>
             <div layout-gt-xs="row">
-              <md-datepicker ng-model="nombramientoComision.comision.fechaI" md-min-date="nombramientoComision.minDate" md-placeholder="salida" required></md-datepicker>
+              <md-datepicker ng-model="detallesNombramiento.nombramiento.datos_comision.fechaI" md-min-date="" md-placeholder="salida" required></md-datepicker>
 
               <span flex layout="column" layout-align="center center">al</span>
 
-              <md-datepicker ng-model="nombramientoComision.comision.fechaF" md-min-date="nombramientoComision.otherMinDate" md-placeholder="llegada" required></md-datepicker>
+              <md-datepicker ng-model="detallesNombramiento.nombramiento.datos_comision.fechaF" md-min-date="nombramientoComision.otherMinDate" md-placeholder="llegada" required></md-datepicker>
             </div>
           </div>
 
           <md-input-container class="md-block">
             <label>Motivo de la Comision</label>
-            <textarea ng-model="nombramientoComision.comision.motivo" md-maxlength="150" rows="4" md-select-on-focus required></textarea>
+            <textarea ng-model="detallesNombramiento.nombramiento.datos_comision.motivo" md-maxlength="150" rows="4" md-select-on-focus required></textarea>
           </md-input-container>
 
           <div layout-margin>
             <p>Utilizara:</p>
             <div layout-gt-xs="row">
-              <md-checkbox ng-model="nombramientoComision.comision.vehiculoInst" aria-label="vehiculo institucion">Vehiculo de la Institución</md-checkbox>
-              <md-checkbox ng-model="nombramientoComision.comision.vehiculoProp" aria-label="vehiculo propio">Vehiculo Propio</md-checkbox>
-              <md-checkbox ng-model="nombramientoComision.comision.transUrbano" aria-label="transporte urbano">Transporte Extraurbano</md-checkbox>
+              <md-checkbox ng-model="detallesNombramiento.nombramiento.datos_comision.vehiculoInst" aria-label="vehiculo institucion">Vehiculo de la Institución</md-checkbox>
+              <md-checkbox ng-model="detallesNombramiento.nombramiento.datos_comision.vehiculoProp" aria-label="vehiculo propio">Vehiculo Propio</md-checkbox>
+              <md-checkbox ng-model="detallesNombramiento.nombramiento.datos_comision.transUrbano" aria-label="transporte urbano">Transporte Extraurbano</md-checkbox>
             </div>
           </div>
 
           <md-input-container class="md-block">
             <label>Observaciones</label>
-            <textarea ng-model="nombramientoComision.comision.observaciones" md-maxlength="150" rows="2" md-select-on-focus></textarea>
+            <textarea ng-model="detallesNombramiento.nombramiento.datos_comision.observaciones" md-maxlength="150" rows="2" md-select-on-focus></textarea>
           </md-input-container>
 
           <div layout-gt-xs="row" layout-margin>
             <md-input-container flex>
               <label>Lugar y Fecha: </label>
-              <input type="text" ng-model="nombramientoComision.comision.localizacion" required />
+              <input type="text" ng-model="detallesNombramiento.nombramiento.datos_comision.localizacion" required />
             </md-input-container>
-            <md-datepicker ng-model="nombramientoComision.comision.fecha" md-placeholder="fecha" required></md-datepicker>
+            <md-datepicker ng-model="detallesNombramiento.nombramiento.datos_comision.fecha" md-placeholder="fecha" required></md-datepicker>
           </div>
 
           <div layout="row" layout-align="end">
-            <a class="md-button md-raised" ng-disabled="nombramientoComision.isDisabled" ng-click="nombramientoComision.descargarPDF()" >Descargar PDF</a>
-            <md-button class="md-raised md-primary"  ng-disabled="cform.$invalid" ng-click="nombramientoComision.ingresar()"> Aceptar </md-button>
+            <md-button class="md-accent" ui-sref="listadoNombramientos"> Cancelar </md-button>
+            <md-button class="md-raised md-primary"  ng-disabled="cform.$invalid" ng-click="detallesNombramiento.guardar()"> Aceptar </md-button>
           </div>
-        </div>
 
+        </div>
       </md-whiteframe>
+
     </div>
   </form>
 </div>

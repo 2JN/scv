@@ -5,10 +5,17 @@ import { Nombramientos } from './collection';
 if (Meteor.isServer) {
   Meteor.publish('nombramientos', function() {
 
-    /**
-    * TODO: Implementar solo para administradores
-    */
+    let user = Meteor.users.findOne({_id: this.userId});
 
-    return Nombramientos.find({});
+    // Select only comisiones that belongs to the user
+    const selector = {
+      $and: [{
+        "datos_empleado.user": user.username
+      }, {
+        "datos_empleado.user": {$exists:true}
+      }]
+    };
+
+    return Nombramientos.find(selector);
   });
 }

@@ -12,6 +12,8 @@ import { name as NuevaDependencia } from '../nuevaDependencia/nuevaDependencia';
 import { name as ListadoDependencias } from '../listadoDependencias/listadoDependencias';
 import { name as DetallesDependencia } from '../detallesDependencia/detallesDependencia';
 import { name as NombramientoComision } from '../nombramientoComision/nombramientoComision';
+import { name as ListadoNombramientos } from '../listadoNombramientos/listadoNombramientos';
+import { name as DetallesNombramiento } from '../detallesNombramiento/detallesNombramiento';
 import { name as Auth } from '../auth/auth';
 
 class SCVCtrl {
@@ -37,6 +39,8 @@ export default angular.module('scv', [
   ListadoDependencias,
   DetallesDependencia,
   NombramientoComision,
+  ListadoNombramientos,
+  DetallesNombramiento,
   Auth,
   'accounts.ui'
 ])
