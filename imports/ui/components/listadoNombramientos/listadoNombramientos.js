@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router';
 
 import template from './listadoNombramientos.html';
 import { Nombramientos } from '../../../api/nombramientos';
+import { name as NombramientoPDF } from '../nombramientoPDF/nombramientoPDF';
 
 class ListadoNombramientosCtrl {
   constructor($scope, $reactive, $state) {
@@ -24,6 +25,7 @@ const name = 'listadoNombramientos';
 export default angular.module(name, [
   angularMeteor,
   uiRouter,
+  NombramientoPDF
 ])
   .component(name, {
     templateUrl: template,

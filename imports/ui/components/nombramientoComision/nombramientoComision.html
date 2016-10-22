@@ -103,7 +103,7 @@
 
           <!-- Tab form  -->
           <md-content>
-            <md-tabs md-selected="1" md-border-bottom md-autoselect>
+            <md-tabs md-selected="1" md-border-bottom md-autoselect md-dynamic-height>
               <md-tab label="{{$index + 1}}" ng-repeat="lugar in nombramientoComision.comision.lugares">
 
                 <div layout="column" flex="90">
@@ -157,6 +157,11 @@
               <md-checkbox ng-model="nombramientoComision.comision.vehiculoProp" aria-label="vehiculo propio">Vehiculo Propio</md-checkbox>
               <md-checkbox ng-model="nombramientoComision.comision.transUrbano" aria-label="transporte urbano">Transporte Extraurbano</md-checkbox>
             </div>
+
+            <md-input-container ng-if="nombramientoComision.comision.vehiculoInst">
+              <label>Placas</label>
+              <input type="text" ng-model="nombramientoComision.comision.placasVI" required />
+            </md-input-container>
           </div>
 
           <md-input-container class="md-block">
@@ -173,7 +178,6 @@
           </div>
 
           <div layout="row" layout-align="end">
-            <a class="md-button md-raised" ng-disabled="nombramientoComision.isDisabled" ng-click="nombramientoComision.descargarPDF()" >Descargar PDF</a>
             <md-button class="md-raised md-primary"  ng-disabled="cform.$invalid" ng-click="nombramientoComision.ingresar()"> Aceptar </md-button>
           </div>
         </div>
