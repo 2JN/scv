@@ -72,7 +72,7 @@ function config($stateProvider) {
         if(Meteor.userId()) {
           return $q.resolve()
         } else {
-          return $$q.reject(' PERMISSION_REQUIRED');
+          return $$q.reject('PERMISSION_REQUIRED');
         }
       }
     }

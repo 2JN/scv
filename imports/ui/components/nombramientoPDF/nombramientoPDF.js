@@ -2,7 +2,6 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 import template from './nombramientoPDF.html';
-import { Nombramientos } from '../../../api/nombramientos';
 
 class NombramientoPDFCtrl {
   descargarPDF() {
