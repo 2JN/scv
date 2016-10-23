@@ -146,7 +146,8 @@ class NombramientoPDFCtrl {
     doc.text(210, 740, "(f).");
     doc.line(230, 745, 400, 745);
     doc.setFontSize(9);
-    doc.text(235, 760, `Nombre: ${this.nombramiento.datos_dependencia.encargado}`);
+    doc.text(235, 755, `Nombre: ${this.nombramiento.datos_dependencia.encargado}`);
+    doc.text(235, 765, `Cargo: ${this.nombramiento.datos_dependencia.cargoEn}`);
 
     doc.save('nombramiento.pdf');
   }

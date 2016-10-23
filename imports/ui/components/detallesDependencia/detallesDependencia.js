@@ -34,7 +34,8 @@ class DetallesDependenciaCtrl {
           nombre: this.dependencia.nombre,
           municipio: this.dependencia.municipio,
           departamento: this.dependencia.departamento,
-          encargado: this.dependencia.encargado
+          encargado: this.dependencia.encargado,
+          cargoEn: this.dependencia.cargoEn
         }
       });
     } else {
@@ -42,10 +43,10 @@ class DetallesDependenciaCtrl {
         if (error) {
           console.log('Oops, actualización no realizada');
         } else {
+          Dependencias.remove(this.dependenciaId);
           console.log('Hecho!');
         }
       });
-      Dependencias.remove(this.dependenciaId);
     }
 
     this.$state.go('listadoDependencias');

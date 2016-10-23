@@ -33,6 +33,11 @@
         <input type="text" ng-model="nuevaDependencia.dependencia.encargado" aria-label="e. dependencia" required />
       </md-input-container>
 
+      <md-input-container>
+        <label>Cargo del Encargado</label>
+        <input type="text" ng-model="nuevaDependencia.dependencia.cargoEn" aria-label="cargo e." required />
+      </md-input-container>
+
       <div layout="row" layout-align="end">
         <md-button class="md-raised md-primary" ng-click="nuevaDependencia.ingresar()"> Agregar </md-button>
       </div>
