@@ -1,0 +1,224 @@
+<form name="vpform">
+  <div flex layout="row" layout-align="center" layout-margin>
+    <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
+
+      <md-toolbar class="md-primary" layout="column" layout-align="end">
+        <div layout="row" class="md-toolbar-tools">
+          <h3> Datos del Vehiculo </h3>
+        </div>
+      </md-toolbar>
+
+      <div layout="column" layout-padding layout-margin>
+
+        <md-input-container>
+          <label>Placa:</label>
+          <input type="text" ng-model="pVehiculoP.vehiculop.vehiculo.placa" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Tipo:</label>
+          <input type="text" ng-model="pVehiculoP.vehiculop.vehiculo.tipo" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Marca:</label>
+          <input type="text" ng-model="pVehiculoP.vehiculop.vehiculo.marca" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Motor:</label>
+          <input type="text" ng-model="pVehiculoP.vehiculop.vehiculo.motor" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Modelo:</label>
+          <input type="text" ng-model="pVehiculoP.vehiculop.vehiculo.modelo" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Chasis:</label>
+          <input type="text" ng-model="pVehiculoP.vehiculop.vehiculo.chasis" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Combustible:</label>
+          <input type="text" ng-model="pVehiculoP.vehiculop.vehiculo.combustible" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Uso:</label>
+          <input type="text" ng-model="pVehiculoP.vehiculop.vehiculo.uso" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Color:</label>
+          <input type="text" ng-model="pVehiculoP.vehiculop.vehiculo.color" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Cilindros:</label>
+          <input type="text" ng-model="pVehiculoP.vehiculop.vehiculo.cilindros" required />
+        </md-input-container>
+
+      </div>
+
+    </md-whiteframe>
+  </div>
+
+  <div flex layout="row" layout-align="center" layout-margin>
+    <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
+
+      <md-toolbar class="md-primary" layout="column" layout-align="end">
+        <div layout="row" class="md-toolbar-tools">
+          <h3> Kilometraje Recorrido </h3>
+        </div>
+      </md-toolbar>
+
+      <md-content layout-padding>
+        <md-tabs md-selected="1" md-border-bottom md-autoselect md-dynamic-height>
+          <md-tab label="{{$index + 1}}" ng-repeat="kl in pVehiculoP.vehiculop.kilometraje"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
+
+            <div layout="column" flex="90">
+              <h4>Fecha</h4>
+              <div layout-gt-xs="row" layout-margin>
+                <md-datepicker ng-model="kl.fecha" md-min-date="pVehiculoP.nombramiento.datos_comision.fechaI" md-placeholder="fecha" required></md-datepicker>
+              </div>
+
+              <h4>Lugar de Salida</h4>
+              <md-content layout="row">
+                <md-input-container>
+                  <label>Municipio</label>
+                  <input type="text" ng-model="kl.lugarSalida.municipio" required />
+                </md-input-container>
+
+                <md-input-container>
+                  <label>Departamento</label>
+                  <input type="text" ng-model="kl.lugarSalida.departamento" required />
+                </md-input-container>
+              </md-content>
+
+              <h4>Lugar de Llegada</h4>
+              <md-content layout="row">
+                <md-input-container>
+                  <label>Municipio</label>
+                  <input type="text" ng-model="kl.lugarLlegada.municipio" required />
+                </md-input-container>
+
+                <md-input-container>
+                  <label>Departamento</label>
+                  <input type="text" ng-model="kl.lugarLlegada.departamento" required />
+                </md-input-container>
+              </md-content>
+
+              <md-input-container>
+                <label>Distancia en Kilometros</label>
+                <input type="text" ng-model="kl.distancia" required />
+              </md-input-container>
+
+              <div layout='row' layout-align="end">
+                <md-button class="md-accent md-raised" ng-if="$index" ng-click="pVehiculoP.removeKilometraje($index)">Remover Kilometraje</md-button>
+              </div>
+
+            </div>
+
+          </md-tab>
+        </md-tabs>
+
+        <md-button class="md-primary md-raised" ng-click="pVehiculoP.addKilometraje()">Añadir Kilometraje</md-button>
+
+      </md-content>
+
+    </md-whiteframe>
+  </div>
+
+  <!-- Facturas -->
+  <div flex layout="row" layout-align="center" layout-margin>
+    <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
+
+      <md-toolbar class="md-primary" layout="column" layout-align="end">
+        <div layout="row" class="md-toolbar-tools">
+          <h3> Facturas Presentadas </h3>
+        </div>
+      </md-toolbar>
+
+      <md-content layout-padding>
+        <md-tabs md-selected="1" md-border-bottom md-autoselect md-dynamic-height>
+          <md-tab label="{{$index + 1}}" ng-repeat="fp in pVehiculoP.vehiculop.facturas"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
+
+            <div layout="column" flex="90">
+              <h4>Fecha</h4>
+              <div layout-gt-xs="row" layout-margin>
+                <md-datepicker ng-model="fp.fecha" md-min-date="pVehiculoP.nombramiento.datos_comision.fechaI" md-placeholder="fecha" required></md-datepicker>
+              </div>
+
+              <md-input-container>
+                <label>Numero de Factura</label>
+                <input type="text" ng-model="fp.numero" required />
+              </md-input-container>
+
+              <md-input-container>
+                <label>Galones</label>
+                <input type="text" ng-model="fp.galones" required />
+              </md-input-container>
+
+              <md-input-container>
+                <label>Proveedor</label>
+                <input type="text" ng-model="fp.proveedor" required />
+              </md-input-container>
+
+              <md-input-container>
+                <label>Valor de la Factura</label>
+                <input type="text" ng-model="fp.valor" required />
+              </md-input-container>
+
+              <div layout='row' layout-align="end">
+                <md-button class="md-accent md-raised" ng-if="$index" ng-click="pVehiculoP.removeFactura($index)">Remover Factura</md-button>
+              </div>
+
+            </div>
+
+          </md-tab>
+        </md-tabs>
+
+        <md-button class="md-primary md-raised" ng-click="pVehiculoP.addFactura()">Añadir Factura</md-button>
+
+      </md-content>
+
+    </md-whiteframe>
+  </div>
+  <!-- Fin Facturas -->
+
+  <div flex layout="row" layout-align="center" layout-margin>
+    <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
+
+      <md-toolbar class="md-primary" layout="column" layout-align="end">
+        <div layout="row" class="md-toolbar-tools">
+          <h3> Depreciacion y Observaciones </h3>
+        </div>
+      </md-toolbar>
+
+      <md-content layout="column" layout-padding>
+        <md-input-container>
+          <label>Depreciacion por Kilometro:</label>
+          <input type="text" ng-model="pVehiculoP.depreciacion" requied />
+        </md-input-container>
+
+        <md-input-container>
+          <label>Observaciones:</label>
+          <input type="text" ng-model="pVehiculoP.vehiculop.observaciones" />
+        </md-input-container>
+
+        <span>
+          <h4>Total: {{ pVehiculoP.total }}</h4>
+        </span>
+
+        <div layout="row" layout-align="end">
+          <md-button class="md-accent" ui-sref="listadoNombramientos"> Cancelar </md-button>
+          <md-button class="md-raised md-primary"  ng-disabled="vpform.$invalid" ng-click="pVehiculoP.guardar()"> Aceptar </md-button>
+        </div>
+      </md-content>
+
+    </md-whiteframe>
+  </div>
+
+</form>

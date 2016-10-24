@@ -2,6 +2,14 @@
 
     <md-content>
       <md-tabs md-selected="0" md-border-bottom md-autoselect md-dynamic-height>
+        <md-tab label="Vehiculo Propio"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
+
+          <div layout="column" flex="90">
+            <p-vehiculo-p nombramiento="planillas.nombramiento"></p-vehiculo-p>
+          </div>
+
+        </md-tab>
+
         <md-tab label="Pasajes"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
 
           <div layout="column" flex="90">
