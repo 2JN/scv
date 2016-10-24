@@ -12,29 +12,29 @@
 
         <md-content>
           <md-tabs md-selected="1" md-border-bottom md-autoselect md-dynamic-height>
-            <md-tab label="{{$index + 1}}" ng-repeat="pasaje in pPasajes.pasajes"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
+            <md-tab label="{{$index + 1}}" ng-repeat="factura in pPasajes.pasajes.facturas"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
 
               <div layout="column" flex="90">
                 <h4>Fecha</h4>
                 <div layout-gt-xs="row" layout-margin>
-                  <md-datepicker ng-model="pasaje.fecha" md-min-date="pPasajes.nombramiento.datos_comision.fechaI" md-placeholder="fecha" required></md-datepicker>
+                  <md-datepicker ng-model="factura.fecha" md-min-date="pPasajes.nombramiento.datos_comision.fechaI" md-placeholder="fecha" required></md-datepicker>
                 </div>
 
                 <md-input-container>
                   <label>Numero de Factura</label>
-                  <input type="text" ng-model="pasaje.nfactura" required />
+                  <input type="text" ng-model="factura.nfactura" required />
                 </md-input-container>
 
                 <h4>Lugar de Salida</h4>
                 <md-content layout="row">
                   <md-input-container>
                     <label>Municipio</label>
-                    <input type="text" ng-model="pasaje.lugarSalida.municipio" required />
+                    <input type="text" ng-model="factura.lugarSalida.municipio" required />
                   </md-input-container>
 
                   <md-input-container>
                     <label>Departamento</label>
-                    <input type="text" ng-model="pasaje.lugarSalida.departamento" required />
+                    <input type="text" ng-model="factura.lugarSalida.departamento" required />
                   </md-input-container>
                 </md-content>
 
@@ -42,18 +42,18 @@
                 <md-content layout="row">
                   <md-input-container>
                     <label>Municipio</label>
-                    <input type="text" ng-model="pasaje.lugarLlegada.municipio" required />
+                    <input type="text" ng-model="factura.lugarLlegada.municipio" required />
                   </md-input-container>
 
                   <md-input-container>
                     <label>Departamento</label>
-                    <input type="text" ng-model="pasaje.lugarLlegada.departamento" required />
+                    <input type="text" ng-model="factura.lugarLlegada.departamento" required />
                   </md-input-container>
                 </md-content>
 
                 <md-input-container>
                   <label>Valor de Pasaje</label>
-                  <input type="text" ng-model="pasaje.valorPasaje" required />
+                  <input type="text" ng-model="factura.valorPasaje" required />
                 </md-input-container>
 
                 <div layout='row' layout-align="end">
@@ -75,7 +75,7 @@
 
         <md-input-container>
           <label>Observaciones:</label>
-          <input type="text" ng-model="pPasajes.observaciones" />
+          <input type="text" ng-model="pPasajes.pasajes.observaciones" />
         </md-input-container>
 
         <div layout="row" layout-align="end">

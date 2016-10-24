@@ -12,15 +12,17 @@ class PPasajesCtrl {
 
     this.total = 0;
 
-    this.pasajes = [
-      {
-        fecha: new Date,
-        nfactura: '',
-        lugarSalida: {municipio: '', departamento: ''},
-        lugarLlegada: {municipio: '', departamento: ''},
-        valorPasaje: 0
-      }
-    ];
+    this.pasajes = {
+      facturas: [
+        {
+          fecha: new Date,
+          nfactura: '',
+          lugarSalida: {municipio: '', departamento: ''},
+          lugarLlegada: {municipio: '', departamento: ''},
+          valorPasaje: 0
+        }
+      ]
+    }
 
     this.autorun(function() {
       if (this.getReactively('this.nombramiento.pasajes')) {
@@ -29,12 +31,12 @@ class PPasajesCtrl {
     });
 
     this.autorun(function() {
-      let size = this.getReactively('this.pasajes.length');
+      let size = this.getReactively('this.pasajes.facturas.length');
 
       this.total = 0;
       for(let i = 0; i < size; i++) {
-        if(this.getReactively(`this.pasajes[${i}].valorPasaje`)) {
-          this.total += +this.pasajes[i].valorPasaje;
+        if(this.getReactively(`this.pasajes.facturas[${i}].valorPasaje`)) {
+          this.total += +this.pasajes.facturas[i].valorPasaje;
         }
       }
     });
@@ -57,7 +59,7 @@ class PPasajesCtrl {
   }
 
   addPasaje() {
-    this.pasajes.push({
+    this.pasajes.facturas.push({
       fecha: new Date,
       nfactura: '',
       lugarSalida: {municipio: '', departamento: ''},
@@ -67,7 +69,7 @@ class PPasajesCtrl {
   }
 
   removePasaje(index) {
-    this.pasajes.splice(index, 1);
+    this.pasajes.facturas.splice(index, 1);
   }
 }
 
