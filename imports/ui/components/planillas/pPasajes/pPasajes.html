@@ -1,83 +1,90 @@
-<div flex layout="row" layout-align="center" layout-margin>
-  <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
+<form name="pform">
+  <div flex layout="row" layout-align="center" layout-margin>
+    <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
 
-    <md-toolbar class="md-primary" layout="column" layout-align="end">
-      <div layout="row" class="md-toolbar-tools">
-        <h3> Planilla de Pasajes </h3>
-      </div>
-    </md-toolbar>
+      <md-toolbar class="md-primary" layout="column" layout-align="end">
+        <div layout="row" class="md-toolbar-tools">
+          <h3> Planilla de Pasajes </h3>
+        </div>
+      </md-toolbar>
 
-    <div layout="column" layout-padding layout-margin>
+      <div layout="column" layout-padding layout-margin>
 
-      <md-content>
-        <md-tabs md-selected="1" md-border-bottom md-autoselect md-dynamic-height>
-          <md-tab label="{{$index + 1}}" ng-repeat="pasaje in pPasajes.pasajes"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
+        <md-content>
+          <md-tabs md-selected="1" md-border-bottom md-autoselect md-dynamic-height>
+            <md-tab label="{{$index + 1}}" ng-repeat="pasaje in pPasajes.pasajes"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
 
-            <div layout="column" flex="90">
-              <h4>Por el Periodo Comprendido</h4>
-              <div layout-gt-xs="row" layout-margin>
-                <md-datepicker ng-model="pasaje.fecha" md-min-date="pPasajes.nombramiento.datos_comision.fechaI" md-placeholder="fecha" required></md-datepicker>
+              <div layout="column" flex="90">
+                <h4>Fecha</h4>
+                <div layout-gt-xs="row" layout-margin>
+                  <md-datepicker ng-model="pasaje.fecha" md-min-date="pPasajes.nombramiento.datos_comision.fechaI" md-placeholder="fecha" required></md-datepicker>
+                </div>
+
+                <md-input-container>
+                  <label>Numero de Factura</label>
+                  <input type="text" ng-model="pasaje.nfactura" required />
+                </md-input-container>
+
+                <h4>Lugar de Salida</h4>
+                <md-content layout="row">
+                  <md-input-container>
+                    <label>Municipio</label>
+                    <input type="text" ng-model="pasaje.lugarSalida.municipio" required />
+                  </md-input-container>
+
+                  <md-input-container>
+                    <label>Departamento</label>
+                    <input type="text" ng-model="pasaje.lugarSalida.departamento" required />
+                  </md-input-container>
+                </md-content>
+
+                <h4>Lugar de Llegada</h4>
+                <md-content layout="row">
+                  <md-input-container>
+                    <label>Municipio</label>
+                    <input type="text" ng-model="pasaje.lugarLlegada.municipio" required />
+                  </md-input-container>
+
+                  <md-input-container>
+                    <label>Departamento</label>
+                    <input type="text" ng-model="pasaje.lugarLlegada.departamento" required />
+                  </md-input-container>
+                </md-content>
+
+                <md-input-container>
+                  <label>Valor de Pasaje</label>
+                  <input type="text" ng-model="pasaje.valorPasaje" required />
+                </md-input-container>
+
+                <div layout='row' layout-align="end">
+                  <md-button class="md-accent md-raised" ng-if="$index" ng-click="pPasajes.removePasaje($index)">Remover Lugar</md-button>
+                </div>
+
               </div>
 
-              <md-input-container>
-                <label>Numero de Factura</label>
-                <input type="text" ng-model="pasaje.nfactura" required />
-              </md-input-container>
+            </md-tab>
+          </md-tabs>
 
-              <h4>Lugar de Salida</h4>
-              <md-content layout="row">
-                <md-input-container>
-                  <label>Municipio</label>
-                  <input type="text" ng-model="pasaje.lugarSalida.municipio" required />
-                </md-input-container>
+          <md-button class="md-primary md-raised" ng-click="pPasajes.addPasaje()">Añadir Lugar</md-button>
 
-                <md-input-container>
-                  <label>Departamento</label>
-                  <input type="text" ng-model="pasaje.lugarSalida.departamento" required />
-                </md-input-container>
-              </md-content>
+        </md-content>
 
-              <h4>Lugar de Llegada</h4>
-              <md-content layout="row">
-                <md-input-container>
-                  <label>Municipio</label>
-                  <input type="text" ng-model="pasaje.lugarLlegada.municipio" required />
-                </md-input-container>
+        <div layout="row" layout-align="end">
+          <h4 layout-margin>Total: Q{{ pPasajes.total }}</h4>
+        </div>
 
-                <md-input-container>
-                  <label>Departamento</label>
-                  <input type="text" ng-model="pasaje.lugarLlegada.departamento" required />
-                </md-input-container>
-              </md-content>
+        <md-input-container>
+          <label>Observaciones:</label>
+          <input type="text" ng-model="pPasajes.observaciones" />
+        </md-input-container>
 
-              <md-input-container>
-                <label>Valor de Pasaje</label>
-                <input type="text" ng-model="pasaje.valorPasaje" required />
-              </md-input-container>
+        <div layout="row" layout-align="end">
+          <md-button class="md-accent" ui-sref="listadoNombramientos"> Cancelar </md-button>
+          <md-button class="md-raised md-primary"  ng-disabled="pform.$invalid" ng-click="pPasajes.guardar()"> Aceptar </md-button>
+        </div>
 
-              <div layout='row' layout-align="end">
-                <md-button class="md-accent md-raised" ng-if="$index" ng-click="pPasajes.removePasaje($index)">Remover Lugar</md-button>
-              </div>
-
-            </div>
-
-          </md-tab>
-        </md-tabs>
-
-        <md-button class="md-primary md-raised" ng-click="pPasajes.addPasaje()">Añadir Lugar</md-button>
-
-      </md-content>
-
-      <div layout="row" layout-align="end">
-        <h4 layout-margin>Total: Q{{ pPasajes.total }}</h4>
       </div>
 
-      <md-input-container>
-        <label>Observaciones:</label>
-        <input type="text" ng-model="pPasajes.observaciones" required />
-      </md-input-container>
-
-    </div>
-
-  </md-whiteframe>
-</div>
+    </md-whiteframe>
+  </div>
+</form>

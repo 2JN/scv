@@ -23,6 +23,12 @@ class PPasajesCtrl {
     ];
 
     this.autorun(function() {
+      if (this.getReactively('this.nombramiento.pasajes')) {
+        this.pasajes = this.nombramiento.pasajes;
+      }
+    });
+
+    this.autorun(function() {
       let size = this.getReactively('this.pasajes.length');
 
       this.total = 0;
@@ -30,6 +36,22 @@ class PPasajesCtrl {
         if(this.getReactively(`this.pasajes[${i}].valorPasaje`)) {
           this.total += +this.pasajes[i].valorPasaje;
         }
+      }
+    });
+  }
+
+  guardar() {
+    Nombramientos.update({
+      _id: this.nombramiento._id
+    }, {
+      $set: {
+        pasajes: angular.copy(this.pasajes)
+      }
+    }, (error) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Hecho!');
       }
     });
   }

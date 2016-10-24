@@ -24,6 +24,14 @@ class DetallesNombramientoCtrl {
     })
   }
 
+  addLugar() {
+    this.nombramiento.datos_comision.lugares.push({
+      dependencia: '',
+      municipio: '',
+      departamento: ''
+    });
+  }
+
   removeLugar(index) {
     this.nombramiento.datos_comision.lugares.splice(index, 1);
   }
@@ -39,9 +47,9 @@ class DetallesNombramientoCtrl {
       }
     }, (error) => {
       if (error) {
-        console.log('Oops, unable to update the party...');
+        console.log('Oops, no se pudieron guardar los cambios...');
       } else {
-        console.log('Done!');
+        console.log('Hecho!');
       }
     });
 
