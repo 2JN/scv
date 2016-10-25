@@ -1,19 +1,18 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
-import template from './pVehiculoP.html';
+import template from './pVehiculoI.html';
 import { Nombramientos } from '../../../../api/nombramientos';
 
-class PVehiculoPCtrl {
+class PVehiculoICtrl {
   constructor($scope, $reactive, $state) {
-    'ngInject';
+    'ngIject';
 
     $reactive(this).attach($scope);
 
     this.total = 0;
-    this.depreciacion = 1;
 
-    this.vehiculop = {
+    this.vehiculoi = {
       kilometraje: [
         {
           fecha: new Date,
@@ -35,39 +34,36 @@ class PVehiculoPCtrl {
     }
 
     this.autorun(function() {
-      if (this.getReactively('this.nombramiento.vehiculop')) {
-        this.vehiculop = this.nombramiento.vehiculop;
+      if (this.getReactively('this.nombramiento.vehiculoi')) {
+        this.vehiculoi = this.nombramiento.vehiculoi;
       }
     });
 
     this.autorun(function() {
-      let sizek = this.getReactively('this.vehiculop.kilometraje.length');
-      let sizef = this.getReactively('this.vehiculop.facturas.length');
+      let sizek = this.getReactively('this.vehiculoi.kilometraje.length');
+      let sizef = this.getReactively('this.vehiculoi.facturas.length');
 
       this.totalDistancia = 0;
       for(let i = 0; i < sizek; i++) {
-        if(this.getReactively(`this.vehiculop.kilometraje[${i}].distancia`)) {
-          this.totalDistancia += (+this.vehiculop.kilometraje[i].distancia);
+        if(this.getReactively(`this.vehiculoi.kilometraje[${i}].distancia`)) {
+          this.totalDistancia += (+this.vehiculoi.kilometraje[i].distancia);
         }
       }
 
       this.totalFacturas = 0;
       for(let i = 0; i < sizef; i++) {
-        if(this.getReactively(`this.vehiculop.facturas[${i}].valor`)) {
-          this.totalFacturas += +this.vehiculop.facturas[i].valor;
+        if(this.getReactively(`this.vehiculoi.facturas[${i}].valor`)) {
+          this.totalFacturas += +this.vehiculoi.facturas[i].valor;
         }
       }
 
-      if(this.getReactively(`this.depreciacion`)) {
-        this.total = (+this.depreciacion * this.totalDistancia) + this.totalFacturas;
-      }
+      this.total = this.totalFacturas;
 
     });
-
   }
 
   addKilometraje() {
-    this.vehiculop.kilometraje.push({
+    this.vehiculoi.kilometraje.push({
       fecha: new Date,
       lugarSalida: {municipio: '', departamento: ''},
       lugarLlegada: {municipio: '', departamento: ''},
@@ -76,11 +72,11 @@ class PVehiculoPCtrl {
   }
 
   removeKilometraje(index) {
-    this.vehiculop.kilometraje.splice(index, 1);
+    this.vehiculoi.kilometraje.splice(index, 1);
   }
 
   addFactura() {
-    this.vehiculop.facturas.push({
+    this.vehiculoi.facturas.push({
       fecha: new Date,
       numero: '',
       galones: '',
@@ -90,7 +86,7 @@ class PVehiculoPCtrl {
   }
 
   removeFactura(index) {
-    this.vehiculop.facturas.splice(index, 1);
+    this.vehiculoi.factuas.splice(index, 1);
   }
 
   guardar() {
@@ -98,10 +94,10 @@ class PVehiculoPCtrl {
       _id: this.nombramiento._id
     }, {
       $set: {
-        vehiculop: angular.copy(this.vehiculop)
+        vehiculoi: angular.copy(this.vehiculoi)
       }
     }, (error) => {
-      if(error) {
+      if (error) {
         console.log(error);
       } else {
         console.log('Hecho!');
@@ -110,7 +106,7 @@ class PVehiculoPCtrl {
   }
 }
 
-const name = 'pVehiculoP';
+const name = 'pVehiculoI';
 
 export default angular.module(name, [
   angularMeteor
@@ -121,5 +117,5 @@ export default angular.module(name, [
       nombramiento: '='
     },
     controllerAs: name,
-    controller: PVehiculoPCtrl
+    controller: PVehiculoICtrl
   });

@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router';
 
 import template from './planillas.html';
 import { Nombramientos } from '../../../api/nombramientos';
+import { name as PVehiculoI } from './pVehiculoI/pVehiculoI';
 import { name as PVehiculoP } from './pVehiculoP/pVehiculoP';
 import { name as PPasajes } from './pPasajes/pPasajes';
 
@@ -29,6 +30,7 @@ const name = 'planillas';
 
 export default angular.module(name, [
   angularMeteor,
+  PVehiculoI,
   PVehiculoP,
   PPasajes
 ])
