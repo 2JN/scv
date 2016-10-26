@@ -3,6 +3,7 @@ import angularMeteor from 'angular-meteor';
 
 import template from './pPasajes.html';
 import { Nombramientos } from '../../../../api/nombramientos';
+import pasajePDF from './pasajesPDF';
 
 class PPasajesCtrl {
   constructor($scope, $reactive, $state) {
@@ -70,6 +71,10 @@ class PPasajesCtrl {
 
   removePasaje(index) {
     this.pasajes.facturas.splice(index, 1);
+  }
+
+  pPDF() {
+    pasajePDF(this.nombramiento, this.pasajes);
   }
 }
 
