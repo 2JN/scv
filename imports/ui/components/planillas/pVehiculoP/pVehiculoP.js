@@ -3,6 +3,7 @@ import angularMeteor from 'angular-meteor';
 
 import template from './pVehiculoP.html';
 import { Nombramientos } from '../../../../api/nombramientos';
+import vhcPPDF from './vehiculoPPDF';
 
 class PVehiculoPCtrl {
   constructor($scope, $reactive, $state) {
@@ -107,6 +108,10 @@ class PVehiculoPCtrl {
         console.log('Hecho!');
       }
     });
+  }
+
+  vpPDF() {
+    vhcPPDF(this.nombramiento, this.vehiculop, this.depreciacion, this.total);
   }
 }
 
