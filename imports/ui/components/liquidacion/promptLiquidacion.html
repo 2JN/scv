@@ -1,0 +1,41 @@
+<md-dialog>
+  <form name="lform">
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Datos para la Liquidación</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="promptLiquidacion.cancel()">
+          <md-icon aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content style="max-width:800px;" layout="column" md-dynamic-height layout-padding>
+
+      <br>
+
+      <md-input-container>
+        <label> Recibi de: </label>
+        <input type="text" ng-model="promptLiquidacion.pagoDep" required>
+      </md-input-container>
+
+      <md-tabs md-dynamic-height md-border-bottom>
+       <md-tab ng-repeat="tab in promptLiquidacion.selected" label="{{tab._id}}">
+         <md-content class="md-padding" layout="column">
+
+           <md-input-container ng-repeat="lugar in tab.datos_comision.lugares" >
+             <label> Dias en {{ lugar.dependencia }} </label>
+             <input type="number" ng-model="lugar.dias" required>
+           </md-input-container>
+
+         </md-content>
+       </md-tab>
+    </md-dialog-content>
+
+    <div class="md-actions" layout="row">
+      <a class="md-button" ng-disabled="lform.$invalid" ng-click="promptLiquidacion.liquidacionPDF()">PDF</a>
+    </div>
+
+  </form>
+</md-dialog>

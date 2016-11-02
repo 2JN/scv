@@ -1,7 +1,7 @@
-<section layout-fill>
+<section layout-fill ng-if="navigation.usuario">
   <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4" layout-fill>
     <md-toolbar>
-      <h4 layout="row" ng-if="navigation.usuario" layout-align="center center">Menu</h4>
+      <h4 layout="row" layout-align="center center">Menu</h4>
     </md-toolbar>
 
     <md-subheader ng-if="navigation.usuario.admin">Administración</md-subheader>
@@ -16,62 +16,52 @@
         </md-item-content>
       </md-list-item>
 
-      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin" md-ink-ripple >
-        <a href="modificar-empelados">
+      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin" href="modificar-empelados" md-ink-ripple >
           <md-item-content layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon></ng-md-icon>
             </div>
             <div class="inset"> Modificar Empleados </div>
           </md-item-content>
-        </a>
       </md-list-item>
 
-      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin" md-ink-ripple >
-        <a href="agregar-dependencia">
-          <md-item-content layout="row" layout-align="start center">
-            <div class="inset">
-              <ng-md-icon></ng-md-icon>
-            </div>
-            <div class="inset"> Agregar Dependencia </div>
-          </md-item-content>
-        </a>
+      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin" href="agregar-dependencia" md-ink-ripple >
+        <md-item-content layout="row" layout-align="start center">
+          <div class="inset">
+            <ng-md-icon></ng-md-icon>
+          </div>
+          <div class="inset"> Agregar Dependencia </div>
+        </md-item-content>
       </md-list-item>
 
-      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin" md-ink-ripple >
-        <a href="modificar-dependencias">
+      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin" href="modificar-dependencias" md-ink-ripple >
           <md-item-content layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon></ng-md-icon>
             </div>
             <div class="inset"> Modificar Dependencia </div>
           </md-item-content>
-        </a>
       </md-list-item>
 
       <md-divider></md-divider>
       <md-subheader>Comision</md-subheader>
 
-      <md-list-item class="sn-menu" md-ink-ripple >
-        <a href="comision-nombramiento">
+      <md-list-item class="sn-menu" href="comision-nombramiento" md-ink-ripple >
           <md-item-content layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon></ng-md-icon>
             </div>
             <div class="inset"> Nombramiento Comision </div>
           </md-item-content>
-        </a>
       </md-list-item>
 
-      <md-list-item class="sn-menu" md-ink-ripple >
-        <a href="listado-nombramientos">
+      <md-list-item class="sn-menu" href="listado-nombramientos" md-ink-ripple >
           <md-item-content layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon></ng-md-icon>
             </div>
             <div class="inset"> Listado de Nombramientos </div>
           </md-item-content>
-        </a>
       </md-list-item>
 
     </md-list>

@@ -9,7 +9,7 @@
 
     <md-content>
       <md-list flex layout-margin>
-        <md-list-item class="md-3-line" ng-repeat="nombramiento in listadoNombramientos.nombramientos">
+        <md-list-item class="md-3-line" ng-repeat="nombramiento in liquidacion.nombramientos">
           <div class="md-list-item-text" layout="column">
             <h3> {{ nombramiento._id }} </h3>
             <h4> Lugares de comision: {{ nombramiento.datos_comision.lugares.length }} </h4>
@@ -17,9 +17,7 @@
           </div>
 
           <div layout="row" layout-align="end center" layout-margin>
-            <md-button ui-sref="detallesNombramiento({ nombramientoId: nombramiento._id })">Editar</md-button>
-            <md-button ui-sref="planillas({ nombramientoId: nombramiento._id })">Planillas</md-button>
-            <nombramiento-pdf nombramiento="nombramiento"></nombramiento-pdf>
+            <md-checkbox ng-click="liquidacion.selectNombramiento(nombramiento)"></md-checkbox>
           </div>
           <md-divider></md-divider>
         </md-list-item>
@@ -27,4 +25,11 @@
     </md-content>
 
   </md-whiteframe>
+
+  <md-button  class="md-fab md-fab-bottom-right" style="position:fixed"
+    aria-label="Liquidar" ng-click="liquidacion.showLugaresTabs()"
+    ng-disabled="liquidacion.tlugares > 5 || liquidacion.tlugares === 0">
+    <ng-md-icon></ng-md-icon>
+  </md-button>
+
 </div>
