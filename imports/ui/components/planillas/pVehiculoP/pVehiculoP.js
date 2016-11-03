@@ -12,7 +12,6 @@ class PVehiculoPCtrl {
     $reactive(this).attach($scope);
 
     this.total = 0;
-    this.depreciacion = 1;
 
     this.vehiculop = {
       kilometraje: [
@@ -32,7 +31,9 @@ class PVehiculoPCtrl {
           proveedor: '',
           valor: 0
         }
-      ]
+      ],
+
+      depreciacion: 1
     }
 
     this.autorun(function() {
@@ -59,8 +60,8 @@ class PVehiculoPCtrl {
         }
       }
 
-      if(this.getReactively(`this.depreciacion`)) {
-        this.total = (+this.depreciacion * this.totalDistancia) + this.totalFacturas;
+      if(this.getReactively(`this.vehiculop.depreciacion`)) {
+        this.total = (+this.vehiculop.depreciacion * this.totalDistancia) + this.totalFacturas;
       }
 
     });
@@ -111,7 +112,7 @@ class PVehiculoPCtrl {
   }
 
   vpPDF() {
-    vhcPPDF(this.nombramiento, this.vehiculop, this.depreciacion, this.total);
+    vhcPPDF(this.nombramiento, this.vehiculop, this.vehiculop.depreciacion, this.total);
   }
 }
 
