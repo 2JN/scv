@@ -84,10 +84,10 @@ class PromptLiquidacionCtrl {
       name += (" " + this.selected[0].datos_empleado.sapellido);
     }
 
-    var doc = new jsPDF('p', 'pt');
+    var doc = new jsPDF('p', 'pt', 'legal');
     doc.setFontSize(9);
 
-    var positiony = 200;
+    var positiony = 245;
     var ltLinea = 35;
     var ptLinea = 8;
     var saltoLinea = 10;
@@ -97,7 +97,7 @@ class PromptLiquidacionCtrl {
     var otrosGastos = 0;
     var totalF1 = 0;
 
-    doc.text(80, 80, this.pagoDep);
+    doc.text(85, 120, this.pagoDep); // Recibi de
 
     for(nombramiento of this.selected) {
       let motivo = nombramiento.datos_comision.motivo;
@@ -111,7 +111,7 @@ class PromptLiquidacionCtrl {
 
         gastosViatico += totalAxB;
 
-        doc.text(170, positiony, lgsplit);
+        doc.text(172, positiony, lgsplit);
         doc.text(325, positiony, `${lugar.dias}`);
         doc.text(400, positiony, `${Number(ctD).toFixed(2)}`);
         doc.text(480, positiony, `${Number(totalAxB).toFixed(2)}`);
@@ -126,11 +126,10 @@ class PromptLiquidacionCtrl {
       }
     }
 
-    doc.text(495, 475, `${Number(gastosViatico).toFixed(2)}`);
+    doc.text(495, 495, `${Number(gastosViatico).toFixed(2)}`);
 
     // Calculo de otros gastos
     for(nombramiento of this.selected) {
-      let vhi = 0, vhp = 0, pasajes = 0;
 
       if(nombramiento.datos_comision.vehiculoInst) {
         for (factura of nombramiento.vehiculoi.facturas) {
@@ -155,26 +154,26 @@ class PromptLiquidacionCtrl {
       }
     }
 
-    doc.text(495, 520, `${Number(otrosGastos).toFixed(2)}`);
+    doc.text(495, 540, `${Number(otrosGastos).toFixed(2)}`);
 
     totalF1 = Number(gastosViatico + otrosGastos).toFixed(2);
-    doc.text(495, 539, `${totalF1}`);
+    doc.text(495, 563, `${totalF1}`);
 
-    doc.text(495, 672, `${totalF1}`);
+    doc.text(495, 692, `${totalF1}`);
 
     // cabecera
     let cantidadL = numeroALetras(totalF1);
-    doc.text(80, 120, cantidadL);
+    doc.text(110, 160, cantidadL);
 
     doc.setFontSize(18);
-    doc.text(440, 35, `${totalF1}`);
+    doc.text(440, 70, `${totalF1}`);
 
     // pie de pagina
     doc.setFontSize(9);
-    doc.text(80, 695, 'Quetzaltenango');
-    doc.text(80, 717, `${name}`);
-    doc.text(80, 743, `${this.selected[0].datos_empleado.cargo}`);
-    doc.text(460, 743, `${
+    doc.text(100, 718, 'Quetzaltenango');
+    doc.text(80, 740, `${name}`);
+    doc.text(80, 766, `${this.selected[0].datos_empleado.cargo}`);
+    doc.text(460, 766, `${
       Number(this.selected[0].datos_empleado.sueldoMensual).toFixed(2)
     }`);
 
