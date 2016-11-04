@@ -147,7 +147,7 @@ export default function vhcIPDF(nombramiento, vehiculoi, total) {
     doc.rect(180, 392 + y, 245, 10);
     doc.text(182, 399 + y, obj.proveedor)
     doc.rect(425, 392 + y, 85, 10);
-    doc.text(427, 399 + y, obj.valor);
+    doc.text(427, 399 + y, Number(obj.valor).toFixed(2));
 
     facturas += +obj.valor;
 
@@ -161,7 +161,7 @@ export default function vhcIPDF(nombramiento, vehiculoi, total) {
 
   // footer
   doc.setFontSize(9);
-  doc.text(30, 620, `TOTAL Q${total}`);
+  doc.text(30, 620, `TOTAL Q${Number(total).toFixed(2)}`);
 
   doc.setFontSize(8);
   doc.setFontType('normal');

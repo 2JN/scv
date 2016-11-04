@@ -54,15 +54,17 @@ class NombramientoComisionCtrl {
       );
     });
 
+    this.autorun(function() {
+      this.dependencia = Dependencias.findOne({
+        _id: this.getReactively('this.datosUsuario.dependencia_id')
+      });
+    });
+
     this.helpers({
       datosUsuario() {
         return Empleados.findOne({ user: Meteor.user().username });
       }
     });
-  }
-
-  datosDependencia() {
-    this.dependencia = Dependencias.findOne({ _id: this.datosUsuario.dependencia_id });
   }
 
   ingresar() {

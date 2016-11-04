@@ -87,7 +87,7 @@ class PVehiculoICtrl {
   }
 
   removeFactura(index) {
-    this.vehiculoi.factuas.splice(index, 1);
+    this.vehiculoi.facturas.splice(index, 1);
   }
 
   guardar() {

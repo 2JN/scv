@@ -70,7 +70,9 @@ class NombramientoPDFCtrl {
         nombre: name,
         cargo: this.nombramiento.datos_empleado.cargo,
         renglon: this.nombramiento.datos_empleado.renglon,
-        sueldo: "Q" + this.nombramiento.datos_empleado.sueldoMensual, // format salary
+        sueldo: "Q" + Number(
+          this.nombramiento.datos_empleado.sueldoMensual
+        ).toFixed(2),
         nit: this.nombramiento.datos_empleado._id,
         firma: ""
       }

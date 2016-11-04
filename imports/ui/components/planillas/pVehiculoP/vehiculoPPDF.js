@@ -147,13 +147,15 @@ export default function vhcPPDF(nombramiento, vehiculop, depreciacion, total) {
     doc.rect(180, 392 + y, 245, 10);
     doc.text(182, 399 + y, obj.proveedor)
     doc.rect(425, 392 + y, 85, 10);
-    doc.text(427, 399 + y, obj.valor);
+    doc.text(427, 399 + y, Number(obj.valor).toFixed(2));
 
     facturas += +obj.valor;
 
     if(iteracion === (vehiculop.facturas.length - 1)) {
       doc.setFontType('bold');
-      doc.text(32, 412 + y,`Total valor de Facturas: Q${facturas}`);
+      doc.text(32, 412 + y,`Total valor de Facturas: Q ${
+        Number(facturas).toFixed(2)
+      }`);
     }
 
     iteracion++;
