@@ -1,5 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 import template from './nombramientoPDF.html';
 
@@ -77,7 +79,6 @@ class NombramientoPDFCtrl {
     doc.autoTable(columns, rows, {
       theme: 'plain',
       startY: 125,
-      margin: {horizontal: 10},
       styles: {overflow: 'linebreak'},
       bodyStyles: {valign: 'top'},
     });
@@ -100,7 +101,6 @@ class NombramientoPDFCtrl {
     doc.autoTable(columnsc, rowsc, {
       theme: 'plain',
       startY: 245,
-      margin: {horizontal: 10},
       styles: {overflow: 'linebreak'},
       bodyStyles: {valign: 'top'},
     });

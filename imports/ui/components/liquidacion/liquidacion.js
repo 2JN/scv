@@ -1,6 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
+import jsPDF from 'jspdf';
 
 import template from './liquidacion.html';
 import promptTemplate from './promptLiquidacion.html';
@@ -177,7 +178,7 @@ class PromptLiquidacionCtrl {
       Number(this.selected[0].datos_empleado.sueldoMensual).toFixed(2)
     }`);
 
-    doc.save('nombramiento.pdf');
+    doc.save('liquidacion.pdf');
   }
 
   cancel() {

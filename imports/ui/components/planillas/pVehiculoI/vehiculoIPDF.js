@@ -1,3 +1,6 @@
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
 function modificarFecha(fechamod) {
   function mod(s) { return (s < 10) ? '0' + s : s; }
   return [
