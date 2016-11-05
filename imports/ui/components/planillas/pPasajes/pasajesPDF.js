@@ -69,7 +69,8 @@ export default function pasajePDF(nombramiento, pasajes) {
 
   doc.autoTable(columnsl, rowsl, {
     theme: 'plain',
-    startY: 165
+    startY: 165,
+    styles: {overflow: 'linebreak'}
   });
 
   doc.text(30, 320, 'Motivo de la Comisión:');
@@ -90,14 +91,13 @@ export default function pasajePDF(nombramiento, pasajes) {
   let totalp = 0;
 
   for(let obj of pasajes.facturas) {
-    rowsp.push(
-      {
-        fecha: `${modificarFecha(obj.fecha)}`,
-        nfactura: obj.nfactura,
-        lugarSalida: `${obj.lugarSalida.municipio}, ${obj.lugarSalida.departamento}`,
-        lugarLlegada: `${obj.lugarLlegada.municipio}, ${obj.lugarLlegada.departamento}`,
-        valorPasaje: `Q ${Number(obj.valorPasaje).toFixed(2)}`
-      });
+    rowsp.push({
+      fecha: `${modificarFecha(obj.fecha)}`,
+      nfactura: obj.nfactura,
+      lugarSalida: `${obj.lugarSalida.municipio}, ${obj.lugarSalida.departamento}`,
+      lugarLlegada: `${obj.lugarLlegada.municipio}, ${obj.lugarLlegada.departamento}`,
+      valorPasaje: `Q ${Number(obj.valorPasaje).toFixed(2)}`
+    });
 
       totalp += +obj.valorPasaje;
   }
@@ -105,7 +105,7 @@ export default function pasajePDF(nombramiento, pasajes) {
   doc.autoTable(columnsp, rowsp, {
     theme: 'plain',
     startY: 410,
-    styles: {overflow: 'linebreak'},
+    styles: {overflow: 'linebreak'}
   });
 
   let relposy = doc.autoTableEndPosY();
@@ -131,16 +131,16 @@ export default function pasajePDF(nombramiento, pasajes) {
   relposy = relatividad(doc, 30, 0, 210, relposy, '(f)');
   doc.line(220, relposy, 375, relposy);
   relposy = relatividad(doc, 0, 10, 220, relposy + 10, `Nombre: ${name}`);
-  relposy = relatividad(doc, 0, 10, 220, relposy, `Cargo: ${
-    nombramiento.datos_empleado.cargo
-  }`);
+  relposy = relatividad(doc, 0, 10, 220, relposy,
+    `Cargo: ${nombramiento.datos_empleado.cargo}`
+  );
 
-  // Fima encargado
+  // Firma encargado
   relposy = relatividad(doc, 30, 0, 180, relposy + 40, 'Vo.Bo.(f)');
   doc.line(220, relposy, 375, relposy);
-  relposy = relatividad(doc, 0, 10, 220, relposy + 10, `Nombre: ${
-    nombramiento.datos_dependencia.encargado
-  }`);
+  relposy = relatividad(doc, 0, 10, 220, relposy + 10,
+    `Nombre: ${nombramiento.datos_dependencia.encargado}`
+  );
   relposy = relatividad(doc, 0, 10, 220, relposy, `Cargo: ${
     nombramiento.datos_dependencia.cargoEn
   }`);
