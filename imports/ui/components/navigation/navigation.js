@@ -17,6 +17,10 @@ class NavigationCtrl {
       }
     })
   }
+
+  toggleLeft() {
+    this.$mdSidenav('left').close();
+  }
 }
 
 const name = 'navigation';

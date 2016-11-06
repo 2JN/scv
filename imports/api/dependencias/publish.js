@@ -5,10 +5,10 @@ import { Dependencias } from './collection';
 if (Meteor.isServer) {
   Meteor.publish('dependencias', function() {
 
-    /**
-    * TODO: Implementar solo para administradores
-    */
+    let user = Meteor.users.findOne({_id: this.userId});
 
-    return Dependencias.find({});
+    if (user.admin) {
+      return Dependencias.find({});
+    }
   });
 }

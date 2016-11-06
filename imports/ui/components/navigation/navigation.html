@@ -7,7 +7,8 @@
     <md-subheader ng-if="navigation.usuario.admin">Administración</md-subheader>
 
     <md-list>
-      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin" href="agregar-empleado" md-ink-ripple >
+      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin"
+        ng-click="navigation.toggleLeft()" href="agregar-empleado" md-ink-ripple >
         <md-item-content layout="row" layout-align="start center">
           <div class="inset">
             <ng-md-icon></ng-md-icon>
@@ -16,7 +17,8 @@
         </md-item-content>
       </md-list-item>
 
-      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin" href="modificar-empelados" md-ink-ripple >
+      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin"
+        ng-click="navigation.toggleLeft()" href="modificar-empelados" md-ink-ripple >
           <md-item-content layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon></ng-md-icon>
@@ -25,7 +27,8 @@
           </md-item-content>
       </md-list-item>
 
-      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin" href="agregar-dependencia" md-ink-ripple >
+      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin"
+        ng-click="navigation.toggleLeft()" href="agregar-dependencia" md-ink-ripple >
         <md-item-content layout="row" layout-align="start center">
           <div class="inset">
             <ng-md-icon></ng-md-icon>
@@ -34,7 +37,8 @@
         </md-item-content>
       </md-list-item>
 
-      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin" href="modificar-dependencias" md-ink-ripple >
+      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin" href="modificar-dependencias"
+        ng-click="navigation.toggleLeft()" md-ink-ripple >
           <md-item-content layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon></ng-md-icon>
@@ -46,7 +50,7 @@
       <md-divider></md-divider>
       <md-subheader>Comision</md-subheader>
 
-      <md-list-item class="sn-menu" href="comision-nombramiento" md-ink-ripple >
+      <md-list-item class="sn-menu" href="comision-nombramiento" ng-click="navigation.toggleLeft()" md-ink-ripple >
           <md-item-content layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon></ng-md-icon>
@@ -55,7 +59,7 @@
           </md-item-content>
       </md-list-item>
 
-      <md-list-item class="sn-menu" href="listado-nombramientos" md-ink-ripple >
+      <md-list-item class="sn-menu" href="listado-nombramientos" ng-click="navigation.toggleLeft()" md-ink-ripple >
           <md-item-content layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon></ng-md-icon>
@@ -64,7 +68,7 @@
           </md-item-content>
       </md-list-item>
 
-      <md-list-item class="sn-menu" href="liquidacion" md-ink-ripple >
+      <md-list-item class="sn-menu" href="liquidacion" ng-click="navigation.toggleLeft()" md-ink-ripple >
           <md-item-content layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon></ng-md-icon>
