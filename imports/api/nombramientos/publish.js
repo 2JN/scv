@@ -1,9 +1,10 @@
 import { Meteor } from 'meteor/meteor';
+import { Counts } from 'meteor/tmeasday:publish-counts';
 
 import { Nombramientos } from './collection';
 
 if (Meteor.isServer) {
-  Meteor.publish('nombramientos', function() {
+  Meteor.publish('nombramientos', function(options) {
 
     let user = Meteor.users.findOne({_id: this.userId});
 
@@ -16,6 +17,10 @@ if (Meteor.isServer) {
       }]
     };
 
-    return Nombramientos.find(selector);
+    Counts.publish(this, 'numberOfNombramientos', Nombramientos.find(selector), {
+      noReady: true
+    });
+
+    return Nombramientos.find(selector, options);
   });
 }

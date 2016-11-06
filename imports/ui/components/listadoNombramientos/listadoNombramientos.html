@@ -9,7 +9,9 @@
 
     <md-content>
       <md-list flex layout-margin>
-        <md-list-item class="md-3-line" ng-repeat="nombramiento in listadoNombramientos.nombramientos">
+        <md-list-item class="md-3-line"
+          dir-paginate="nombramiento in listadoNombramientos.nombramientos | itemsPerPage: listadoNombramientos.perPage"
+          total-items="listadoNombramientos.nombramientosCount">
           <div class="md-list-item-text" layout="column">
             <h3> {{ nombramiento._id }} </h3>
             <h4> Lugares de comision: {{ nombramiento.datos_comision.lugares.length }} </h4>
@@ -24,6 +26,11 @@
           <md-divider></md-divider>
         </md-list-item>
       </md-list>
+
+      <div layout="row" layout-align="center">
+        <dir-pagination-controls on-page-change="listadoNombramientos.pageChanged(newPageNumber)"></dir-pagination-controls>
+      </div>
+      
     </md-content>
 
   </md-whiteframe>

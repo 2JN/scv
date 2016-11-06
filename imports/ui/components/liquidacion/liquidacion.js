@@ -1,7 +1,10 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
+import utilsPagination from 'angular-utils-pagination';
 import jsPDF from 'jspdf';
+
+import { Counts } from 'meteor/tmeasday:publish-counts';
 
 import template from './liquidacion.html';
 import promptTemplate from './promptLiquidacion.html';
@@ -13,7 +16,18 @@ class LiquidacionCtrl {
   constructor($scope, $reactive, seleccion, $state, $mdToast, $mdDialog) {
     $scope.viewModel(this);
 
-    this.subscribe('nombramientos');
+    this.perPage = 15;
+    this.page = 1;
+    this.sort = {
+      name: 1
+    };
+
+    this.subscribe('nombramientos', () => [{
+      limit: parseInt(this.perPage),
+      skip: parseInt((this.getReactively('page') - 1) * this.perPage),
+      sort: this.getReactively('sort')
+    }]);
+
     this.$mdToast = $mdToast;
     this.$mdDialog = $mdDialog;
 
@@ -23,6 +37,10 @@ class LiquidacionCtrl {
     this.helpers({
       nombramientos() {
         return Nombramientos.find({});
+      },
+
+      nombramientosCount() {
+        return Counts.get('numberOfNombramientos');
       }
     });
   }
@@ -52,6 +70,10 @@ class LiquidacionCtrl {
       controllerAs: 'promptLiquidacion',
       controller: PromptLiquidacionCtrl,
     });
+  }
+
+  pageChanged(newPage) {
+    this.page = newPage;
   }
 }
 
@@ -191,6 +213,7 @@ const name = 'liquidacion';
 export default angular.module(name, [
   angularMeteor,
   uiRouter,
+  utilsPagination
 ])
   .component(name, {
     templateUrl: template,

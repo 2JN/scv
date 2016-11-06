@@ -9,7 +9,9 @@
 
     <md-content>
       <md-list flex layout-margin>
-        <md-list-item class="md-3-line" ng-repeat="dependencia in listadoDependencias.dependencias">
+        <md-list-item class="md-3-line"
+          dir-paginate="dependencia in listadoDependencias.dependencias | itemsPerPage: listadoDependencias.perPage"
+          total-items="listadoDependencias.dependenciasCount">
           <div class="md-list-item-text" layout="column">
             <h3> {{ dependencia.nombre }} </h3>
             <h4>
@@ -28,6 +30,11 @@
           </div>
         </md-list-item>
       </md-list>
+
+      <div layout="row" layout-align="center">
+        <dir-pagination-controls on-page-change="listadoDependencias.pageChanged(newPageNumber)"></dir-pagination-controls>
+      </div>
+
     </md-content>
 
   </md-whiteframe>

@@ -9,7 +9,9 @@
 
     <md-content>
       <md-list flex layout-margin>
-        <md-list-item class="md-3-line" ng-repeat="empleado in listadoEmpleados.empleados">
+        <md-list-item class="md-3-line"
+          dir-paginate="empleado in listadoEmpleados.empleados | itemsPerPage: listadoEmpleados.perPage"
+          total-items="listadoEmpleados.empleadosCount">
           <div class="md-list-item-text" layout="column">
             <h3>
               {{ empleado.pnombre }}
@@ -36,6 +38,11 @@
           </div>
         </md-list-item>
       </md-list>
+
+      <div  layout="row" layout-align="center">
+        <dir-pagination-controls on-page-change="listadoEmpleados.pageChanged(newPageNumber)"></dir-pagination-controls>
+      </div>
+
     </md-content>
 
   </md-whiteframe>
