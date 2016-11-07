@@ -7,6 +7,7 @@ import { Counts } from 'meteor/tmeasday:publish-counts';
 
 import template from './listadoNombramientos.html';
 import { Nombramientos } from '../../../api/nombramientos';
+import { name as Ordenar } from '../ordenar/ordenar';
 import { name as NombramientoPDF } from '../nombramientoPDF/nombramientoPDF';
 
 class ListadoNombramientosCtrl {
@@ -16,14 +17,17 @@ class ListadoNombramientosCtrl {
     this.perPage = 15;
     this.page = 1;
     this.sort = {
-      name: 1
+      _id: 1
     };
+    this.searchText = '';
 
-    this.subscribe('nombramientos', () => [{
-      limit: parseInt(this.perPage),
-      skip: parseInt((this.getReactively('page') - 1) * this.perPage),
-      sort: this.getReactively('sort')
-    }]);
+    this.subscribe('nombramientos', () => [
+      {
+        limit: parseInt(this.perPage),
+        skip: parseInt((this.getReactively('page') - 1) * this.perPage),
+        sort: this.getReactively('sort')
+      }, this.getReactively('searchText')
+    ]);
 
     this.helpers({
       nombramientos() {
@@ -39,6 +43,10 @@ class ListadoNombramientosCtrl {
   pageChanged(newPage) {
     this.page = newPage;
   }
+
+  sortChanged(sort) {
+    this.sort = sort;
+  }
 }
 
 const name = 'listadoNombramientos';
@@ -47,6 +55,7 @@ export default angular.module(name, [
   angularMeteor,
   uiRouter,
   utilsPagination,
+  Ordenar,
   NombramientoPDF
 ])
   .component(name, {

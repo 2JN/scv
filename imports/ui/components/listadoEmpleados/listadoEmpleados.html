@@ -1,9 +1,28 @@
 <div layout="row" layout-align="center">
   <md-whiteframe layout="column" flex flex-md="50" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
 
-    <md-toolbar class="md-hue-3" layout="colum" layout-align="end">
+    <md-toolbar ng-show="!showSearch" class="md-hue-3" layout="colum" layout-align="end">
       <div layout="row" class="md-toolbar-tools">
         <h3> Empleados </h3>
+        <span flex></span>
+
+        <ordenar on-change="listadoEmpleados.sortChanged(sort)" property="_id" order="1"></ordenar>
+
+        <md-button aria-label="search" ng-click="showSearch = !showSearch">
+          <md-icon md-svg-icon="action:ic_search_24px"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-toolbar class="md-hue-1" ng-show="showSearch">
+      <div class="md-toolbar-tools">
+        <md-button ng-click="showSearch = !showSearch" aria-label="back">
+          <md-icon md-svg-icon="navigation:ic_arrow_back_24px"></md-icon>
+        </md-button>
+
+        <md-input-container flex md-no-float class="md-primary md-hue-3 md-body-1 search-input">
+          <input type="search" ng-model="listadoEmpleados.searchText" placeholder="Buscar">
+        </md-input-container>
       </div>
     </md-toolbar>
 
