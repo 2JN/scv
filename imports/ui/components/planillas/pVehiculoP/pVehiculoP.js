@@ -12,6 +12,7 @@ class PVehiculoPCtrl {
     $reactive(this).attach($scope);
 
     this.total = 0;
+    this.pdfDisabled = true;
 
     this.vehiculop = {
       kilometraje: [
@@ -109,10 +110,13 @@ class PVehiculoPCtrl {
         console.log('Hecho!');
       }
     });
+
+    this.pdfDisabled = false;
   }
 
   vpPDF() {
     vhcPPDF(this.nombramiento, this.vehiculop, this.vehiculop.depreciacion, this.total);
+    this.pdfDisabled = true;
   }
 }
 

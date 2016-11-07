@@ -12,6 +12,7 @@ class PPasajesCtrl {
     $reactive(this).attach($scope);
 
     this.total = 0;
+    this.pdfDisabled = true;
 
     this.pasajes = {
       facturas: [
@@ -57,6 +58,8 @@ class PPasajesCtrl {
         console.log('Hecho!');
       }
     });
+
+    this.pdfDisabled = false;
   }
 
   addPasaje() {
@@ -75,6 +78,7 @@ class PPasajesCtrl {
 
   pPDF() {
     pasajePDF(this.nombramiento, this.pasajes);
+    this.pdfDisabled = true;
   }
 }
 

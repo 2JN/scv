@@ -51,7 +51,7 @@ export default function pasajePDF(nombramiento, pasajes) {
   doc.setFontSize(9);
   doc.text(30, 100, `Nombre completo: ${name}`);
   doc.text(30, 115, `Cargo: ${nombramiento.datos_empleado.cargo}`);
-  doc.text(30, 130, `Nombramiento número: ${nombramiento._id}`);
+  doc.text(30, 130, `Nombramiento número: ${nombramiento.nombramiento}`);
 
   doc.text(30, 150, 'Lugares de comisión:');
   // table lugares, 5 rows = 150p approximately

@@ -80,7 +80,7 @@
 
         <div layout="row" layout-align="end">
           <md-button class="md-accent" ui-sref="listadoNombramientos"> Cancelar </md-button>
-          <a class="md-button md-raised" ng-click="pPasajes.pPDF()">PDF</a>
+          <a ng-disabled="pPasajes.pdfDisabled" class="md-button md-raised" ng-click="pPasajes.pPDF()">PDF</a>
           <md-button class="md-raised md-primary" ng-disabled="pform.$invalid" ng-click="pPasajes.guardar()"> Aceptar </md-button>
         </div>
 

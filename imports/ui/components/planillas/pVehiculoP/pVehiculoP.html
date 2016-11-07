@@ -214,7 +214,7 @@
 
         <div layout="row" layout-align="end">
           <md-button class="md-accent" ui-sref="listadoNombramientos"> Cancelar </md-button>
-          <a class="md-button md-raised" ng-click="pVehiculoP.vpPDF()"> PDF</a>
+          <a ng-disabled="pVehiculoP.pdfDisabled" class="md-button md-raised" ng-click="pVehiculoP.vpPDF()"> PDF</a>
           <md-button class="md-raised md-primary"  ng-disabled="vpform.$invalid" ng-click="pVehiculoP.guardar()"> Aceptar </md-button>
         </div>
       </md-content>

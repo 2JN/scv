@@ -68,10 +68,14 @@ class NombramientoComisionCtrl {
   }
 
   ingresar() {
-    let noNombramiento = ++this.dependencia.nombramiento + "-" + this.comision.fecha.getFullYear();
+    let noNombramiento = ++this.dependencia.nombramiento + "-" +
+      this.comision.fecha.getFullYear();
+
+    let unico = +this.dependencia._id + '-' + noNombramiento
 
     let datosComision = {
-      _id: noNombramiento,
+      _id: unico,
+      nombramiento: noNombramiento,
       datos_empleado: this.datosUsuario,
       datos_dependencia: this.dependencia,
       datos_comision: angular.copy(this.comision)

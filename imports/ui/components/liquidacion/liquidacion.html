@@ -32,7 +32,7 @@
           dir-paginate="nombramiento in liquidacion.nombramientos | itemsPerPage: liquidacion.perPage"
           total-items="liquidacion.nombramientosCount">
           <div class="md-list-item-text" layout="column">
-            <h3> {{ nombramiento._id }} </h3>
+            <h3> {{ nombramiento.nombramiento }} </h3>
             <h4> Lugares de comision: {{ nombramiento.datos_comision.lugares.length }} </h4>
             <p> {{ nombramiento.datos_comision.motivo }}</p>
           </div>

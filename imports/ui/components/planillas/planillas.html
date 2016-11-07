@@ -2,7 +2,7 @@
 
     <md-content>
       <md-tabs md-selected="0" md-border-bottom md-autoselect md-dynamic-height>
-        <md-tab label="Vehiculo Institucion"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
+        <md-tab ng-if="planillas.nombramiento.datos_comision.vehiculoInst" label="Vehiculo Institucion">
 
           <div layout="column" flex="90">
             <p-vehiculo-i nombramiento="planillas.nombramiento"></p-vehiculo-i>
@@ -10,7 +10,7 @@
 
         </md-tab>
 
-        <md-tab label="Vehiculo Propio"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
+        <md-tab ng-if="planillas.nombramiento.datos_comision.vehiculoProp" label="Vehiculo Propio">
 
           <div layout="column" flex="90">
             <p-vehiculo-p nombramiento="planillas.nombramiento"></p-vehiculo-p>
@@ -18,7 +18,7 @@
 
         </md-tab>
 
-        <md-tab label="Pasajes"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
+        <md-tab ng-if="planillas.nombramiento.datos_comision.transUrbano" label="Pasajes">
 
           <div layout="column" flex="90">
             <p-pasajes nombramiento="planillas.nombramiento"></p-pasajes>

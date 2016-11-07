@@ -54,7 +54,7 @@ export default function vhcPPDF(nombramiento, vehiculoi, total) {
   doc.setFontType('normal');
   doc.setFontSize(8);
   doc.text(30, 85, 'Nombramiento o Acuerdo No.:');
-  doc.text(221, 85, `${nombramiento._id}`);
+  doc.text(221, 85, `${nombramiento.nombramiento}`);
   doc.line(220, 88, 400, 88)
 
   doc.setFontType('bold');

@@ -6,8 +6,6 @@ import { Dependencias } from './collection';
 if (Meteor.isServer) {
   Meteor.publish('dependencias', function(options, searchString) {
 
-    let user = Meteor.users.findOne({_id: this.userId});
-
     const selector = {};
 
     if (typeof searchString === 'string' && searchString.length) {
@@ -21,8 +19,6 @@ if (Meteor.isServer) {
       noReady: true
     });
 
-    if (user.admin) {
-      return Dependencias.find(selector, options);
-    }
+    return Dependencias.find(selector, options);
   });
 }
