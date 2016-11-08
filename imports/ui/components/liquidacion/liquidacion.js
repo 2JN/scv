@@ -71,6 +71,7 @@ class LiquidacionCtrl {
   showLugaresTabs() {
     this.$mdDialog.show({
       templateUrl: promptTemplate,
+      parent: angular.element(document.body),
       controllerAs: 'promptLiquidacion',
       controller: PromptLiquidacionCtrl,
     });

@@ -133,7 +133,7 @@ class NombramientoPDFCtrl {
 
     doc.text(255, 525, 'Vehículo propio');
 
-    if(this.nombramiento.datos_comision.tansUrbano) {
+    if(this.nombramiento.datos_comision.transUrbano) {
       doc.rect(430, 510, 20, 20, 'F');
     } else {
       doc.rect(430, 510, 20, 20);
