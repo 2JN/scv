@@ -6,11 +6,12 @@ import template from './detallesEmpleado.html';
 import { Empleados } from '../../../api/empleados';
 
 class DetallesEmpleadoCtrl {
-  constructor($stateParams, $scope, $reactive, $state) {
+  constructor($stateParams, $scope, $reactive, $state, $mdToast) {
     'ngInject';
 
     $reactive(this).attach($scope);
 
+    this.$mdToast = $mdToast;
     this.$state = $state;
     this.password = '';
 
@@ -47,14 +48,36 @@ class DetallesEmpleadoCtrl {
           renglon: this.empleado.renglon,
           sueldoMensual: this.empleado.sueldoMensual,
         }
+      }, (error) => {
+        if (error) {
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent('Actualizacion no realizada')
+              .position('top right')
+          );
+        } else {
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent('Empleado modificado')
+              .position('top right')
+          );
+        }
       });
     } else {
       Empleados.remove(this.empleadoId);
       Empleados.insert(this.empleado, (error) => {
         if (error) {
-          console.log('Oops, actualización no realizada');
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent('Actualizacion no realizada')
+              .position('top right')
+          );
         } else {
-          console.log('Hecho!');
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent('Empleado modificado')
+              .position('top right')
+          );
         }
       });
     }

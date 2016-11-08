@@ -6,7 +6,8 @@ import template from './nuevaDependencia.html';
 import { Dependencias } from '../../../api/dependencias';
 
 class NuevaDependenciaCtrl {
-  constructor() {
+  constructor($mdToast) {
+    this.$mdToast = $mdToast
     this.dependencia = {};
     this.dependencia.nombramiento = 0;
   }
@@ -14,12 +15,21 @@ class NuevaDependenciaCtrl {
   ingresar() {
     Dependencias.insert(this.dependencia, (error) => {
       if (error) {
-        console.log('Oops, dependencia no agregada...');
+        this.$mdToast.show(
+          this.$mdToast.simple()
+            .textContent('Oops, dependencia no agregada...')
+            .position('top right')
+        );
       } else {
-        console.log('Hecho!');
+        this.$mdToast.show(
+          this.$mdToast.simple()
+            .textContent('Dependencia agregada')
+            .position('top right')
+        );
+
+        this.reset();
       }
     });
-    this.reset()
   }
 
   reset() {

@@ -6,10 +6,11 @@ import template from './detallesDependencia.html';
 import { Dependencias } from '../../../api/dependencias';
 
 class DetallesDependenciaCtrl {
-  constructor($stateParams, $scope, $reactive, $state) {
+  constructor($stateParams, $scope, $reactive, $state, $mdToast) {
     'ngInject';
 
     this.$state = $state;
+    this.$mdToast = $mdToast;
 
     $reactive(this).attach($scope);
 
@@ -37,14 +38,39 @@ class DetallesDependenciaCtrl {
           encargado: this.dependencia.encargado,
           cargoEn: this.dependencia.cargoEn
         }
+      }, (error) => {
+        if (error) {
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent('Oops, dependencia no modificada...')
+              .position('top right')
+          );
+        } else {
+          Dependencias.remove(this.dependenciaId);
+
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent('Dependencia modificada...')
+              .position('top right')
+          );
+        }
       });
     } else {
       Dependencias.insert(this.dependencia, (error) => {
         if (error) {
-          console.log('Oops, actualización no realizada');
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent('Oops, dependencia no modificada...')
+              .position('top right')
+          );
         } else {
           Dependencias.remove(this.dependenciaId);
-          console.log('Hecho!');
+
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent('Dependencia modificada...')
+              .position('top right')
+          );
         }
       });
     }

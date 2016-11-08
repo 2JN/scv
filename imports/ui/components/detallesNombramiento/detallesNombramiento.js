@@ -6,12 +6,13 @@ import template from './detallesNombramiento.html';
 import { Nombramientos } from '../../../api/nombramientos';
 
 class DetallesNombramientoCtrl {
-  constructor($stateParams, $scope, $reactive, $state) {
+  constructor($stateParams, $scope, $reactive, $state, $mdToast) {
     'ngInject';
 
     $reactive(this).attach($scope);
 
     this.$state = $state;
+    this.$mdToast = $mdToast;
 
     this.subscribe('nombramientos');
 
@@ -47,9 +48,17 @@ class DetallesNombramientoCtrl {
       }
     }, (error) => {
       if (error) {
-        console.log('Oops, no se pudieron guardar los cambios...');
+        this.$mdToast.show(
+          this.$mdToast.simple()
+            .textContent('No se pudo modificar el nombramiento...')
+            .position('top right')
+        );
       } else {
-        console.log('Hecho!');
+        this.$mdToast.show(
+          this.$mdToast.simple()
+            .textContent('Nombramiento modificado')
+            .position('top right')
+        );
       }
     });
 

@@ -9,12 +9,13 @@ import template from './nuevoEmpleado.html';
 import { Empleados } from '../../../api/empleados';
 
 class NuevoEmpleadoCtrl {
-  constructor($scope, $reactive, $state) {
+  constructor($scope, $reactive, $mdToast) {
     'ngInject';
 
     $reactive(this).attach($scope);
 
     this.empleado = {};
+    this.$mdToast = $mdToast;
 
     this.credentials = {
       user: '',
@@ -26,9 +27,24 @@ class NuevoEmpleadoCtrl {
 
   ingresar() {
     this.empleado.user = this.credentials.username;
-    Empleados.insert(this.empleado);
-    Meteor.call('newUser', this.credentials);
-    this.reset();
+    Empleados.insert(this.empleado,  (error) => {
+      if (error) {
+        this.$mdToast.show(
+          this.$mdToast.simple()
+            .textContent('Oops, empleado no agregada...')
+            .position('top right')
+        );
+      } else {
+        this.$mdToast.show(
+          this.$mdToast.simple()
+            .textContent('Empleado agregado')
+            .position('top right')
+        );
+
+        Meteor.call('newUser', this.credentials);
+        this.reset();
+      }
+    });
   }
 
   reset() {

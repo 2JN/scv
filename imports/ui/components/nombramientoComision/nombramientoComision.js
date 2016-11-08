@@ -8,12 +8,12 @@ import { Dependencias } from '../../../api/dependencias';
 import { Nombramientos } from '../../../api/nombramientos';
 
 class NombramientoComisionCtrl {
-  constructor($scope, $reactive, $state) {
+  constructor($scope, $reactive, $mdToast) {
     'ngInject';
 
     $reactive(this).attach($scope);
 
-    this.$state = $state;
+    this.$mdToast = $mdToast;
 
     this.subscribe('dependencias');
     this.subscribe('empleados');
@@ -81,8 +81,23 @@ class NombramientoComisionCtrl {
       datos_comision: angular.copy(this.comision)
     }
 
-    Nombramientos.insert(datosComision);
-    this.actualizarDependencia();
+    Nombramientos.insert(datosComision, (error) => {
+      if (error) {
+        this.$mdToast.show(
+          this.$mdToast.simple()
+            .textContent('No se pudo crear el nombramiento...')
+            .position('top right')
+        );
+      } else {
+        this.$mdToast.show(
+          this.$mdToast.simple()
+            .textContent('Nombramiento creado')
+            .position('top right')
+        );
+
+        this.actualizarDependencia();
+      }
+    });
   }
 
   reset() {
