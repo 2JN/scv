@@ -7,12 +7,11 @@ import { Meteor } from 'meteor/meteor';
 import template from './login.html'
 
 class LoginCtrl {
-  constructor($scope, $reactive, $state) {
+  constructor($scope, $reactive, $mdToast) {
     'ngInject';
 
-    this.$state = $state;
-
     $reactive(this).attach($scope);
+    this.$mdToast = $mdToast;
 
     this.credentials = {
       user: '',
@@ -26,9 +25,11 @@ class LoginCtrl {
     Meteor.loginWithPassword(this.credentials.user, this.credentials.password,
       this.$bindToContext((err) => {
         if (err) {
-          this.error = err;
-        } else {
-          this.$state.go('comisionNombramiento');
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent('Usuario o contraseña incorrectos...')
+              .position('top right')
+          );
         }
       })
     );
