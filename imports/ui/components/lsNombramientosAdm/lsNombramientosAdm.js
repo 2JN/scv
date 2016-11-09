@@ -5,12 +5,14 @@ import utilsPagination from 'angular-utils-pagination';
 
 import { Counts } from 'meteor/tmeasday:publish-counts';
 
-import template from './listadoNombramientos.html';
+import template from './lsNombramientosAdm.html';
 import { Nombramientos } from '../../../api/nombramientos';
+import { Dependencias } from '../../../api/dependencias';
+import { name as Ordernar } from '../ordenar/ordenar';
 import { name as Ordenar } from '../ordenar/ordenar';
 import { name as NombramientoPDF } from '../nombramientoPDF/nombramientoPDF';
 
-class ListadoNombramientosCtrl {
+class LsNombramientosAdmCtrl {
   constructor($scope, $reactive) {
     $scope.viewModel(this);
 
@@ -21,13 +23,16 @@ class ListadoNombramientosCtrl {
     };
     this.searchText = '';
 
-    this.subscribe('nombramientos', () => [
+    this.subscribe('nombramientosAdm', () => [
+      this.getReactively('dependencia'), 
       {
         limit: parseInt(this.perPage),
         skip: parseInt((this.getReactively('page') - 1) * this.perPage),
         sort: this.getReactively('sort')
       }, this.getReactively('searchText')
     ]);
+
+    this.subscribe('dependencias');
 
     this.helpers({
       nombramientos() {
@@ -36,6 +41,10 @@ class ListadoNombramientosCtrl {
 
       nombramientosCount() {
         return Counts.get('numberOfNombramientos');
+      },
+
+      dependencias() {
+        return Dependencias.find({});
       }
     });
   }
@@ -49,7 +58,7 @@ class ListadoNombramientosCtrl {
   }
 }
 
-const name = 'listadoNombramientos';
+const name = 'lsNombramientosAdm';
 
 export default angular.module(name, [
   angularMeteor,
@@ -61,24 +70,32 @@ export default angular.module(name, [
   .component(name, {
     templateUrl: template,
     controllerAs: name,
-    controller: ListadoNombramientosCtrl
+    controller: LsNombramientosAdmCtrl
   })
   .config(config);
 
 function config($stateProvider) {
   'ngInject';
 
-  $stateProvider.state('listadoNombramientos', {
-    url: '/listado-nombramientos',
-    template: '<listado-nombramientos></listado-nombramientos>',
+  $stateProvider.state('lsNombramientosAdm', {
+    url: '/ls-nombramientos-adm',
+    template: '<ls-nombramientos-adm></ls-nombramientos-adm>',
     resolve: {
-      currentUser($q) {
-        if(Meteor.userId()) {
-          return $q.resolve();
-        } else {
-          return $q.reject('PERMISSION_REQUIRED');
-        }
+      currentUser: ($q) => {
+        var deferred = $q.defer();
+
+        Meteor.autorun(function() {
+          if (!Meteor.loggingIn()) {
+            if (!Meteor.user().admin) {
+              deferred.reject('PERMISSION_REQUIRED');
+            } else {
+              deferred.resolve();
+            }
+          }
+        });
+
+        return deferred.promise;
       }
     }
-  });
+  })
 }

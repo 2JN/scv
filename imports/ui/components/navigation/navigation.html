@@ -47,6 +47,16 @@
           </md-item-content>
       </md-list-item>
 
+      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin" href="ls-nombramientos-adm"
+        ng-click="navigation.toggleLeft()" md-ink-ripple >
+          <md-item-content layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon></ng-md-icon>
+            </div>
+            <div class="inset"> Todas los Nombramientos </div>
+          </md-item-content>
+      </md-list-item>
+
       <md-divider></md-divider>
       <md-subheader>Comision</md-subheader>
 

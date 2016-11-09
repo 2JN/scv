@@ -7,11 +7,25 @@
 
         <span flex></span>
 
-        <ordenar on-change="listadoNombramientos.sortChanged(sort)" property="nombramiento" order="1"></ordenar>
+        <ordenar on-change="lsNombramientosAdm.sortChanged(sort)" property="nombramiento" order="1"></ordenar>
+
+        <md-button aria-label="depencencias" ng-click="showDependencia = !showDependencia">
+          <md-icon md-svg-icon="action:ic_account_balance_24px"></md-icon>
+        </md-button>
 
         <md-button aria-label="search" ng-click="showSearch = !showSearch">
           <md-icon md-svg-icon="action:ic_search_24px"></md-icon>
         </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-toolbar class="md-hue-4" ng-show="showDependencia">
+      <div class="md-toolbar-tools" layout="column">
+        <md-select class="md-no-underline" ng-model="lsNombramientosAdm.dependencia" placeholder="Dependencia">
+          <md-option ng-repeat="dependencia in lsNombramientosAdm.dependencias" ng-value="dependencia._id">
+            {{ dependencia.nombre }} - {{ dependencia._id }}
+          </md-option>
+        </md-select>
       </div>
     </md-toolbar>
 
@@ -22,7 +36,7 @@
         </md-button>
 
         <md-input-container flex md-no-float class="md-primary md-hue-3 md-body-1 search-input">
-          <input type="search" ng-model="listadoNombramientos.searchText" placeholder="Buscar">
+          <input type="search" ng-model="lsNombramientosAdm.searchText" placeholder="Buscar">
         </md-input-container>
       </div>
     </md-toolbar>
@@ -30,15 +44,15 @@
     <md-content>
       <md-list flex layout-margin>
         <md-list-item class="md-3-line"
-          dir-paginate="nombramiento in listadoNombramientos.nombramientos | itemsPerPage: listadoNombramientos.perPage"
-          total-items="listadoNombramientos.nombramientosCount">
+          dir-paginate="nombramiento in lsNombramientosAdm.nombramientos | itemsPerPage: lsNombramientosAdm.perPage"
+          total-items="lsNombramientosAdm.nombramientosCount">
           <div class="md-list-item-text" layout="column">
-            <h3> {{ nombramiento.nombramiento }} </h3>
+            <h3>  {{ nombramiento.nombramiento }} </h3>
             <h4> Lugares de comision: {{ nombramiento.datos_comision.lugares.length }} </h4>
-            <p> {{ nombramiento.datos_comision.motivo }}</p>
+            <p> {{ nombramiento.datos_comision.motivo }} </p>
           </div>
 
-          <div layout="row" layout-align="end center" layout-margin>
+          <div>
             <md-button ui-sref="detallesNombramiento({ nombramientoId: nombramiento._id })">Editar</md-button>
             <md-button ui-sref="planillas({ nombramientoId: nombramiento._id })">Planillas</md-button>
             <nombramiento-pdf nombramiento="nombramiento"></nombramiento-pdf>
@@ -48,7 +62,7 @@
       </md-list>
 
       <div layout="row" layout-align="center">
-        <dir-pagination-controls on-page-change="listadoNombramientos.pageChanged(newPageNumber)"></dir-pagination-controls>
+        <dir-pagination-controls on-page-change="lsNombramientosAdm.pageChanged(newPageNumber)"></dir-pagination-controls>
       </div>
 
     </md-content>

@@ -30,4 +30,29 @@ if (Meteor.isServer) {
 
     return Nombramientos.find(selector, options);
   });
+
+  Meteor.publish('nombramientosAdm', function(dependencia, options,
+    searchString) {
+
+    let user = Meteor.users.findOne({_id: this.userId});
+
+    if (typeof searchString === 'string' && searchString.length) {
+      selector._id = {
+        $regex: `.*${searchString}.*`,
+        $options: 'i'
+      };
+    }
+
+    Counts.publish(this, 'numberOfNombramientos', Nombramientos.find({
+      'datos_dependencia._id': dependencia
+    }), {
+      noReady: true
+    });
+
+    if (user.admin) {
+      return Nombramientos.find({
+        'datos_dependencia._id': dependencia
+      }, options);
+    }
+  });
 }
