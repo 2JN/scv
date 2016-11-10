@@ -13,6 +13,7 @@ class PVehiculoICtrl {
 
     this.total = 0;
     this.pdfDisabled = true;
+    this.showFacturas = false;
 
     this.vehiculoi = {
       kilometraje: [
@@ -110,7 +111,7 @@ class PVehiculoICtrl {
   }
 
   viPDF() {
-    vhcIPDF(this.nombramiento, this.vehiculoi, this.total);
+    vhcIPDF(this.nombramiento, this.vehiculoi, this.showFacturas, this.total);
     this.pdfDisabled = true;
   }
 }

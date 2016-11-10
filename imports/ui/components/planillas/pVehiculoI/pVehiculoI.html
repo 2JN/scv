@@ -76,7 +76,7 @@
 
       <md-content layout-padding>
         <md-tabs md-selected="1" md-border-bottom md-autoselect md-dynamic-height>
-          <md-tab label="{{$index + 1}}" ng-repeat="kl in pVehiculoI.vehiculoi.kilometraje"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
+          <md-tab label="{{$index + 1}}" ng-repeat="kl in pVehiculoI.vehiculoi.kilometraje">
 
             <div layout="column" flex="90">
               <h4>Fecha</h4>
@@ -138,12 +138,16 @@
       <md-toolbar class="md-primary" layout="column" layout-align="end">
         <div layout="row" class="md-toolbar-tools">
           <h3> Facturas Presentadas </h3>
+          <span flex></span>
+          <md-button aria-label="facturas" ng-click="pVehiculoI.showFacturas = !pVehiculoI.showFacturas">
+            <md-icon md-svg-icon="action:ic_receipt_24px"></md-icon>
+          </md-button>
         </div>
       </md-toolbar>
 
-      <md-content layout-padding>
+      <md-content ng-if="pVehiculoI.showFacturas" layout-padding>
         <md-tabs md-selected="1" md-border-bottom md-autoselect md-dynamic-height>
-          <md-tab label="{{$index + 1}}" ng-repeat="fp in pVehiculoI.vehiculoi.facturas"> <!-- ng-if="planillas.nombramiento.datos_comision.transUrbano" -->
+          <md-tab label="{{$index + 1}}" ng-repeat="fp in pVehiculoI.vehiculoi.facturas">
 
             <div layout="column" flex="90">
               <h4>Fecha</h4>
@@ -182,6 +186,15 @@
 
         <md-button class="md-primary md-raised" ng-click="pVehiculoI.addFactura()">Añadir Factura</md-button>
 
+        <md-divider></md-divider>
+
+        <div layout="column">
+          <md-input-container>
+            <label> Justificacion por el Cobro de Combustible :</label>
+            <input type="text" ng-model="pVehiculoI.vehiculoi.observaciones" required />
+          </md-input-container>
+        </div>
+
       </md-content>
 
     </md-whiteframe>
@@ -193,16 +206,11 @@
 
       <md-toolbar class="md-primary" layout="column" layout-align="end">
         <div layout="row" class="md-toolbar-tools">
-          <h3> Justificacion </h3>
+          <h3> Total </h3>
         </div>
       </md-toolbar>
 
       <md-content layout="column" layout-padding>
-        <md-input-container>
-          <label> Justificacion por el Cobro de Combustible :</label>
-          <input type="text" ng-model="pVehiculoI.vehiculoi.observaciones" required />
-        </md-input-container>
-
         <span>
           <h4>Total: {{ pVehiculoI.total }}</h4>
         </span>

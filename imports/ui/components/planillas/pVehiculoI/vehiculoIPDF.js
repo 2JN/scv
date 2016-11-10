@@ -33,7 +33,7 @@ function relatividad(doc, distanciaYConj ,distanciaYEl, distanciaX,
     return distanciaY;
 }
 
-export default function vhcPPDF(nombramiento, vehiculoi, total) {
+export default function vhcPPDF(nombramiento, vehiculoi, showFacturas, total) {
   let name = nombramiento.datos_empleado.pnombre;
   if (nombramiento.datos_empleado.snombre) {
     name += (" " + nombramiento.datos_empleado.snombre);
@@ -134,50 +134,51 @@ export default function vhcPPDF(nombramiento, vehiculoi, total) {
     `Total Km recorridos: ${kilometros}`
   );
 
+  if (showFacturas) {
+    doc.setFontSize(8);
+    relposy = relatividad(doc, 30, 0, 30, relposy, 'FACTURAS PRESENTADAS');
 
-  doc.setFontSize(8);
-  relposy = relatividad(doc, 30, 0, 30, relposy, 'FACTURAS PRESENTADAS');
+    // Tabla
+    let columnsf = [
+      {title: 'Fecha de Factura', key: 'fecha'},
+      {title: 'Numero de Facutra', key: 'numero'},
+      {title: 'Galones', key: 'galones'},
+      {title: 'Proveedor', key: 'proveedor'},
+      {title: 'Valor de la Factura', key: 'valor'}
+    ]
 
-  // Tabla
-  let columnsf = [
-    {title: 'Fecha de Factura', key: 'fecha'},
-    {title: 'Numero de Facutra', key: 'numero'},
-    {title: 'Galones', key: 'galones'},
-    {title: 'Proveedor', key: 'proveedor'},
-    {title: 'Valor de la Factura', key: 'valor'}
-  ]
-
-  let rowsf = [];
-  let facturas = 0;
+    let rowsf = [];
+    let facturas = 0;
 
 
-  for(let obj of vehiculoi.facturas) {
-    rowsf.push({
-      fecha: `${modificarFecha(obj.fecha)}`,
-      numero: `${obj.numero}`,
-      galones: `${obj.galones}`,
-      proveedor: `${obj.proveedor}`,
-      valor: `${Number(obj.valor).toFixed(2)}`
+    for(let obj of vehiculoi.facturas) {
+      rowsf.push({
+        fecha: `${modificarFecha(obj.fecha)}`,
+        numero: `${obj.numero}`,
+        galones: `${obj.galones}`,
+        proveedor: `${obj.proveedor}`,
+        valor: `${Number(obj.valor).toFixed(2)}`
+      });
+
+      facturas += +obj.valor;
+    }
+
+    doc.autoTable(columnsf, rowsf, {
+      theme: 'plain',
+      startY: relposy,
+      styles: {
+        overflow: 'linebreak',
+        rowHeight: 10,
+        fontSize: 8
+      }
     });
 
-    facturas += +obj.valor;
+    relposy = doc.autoTableEndPosY();
+
+    relposy = relatividad(doc, 10, 40, 32, relposy + 20,
+      `Total valor de Facturas: Q${Number(facturas).toFixed(2)}`
+    );
   }
-
-  doc.autoTable(columnsf, rowsf, {
-    theme: 'plain',
-    startY: relposy,
-    styles: {
-      overflow: 'linebreak',
-      rowHeight: 10,
-      fontSize: 8
-    }
-  });
-
-  relposy = doc.autoTableEndPosY();
-
-  relposy = relatividad(doc, 10, 40, 32, relposy + 20,
-    `Total valor de Facturas: Q${Number(facturas).toFixed(2)}`
-  );
 
   doc.setFontSize(9);
   relposy = relatividad(doc, 10, 40, 32, relposy + 20,
@@ -185,18 +186,20 @@ export default function vhcPPDF(nombramiento, vehiculoi, total) {
   );
 
   // Justificacion
-  doc.setFontSize(8);
-  relposy = relatividad(doc, 70, 10, 30, relposy,
-    'Justificacion por el cobro de combustible'
-  );
+  if (showFacturas) {
+    doc.setFontSize(8);
+    relposy = relatividad(doc, 70, 10, 30, relposy,
+      'Justificacion por el cobro de combustible'
+    );
 
-  doc.setFontType('normal');
-  let observaciones = '';
-  if(vehiculoi.observaciones) {
-    observaciones = doc.splitTextToSize(vehiculoi.observaciones, 515);
-    relposy = relatividad(doc, 0, 60, 30, relposy, observaciones);
-  } else {
-    relposy = relatividad(doc, 0, 20, 30, relposy, observaciones);
+    doc.setFontType('normal');
+    let observaciones = '';
+    if(vehiculoi.observaciones) {
+      observaciones = doc.splitTextToSize(vehiculoi.observaciones, 515);
+      relposy = relatividad(doc, 0, 60, 30, relposy, observaciones);
+    } else {
+      relposy = relatividad(doc, 0, 20, 30, relposy, observaciones);
+    }
   }
 
   // Firma empleado
