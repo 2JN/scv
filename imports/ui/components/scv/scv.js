@@ -17,6 +17,7 @@ import { name as DetallesNombramiento } from '../detallesNombramiento/detallesNo
 import { name as LsNombramientosAdm } from '../lsNombramientosAdm/lsNombramientosAdm';
 import { name as Planillas } from '../planillas/planillas';
 import { name as Liquidacion } from '../liquidacion/liquidacion';
+import { name as ChangePass } from '../changePass/changePass';
 import { name as Auth } from '../auth/auth';
 
 class SCVCtrl {
@@ -46,8 +47,9 @@ export default angular.module('scv', [
   DetallesNombramiento,
   LsNombramientosAdm,
   Planillas,
-  Auth,
   Liquidacion,
+  ChangePass,
+  Auth,
   'accounts.ui'
 ])
   .component('scv', {

@@ -1,0 +1,30 @@
+<div layout="column" ng-if="changePass.admin">
+  <div layout="row" layout-align="center" layout-margin>
+    <md-whiteframe layout="column" flex flex-md="75" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
+
+      <md-toolbar class="md-primary" layout="column" layout-align="end">
+        <div layout="row" class="md-toolbar-tools">
+          <h3> Cambiar Contraseña </h3>
+        </div>
+      </md-toolbar>
+
+      <form name="pass" layout="column" layout-padding layout-margin>
+
+        <md-input-container>
+          <label> Nuevo password </label>
+          <input type="password" ng-model="changePass.password" aria-label="password" required />
+        </md-input-container>
+
+        <md-input-container>
+          <label> Vuelva a escribir el password </label>
+          <input type="password" ng-model="changePass.confirm" aria-label="confirm pass" required />
+        </md-input-container>
+
+        <div layout="row" layout-align="end">
+          <md-button class="md-raised md-primary" ng-disabled="pass.$invalid" ng-click="changePass.changePassword()">Cambiar</md-button>
+        </div>
+
+      </form>
+    </md-whiteframe>
+  </div>
+</div>
