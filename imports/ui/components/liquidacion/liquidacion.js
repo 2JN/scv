@@ -91,6 +91,7 @@ class PromptLiquidacionCtrl {
     $scope.viewModel(this);
 
     this.$mdDialog = $mdDialog;
+    this.v_a =  false;
     this.selected = seleccion.selected;
 
   }
@@ -163,7 +164,9 @@ class PromptLiquidacionCtrl {
     // Calculo de otros gastos
     for(nombramiento of this.selected) {
 
-      if(nombramiento.datos_comision.vehiculoInst) {
+      if (nombramiento.datos_comision.vehiculoInst &&
+          nombramiento.vehiculoi.facturas) {
+
         for (factura of nombramiento.vehiculoi.facturas) {
           otrosGastos += +factura.valor;
         }
@@ -190,6 +193,26 @@ class PromptLiquidacionCtrl {
 
     totalF1 = Number(gastosViatico + otrosGastos).toFixed(2);
     doc.text(495, 563, `${totalF1}`);
+
+    // Liquidacion
+    if (this.recibido) {
+      doc.text(350, 600, `${this.v_aNumber}`);
+      doc.text(495, 600, `${Number(this.recibido).toFixed(2)}`);
+
+      if (this.recibido > totalF1) {
+        let reintegro = this.recibido - totalF1;
+
+        doc.text(495, 630, `${Number(reintegro).toFixed(2)}`);
+      } else if (this.recibido < totalF1) {
+        let complemento = totalF1 - this.recibido;
+
+        doc.text(495, 650, `${Number(complemento).toFixed(2)}`);
+      } else {
+        doc.text(495, 650, `0.00`);
+      }
+    } else {
+      doc.text(495, 650, `${totalF1}`);
+    }
 
     doc.text(495, 692, `${totalF1}`);
 

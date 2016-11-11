@@ -1,4 +1,4 @@
-<md-dialog>
+<md-dialog flex="75">
   <form name="lform">
 
     <md-toolbar>
@@ -11,13 +11,36 @@
       </div>
     </md-toolbar>
 
-    <md-dialog-content layout="column" md-dynamic-height layout-padding>
+    <md-dialog-content md-dynamic-height layout-padding>
 
-      <div class="md-dialog-content">
+      <div class="md-dialog-content" layout="column">
         <md-input-container>
           <label> Recibi de: </label>
           <input type="text" ng-model="promptLiquidacion.pagoDep" required>
         </md-input-container>
+
+
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h6>Formulario V-A</h6>
+            <span flex></span>
+            <md-button ng-click="promptLiquidacion.v_a = !promptLiquidacion.v_a">
+              <md-icon md-svg-icon="action:ic_swap_vertical_circle_24px" aria-label="formulario V-A"></md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+
+        <div ng-if="promptLiquidacion.v_a" layout="column">
+          <md-input-container>
+            <label> Numbero de formulario V-A </label>
+            <input type="text" ng-model="promptLiquidacion.v_aNumber" required>
+          </md-input-container>
+
+          <md-input-container>
+            <label> Cantidad recibida </label>
+            <input type="text" ng-model="promptLiquidacion.recibido" required>
+          </md-input-container>
+        </div>
       </div>
 
       <md-tabs md-dynamic-height md-border-bottom>
