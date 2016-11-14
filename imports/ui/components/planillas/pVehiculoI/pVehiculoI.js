@@ -3,6 +3,7 @@ import angularMeteor from 'angular-meteor';
 
 import template from './pVehiculoI.html';
 import { Nombramientos } from '../../../../api/nombramientos';
+import { Vehiculos } from '../../../../api/vehiculos';
 import vhcIPDF from './vehiculoIPDF';
 
 class PVehiculoICtrl {
@@ -11,11 +12,15 @@ class PVehiculoICtrl {
 
     $reactive(this).attach($scope);
 
+    this.subscribe('vehiculosI');
+
     this.total = 0;
     this.pdfDisabled = true;
     this.showFacturas = false;
 
     this.vehiculoi = {
+      vehiculo: {},
+
       kilometraje: [
         {
           fecha: new Date,
@@ -39,6 +44,13 @@ class PVehiculoICtrl {
     this.autorun(function() {
       if (this.getReactively('this.nombramiento.vehiculoi')) {
         this.vehiculoi = this.nombramiento.vehiculoi;
+      }
+    });
+
+    this.autorun(function() {
+      if (this.getReactively('nombramiento.datos_comision.placasVI')) {
+        let pvi = this.nombramiento.datos_comision.placasVI;
+        this.vehiculoi.vehiculo = Vehiculos.findOne(pvi);
       }
     });
 

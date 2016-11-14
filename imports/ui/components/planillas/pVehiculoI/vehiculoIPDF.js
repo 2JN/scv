@@ -62,7 +62,7 @@ export default function vhcPPDF(nombramiento, vehiculoi, showFacturas, total) {
   doc.setFontType('normal');
   doc.setFontSize(7);
   doc.text(30, 115, 'PLACA:');
-  doc.text(221, 115, vehiculoi.vehiculo.placa);
+  doc.text(221, 115, vehiculoi.vehiculo._id);
   doc.line(220, 116, 400, 116);
   doc.text(30, 125, 'TIPO:');
   doc.line(220, 126, 400, 126);
