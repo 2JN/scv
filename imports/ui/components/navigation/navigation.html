@@ -23,7 +23,7 @@
             <div class="inset">
               <ng-md-icon></ng-md-icon>
             </div>
-            <div class="inset"> Modificar Empleados </div>
+            <div class="inset"> Listado Empleados </div>
           </md-item-content>
       </md-list-item>
 
@@ -43,7 +43,7 @@
             <div class="inset">
               <ng-md-icon></ng-md-icon>
             </div>
-            <div class="inset"> Modificar Dependencia </div>
+            <div class="inset"> Listado Dependencias </div>
           </md-item-content>
       </md-list-item>
 
@@ -54,6 +54,16 @@
             <ng-md-icon></ng-md-icon>
           </div>
           <div class="inset"> Agregar Vehiculo Institucion </div>
+        </md-item-content>
+      </md-list-item>
+
+      <md-list-item class="sn-menu" ng-if="navigation.usuario.admin"
+        ng-click="navigation.toggleLeft()" href="listado-vehiculos-i" md-ink-ripple >
+        <md-item-content layout="row" layout-align="start center">
+          <div class="inset">
+            <ng-md-icon></ng-md-icon>
+          </div>
+          <div class="inset"> Listado Vehiculos Institucion </div>
         </md-item-content>
       </md-list-item>
 

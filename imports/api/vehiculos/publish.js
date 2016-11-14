@@ -4,9 +4,9 @@ import { Counts } from 'meteor/tmeasday:publish-counts';
 import { Vehiculos } from './collection';
 
 if (Meteor.isServer) {
-  Meteor.publish('vehiculos', function(options, searchString) {
+  Meteor.publish('vehiculosI', function(options, searchString) {
 
-    const selector = {};
+    const selector = {institucion: true};
 
     if (typeof searchString === 'string' && searchString.length) {
       selector._id =  {

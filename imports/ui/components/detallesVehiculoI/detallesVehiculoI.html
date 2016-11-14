@@ -4,7 +4,7 @@
 
       <md-toolbar class="md-primary" layout="column" layout-alig="end">
         <div layout="row" class="md-toolbar-tools">
-          <h3> Datos del Vehiculo </h3>
+          <h3> Detalles del Vehiculo </h3>
         </div>
       </md-toolbar>
 
@@ -12,56 +12,57 @@
 
         <md-input-container>
           <label>Placa:</label>
-          <input type="text" ng-model="nuevoVehiculoI.vehiculoi._id" required>
+          <input type="text" ng-model="detallesVehiculoI.vehiculo._id" required>
         </md-input-container>
 
         <md-input-container>
           <label>Tipo:</label>
-          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.tipo" required>
+          <input type="text" ng-model="detallesVehiculoI.vehiculo.tipo" required>
         </md-input-container>
 
         <md-input-container>
           <label>Marca:</label>
-          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.marca" required>
+          <input type="text" ng-model="detallesVehiculoI.vehiculo.marca" required>
         </md-input-container>
 
         <md-input-container>
           <label>Motor:</label>
-          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.motor" required>
+          <input type="text" ng-model="detallesVehiculoI.vehiculo.motor" required>
         </md-input-container>
 
         <md-input-container>
           <label>Modelo:</label>
-          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.modelo" required>
+          <input type="text" ng-model="detallesVehiculoI.vehiculo.modelo" required>
         </md-input-container>
 
         <md-input-container>
           <label>Chasis:</label>
-          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.chasis" required>
+          <input type="text" ng-model="detallesVehiculoI.vehiculo.chasis" required>
         </md-input-container>
 
         <md-input-container>
           <label>Combustible:</label>
-          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.combustible" required>
+          <input type="text" ng-model="detallesVehiculoI.vehiculo.combustible" required>
         </md-input-container>
 
         <md-input-container>
           <label>Uso:</label>
-          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.uso" required>
+          <input type="text" ng-model="detallesVehiculoI.vehiculo.uso" required>
         </md-input-container>
 
         <md-input-container>
           <label>Color:</label>
-          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.color" required>
+          <input type="text" ng-model="detallesVehiculoI.vehiculo.color" required>
         </md-input-container>
 
         <md-input-container>
           <label>Cilindros:</label>
-          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.cilindros" required>
+          <input type="text" ng-model="detallesVehiculoI.vehiculo.cilindros" required>
         </md-input-container>
 
         <div layout="row" layout-align="end">
-          <md-button class="md-raised md-primary" ng-disabled="viform.$invalid" ng-click="nuevoVehiculoI.guardar()"> Agregar </md-button>
+          <md-button class="md-accent" ui-sref="listadoVehiculosI">Cancelar</md-button>
+          <md-button class="md-raised md-primary" ng-disabled="viform.$invalid" ng-click="detallesVehiculoI.guardar()"> Guardar </md-button>
         </div>
 
       </div>

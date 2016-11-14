@@ -2,10 +2,10 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
-import template from './detallesDependencia.html';
-import { Dependencias } from '../../../api/dependencias';
+import template from './detallesVehiculoI.html'
+import { Vehiculos } from '../../../api/vehiculos';
 
-class DetallesDependenciaCtrl {
+class DetallesVehiculoICtrl {
   constructor($stateParams, $scope, $reactive, $state, $mdToast) {
     'ngInject';
 
@@ -14,70 +14,77 @@ class DetallesDependenciaCtrl {
     this.$state = $state;
     this.$mdToast = $mdToast;
 
-    this.dependenciaId = $stateParams.dependenciaId;
-    this.subscribe('dependencias');
+    this.vehiculoId = $stateParams.vehiculoId;
+
+    this.subscribe('vehiculosI');
 
     this.helpers({
-      dependencia() {
-        return Dependencias.findOne({
-          _id: $stateParams.dependenciaId
+      vehiculo() {
+        return Vehiculos.findOne({
+          _id: $stateParams.vehiculoId
         })
       }
     });
   }
 
   guardar() {
-    if (this.dependenciaId === this.dependencia._id) {
-      Dependencias.update({
-        _id: this.dependencia._id
+    if (this.vehiculoId === this.vehiculo._id) {
+      Vehiculos.update({
+        _id: this.vehiculo._id
       }, {
         $set: {
-          nombre: this.dependencia.nombre,
-          municipio: this.dependencia.municipio,
-          departamento: this.dependencia.departamento,
-          encargado: this.dependencia.encargado,
-          cargoEn: this.dependencia.cargoEn
+          tipo: this.vehiculo.tipo,
+	        marca: this.vehiculo.marca,
+          motor: this.vehiculo.motor,
+	        modelo: this.vehiculo.modelo,
+	        chasis: this.vehiculo.chasis,
+	        combustible: this.vehiculo.combustible,
+	        uso: this.vehiculo.uso,
+	        color: this.vehiculo.color,
+	        cilindros: this.vehiculo.cilindros
         }
       }, (error) => {
         if (error) {
           this.$mdToast.show(
             this.$mdToast.simple()
-              .textContent('Error, dependencia no modificada...')
+              .textContent('Error, vehiculo no modificada...')
               .position('top right')
           );
         } else {
           this.$mdToast.show(
             this.$mdToast.simple()
-              .textContent('Dependencia modificada...')
+              .textContent('Vehiculo modificado...')
               .position('top right')
           );
         }
       });
     } else {
-      Dependencias.insert(this.dependencia, (error) => {
+      this.vehiculo.institucion = true;
+
+      Vehiculos.insert(this.vehiculo, (error) => {
         if (error) {
-          this.$mdToast.show(
+          this.$mdToas.show(
             this.$mdToast.simple()
-              .textContent('Error, dependencia no modificada...')
+              .textContent('Error, vehiculo no modificado')
               .position('top right')
           );
         } else {
-          Dependencias.remove(this.dependenciaId);
+          Vehiculos.remove(this.vehiculoId);
 
           this.$mdToast.show(
             this.$mdToast.simple()
-              .textContent('Dependencia modificada...')
+              .textContent('Vehiculo modificado...')
               .position('top right')
           );
         }
       });
     }
 
-    this.$state.go('listadoDependencias');
+    this.$state.go('listadoVehiculosI');
   }
 }
 
-const name = 'detallesDependencia';
+const name = 'detallesVehiculoI';
 
 export default angular.module(name, [
   angularMeteor
@@ -85,16 +92,16 @@ export default angular.module(name, [
   .component(name, {
     templateUrl: template,
     controllerAs: name,
-    controller: DetallesDependenciaCtrl
+    controller: DetallesVehiculoICtrl
   })
   .config(config);
 
 function config($stateProvider) {
   'ngInject';
 
-  $stateProvider.state('detallesDependencia', {
-    url: '/dependencia/:dependenciaId',
-    template: '<detalles-dependencia></detalles-dependencia>',
+  $stateProvider.state('detallesVehiculoI', {
+    url: '/vehiculo/:vehiculoId',
+    template: '<detalles-vehiculo-i></detalles-vehiculo-i>',
     resolve: {
       currentUser: ($q) => {
         var deferred = $q.defer();

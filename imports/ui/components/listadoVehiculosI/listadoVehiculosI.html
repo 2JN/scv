@@ -1,0 +1,58 @@
+<div layout="row" layout-align="center">
+  <md-whiteframe layout="column" flex flex-md="75" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
+
+    <md-toolbar ng-show="!showSearch" class="md-hue-3" layout="colum" layout-align="end">
+      <div layout="row" class="md-toolbar-tools">
+        <h3> Vehiculos </h3>
+        <span flex></span>
+
+        <ordenar on-change="listadoVehiculosI.sortChanged(sort)" property="_id" order="1"></ordenar>
+
+        <md-button aria-label="search" ng-click="showSearch = !showSearch">
+          <md-icon md-svg-icon="action:ic_search_24px"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-toolbar class="md-hue-1" ng-show="showSearch">
+      <div class="md-toolbar-tools">
+        <md-button ng-click="showSearch = !showSearch" aria-label="back">
+          <md-icon md-svg-icon="navigation:ic_arrow_back_24px"></md-icon>
+        </md-button>
+
+        <md-input-container flex md-no-float class="md-primary md-hue-3 md-body-1 search-input">
+          <input type="search" ng-model="listadoVehiculosI.searchText" placeholder="Buscar">
+        </md-input-container>
+      </div>
+    </md-toolbar>
+
+    <md-content>
+      <md-list flex layout-margin>
+        <md-list-item class="md-3-line"
+          dir-paginate="vehiculo in listadoVehiculosI.vehiculos | itemsPerPage: listadoVehiculosI.perPage"
+          total-items="listadoVehiculosI.vehiculosCount">
+          <div class="md-list-item-text" layout="column">
+            <h3> {{ vehiculo._id }} </h3>
+            <h4>
+              {{ vehiculo.tipo }}
+            </h4>
+            <p>
+              {{ vehiculo.marca }}
+            </p>
+          </div>
+
+          <div layout="row" layout-align="end center" layout-margin>
+            <md-button ui-sref="detallesVehiculoI({ vehiculoId: vehiculo._id })">Editar</md-button>
+            <eliminar-vehiculo vehiculo="vehiculo"></eliminar-vehiculo>
+          </div>
+        </md-list-item>
+      </md-list>
+
+      <div layout="row" layout-align="center">
+        <dir-pagination-controls on-page-change="listadoVehiculosI.pageChanged(newPageNumber)"></dir-pagination-controls>
+      </div>
+
+    </md-content>
+
+  </md-whiteframe>
+</div>
