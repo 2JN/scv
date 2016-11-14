@@ -2,28 +2,32 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
-import template from './nuevaDependencia.html';
-import { Dependencias } from '../../../api/dependencias';
+import template from './nuevoVehiculoI.html';
+import { Vehiculos } from '../../../api/vehiculos'
 
-class NuevaDependenciaCtrl {
-  constructor($mdToast) {
-    this.$mdToast = $mdToast
-    this.dependencia = {};
-    this.dependencia.nombramiento = 0;
+class NuevoVehiculoICtrl {
+  constructor($scope, $reactive, $mdToast) {
+    'ngInject';
+
+    $reactive(this).attach($scope);
+
+    this.$mdToast = $mdToast;
+    this.vehiculoi = {};
+    this.vehiculoi.institucion = true;
   }
 
-  ingresar() {
-    Dependencias.insert(this.dependencia, (error) => {
+  guardar() {
+    Vehiculos.insert(this.vehiculoi, (error) => {
       if (error) {
         this.$mdToast.show(
           this.$mdToast.simple()
-            .textContent('Error, dependencia no agregada...')
+            .textContent('Error, vehiculo no agregado...')
             .position('top right')
         );
       } else {
         this.$mdToast.show(
           this.$mdToast.simple()
-            .textContent('Dependencia agregada')
+            .textContent('Vehiculo agregado...')
             .position('top right')
         );
 
@@ -33,12 +37,12 @@ class NuevaDependenciaCtrl {
   }
 
   reset() {
-    this.dependencia = {};
-    this.dependencia.nombramiento = 0;
+    this.vehiculoi = {};
+    this.vehiculoi.institucion = true;
   }
 }
 
-const name = 'nuevaDependencia';
+const name = 'nuevoVehiculoI';
 
 export default angular.module(name, [
   angularMeteor,
@@ -47,16 +51,16 @@ export default angular.module(name, [
   .component(name, {
     templateUrl: template,
     controllerAs: name,
-    controller: NuevaDependenciaCtrl
+    controller: NuevoVehiculoICtrl
   })
   .config(config);
 
 function config($stateProvider) {
   'ngInject';
 
-  $stateProvider.state('agregarDependencia', {
-    url: '/agregar-dependencia',
-    template: '<nueva-dependencia></nueva-dependencia>',
+  $stateProvider.state('nuevoVehiculoI', {
+    url: '/nuevo-vehiculo-i',
+    template: '<nuevo-vehiculo-i></nuevo-vehiculo-i>',
     resolve: {
       currentUser: ($q) => {
         var deferred = $q.defer();
@@ -74,5 +78,5 @@ function config($stateProvider) {
         return deferred.promise;
       }
     }
-  })
+  });
 }

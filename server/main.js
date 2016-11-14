@@ -3,6 +3,7 @@ import { Accounts } from 'meteor/accounts-base';
 
 import '../imports/api/empleados';
 import '../imports/api/dependencias';
+import '../imports/api/vehiculos';
 import '../imports/api/nombramientos';
 import '../imports/api/users';
 

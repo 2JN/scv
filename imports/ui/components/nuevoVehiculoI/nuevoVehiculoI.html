@@ -1,0 +1,71 @@
+<form name="viform">
+  <div flex layout="row" layout-align="center" layout-margin>
+    <md-whiteframe layout="column" flex flex-med="75" flex-lg="75" flex-gt-lg="33" class="md-whiteframe-2dp">
+
+      <md-toolbar class="md-primary" layout="column" layout-alig="end">
+        <div layout="row" class="md-toolbar-tools">
+          <h3> Datos del Vehiculo </h3>
+        </div>
+      </md-toolbar>
+
+      <div layout="column" layout-padding layout-margin>
+
+        <md-input-container>
+          <label>Placa:</label>
+          <input type="text" ng-model="nuevoVehiculoI.vehiculoi._id">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Tipo:</label>
+          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.tipo">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Marca:</label>
+          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.marca">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Motor:</label>
+          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.motor">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Modelo:</label>
+          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.modelo">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Chasis:</label>
+          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.chasis">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Combustible:</label>
+          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.combustible">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Uso:</label>
+          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.uso">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Color:</label>
+          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.color">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Cilindros:</label>
+          <input type="text" ng-model="nuevoVehiculoI.vehiculoi.cilindros">
+        </md-input-container>
+
+        <div layout="row" layout-align="end">
+          <md-button class="md-raised md-primary" ng-disabled="viform.$invalid" ng-click="nuevoVehiculoI.guardar()"> Agregar </md-button>
+        </div>
+
+      </div>
+
+    </md-whiteframe>
+  </div>
+</form>

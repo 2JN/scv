@@ -5,12 +5,13 @@ import uiRouter from 'angular-ui-router';
 
 import template from './scv.html';
 import { name as Navigation } from '../navigation/navigation';
-import { name as NuevoEmpleado } from '../nuevoEmpleado/nuevoEmpleado.js';
+import { name as NuevoEmpleado } from '../nuevoEmpleado/nuevoEmpleado';
 import { name as ListadoEmpleados } from '../listadoEmpleados/listadoEmpleados';
 import { name as DetallesEmpleado } from '../detallesEmpleado/detallesEmpleado';
 import { name as NuevaDependencia } from '../nuevaDependencia/nuevaDependencia';
 import { name as ListadoDependencias } from '../listadoDependencias/listadoDependencias';
 import { name as DetallesDependencia } from '../detallesDependencia/detallesDependencia';
+import { name as NuevoVehiculoI } from '../nuevoVehiculoI/nuevoVehiculosI';
 import { name as NombramientoComision } from '../nombramientoComision/nombramientoComision';
 import { name as ListadoNombramientos } from '../listadoNombramientos/listadoNombramientos';
 import { name as DetallesNombramiento } from '../detallesNombramiento/detallesNombramiento';
@@ -40,6 +41,7 @@ export default angular.module('scv', [
   DetallesEmpleado,
   NuevoEmpleado,
   NuevaDependencia,
+  NuevoVehiculoI,
   ListadoDependencias,
   DetallesDependencia,
   NombramientoComision,

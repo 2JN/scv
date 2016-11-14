@@ -7,7 +7,7 @@ import vhcIPDF from './vehiculoIPDF';
 
 class PVehiculoICtrl {
   constructor($scope, $reactive, $state) {
-    'ngIject';
+    'ngInject';
 
     $reactive(this).attach($scope);
 

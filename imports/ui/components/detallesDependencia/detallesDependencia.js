@@ -42,7 +42,7 @@ class DetallesDependenciaCtrl {
         if (error) {
           this.$mdToast.show(
             this.$mdToast.simple()
-              .textContent('Oops, dependencia no modificada...')
+              .textContent('Error, dependencia no modificada...')
               .position('top right')
           );
         } else {
@@ -60,7 +60,7 @@ class DetallesDependenciaCtrl {
         if (error) {
           this.$mdToast.show(
             this.$mdToast.simple()
-              .textContent('Oops, dependencia no modificada...')
+              .textContent('Error, dependencia no modificada...')
               .position('top right')
           );
         } else {

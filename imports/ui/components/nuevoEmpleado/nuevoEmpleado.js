@@ -31,7 +31,7 @@ class NuevoEmpleadoCtrl {
       if (error) {
         this.$mdToast.show(
           this.$mdToast.simple()
-            .textContent('Oops, empleado no agregada...')
+            .textContent('Error, empleado no agregada...')
             .position('top right')
         );
       } else {
