@@ -6,6 +6,7 @@ import template from './nombramientoComision.html';
 import { Empleados } from '../../../api/empleados';
 import { Dependencias } from '../../../api/dependencias';
 import { Nombramientos } from '../../../api/nombramientos';
+import { Vehiculos } from '../../../api/vehiculos';
 
 class NombramientoComisionCtrl {
   constructor($scope, $reactive, $mdToast) {
@@ -18,6 +19,8 @@ class NombramientoComisionCtrl {
     this.subscribe('dependencias');
     this.subscribe('empleados');
     this.subscribe('users');
+    this.subscribe('vehiculosI');
+
     this.dependencia = {};
     this.comision = {};
     this.comision.fecha = new Date;
@@ -63,6 +66,17 @@ class NombramientoComisionCtrl {
     this.helpers({
       datosUsuario() {
         return Empleados.findOne({ user: Meteor.user().username });
+      },
+
+      vehiculosI() {
+        return Vehiculos.find({
+          _id: {
+            $regex: `.*${this.getReactively('searchPlaca')}.*`,
+            $options: 'i'
+          }, institucion: true
+        }, {
+          fields: {_id: 1}
+        });
       }
     });
   }
@@ -80,6 +94,9 @@ class NombramientoComisionCtrl {
       datos_dependencia: this.dependencia,
       datos_comision: angular.copy(this.comision)
     }
+
+    // asignar el valor de las placas
+    datosComision.datos_comision.placasVI = this.placas._id
 
     Nombramientos.insert(datosComision, (error) => {
       if (error) {

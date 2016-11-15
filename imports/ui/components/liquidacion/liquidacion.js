@@ -87,10 +87,12 @@ class LiquidacionCtrl {
 }
 
 class PromptLiquidacionCtrl {
-  constructor($scope, seleccion, $mdDialog) {
+  constructor($scope, seleccion, $mdDialog, $mdToast) {
     $scope.viewModel(this);
 
     this.$mdDialog = $mdDialog;
+    this.$mdToast = $mdToast;
+
     this.v_a =  false;
     this.selected = seleccion.selected;
 
@@ -164,27 +166,49 @@ class PromptLiquidacionCtrl {
     // Calculo de otros gastos
     for(nombramiento of this.selected) {
 
-      if (nombramiento.datos_comision.vehiculoInst &&
-          nombramiento.vehiculoi.facturas) {
-
-        for (factura of nombramiento.vehiculoi.facturas) {
-          otrosGastos += +factura.valor;
+      if (nombramiento.datos_comision.vehiculoInst) {
+        if (nombramiento.vehiculoi && nombramiento.vehiculoi.facturas) {
+          for (factura of nombramiento.vehiculoi.facturas) {
+            otrosGastos += +factura.valor;
+          }
+        } else {
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent('Asegurese de que tenga las planillas requeridas de vehiculo de la institución')
+              .position('top right')
+          );
         }
       }
 
       if(nombramiento.datos_comision.vehiculoProp) {
-        for (lugar of nombramiento.vehiculop.kilometraje) {
-          otrosGastos += lugar.distancia * nombramiento.vehiculop.depreciacion;
-        }
+        if(nombramiento.vehiculop) {
+          for (lugar of nombramiento.vehiculop.kilometraje) {
+            otrosGastos += lugar.distancia * nombramiento.vehiculop.depreciacion;
+          }
 
-        for (factura of nombramiento.vehiculop.facturas) {
-          otrosGastos += +factura.valor;
+          for (factura of nombramiento.vehiculop.facturas) {
+            otrosGastos += +factura.valor;
+          }
+        } else {
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent('Asegurese de que tenga las planillas requeridas de vehiculo propio')
+              .position('top right')
+          );
         }
       }
 
       if(nombramiento.datos_comision.transUrbano) {
-        for (factura of nombramiento.pasajes.facturas) {
-          otrosGastos += +factura.valorPasaje;
+        if (nombramiento.pasajes) {
+          for (factura of nombramiento.pasajes.facturas) {
+            otrosGastos += +factura.valorPasaje;
+          }
+        } else {
+          this.$mdToast.show(
+            this.$mdToast.simple()
+              .textContent('Asegurese de que tenga las planillas requeridas de pasajes')
+              .position('top right')
+          );
         }
       }
     }

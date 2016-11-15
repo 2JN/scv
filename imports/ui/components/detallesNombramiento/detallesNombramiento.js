@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router';
 
 import template from './detallesNombramiento.html';
 import { Nombramientos } from '../../../api/nombramientos';
+import { Vehiculos } from '../../../api/vehiculos';
 
 class DetallesNombramientoCtrl {
   constructor($stateParams, $scope, $reactive, $state, $mdToast) {
@@ -15,12 +16,24 @@ class DetallesNombramientoCtrl {
     this.$mdToast = $mdToast;
 
     this.subscribe('nombramientos');
+    this.subscribe('vehiculosI');
 
     this.nombramientoId = $stateParams.nombramientoId;
 
     this.helpers({
       nombramiento() {
         return Nombramientos.findOne({_id: this.nombramientoId})
+      },
+
+      vehiculosI() {
+        return Vehiculos.find({
+          _id: {
+            $regex: `.*${this.getReactively('nombramiento.datos_comision.placasVI')}.*`,
+            $options: 'i'
+          }, institucion: true
+        }, {
+          fields: {_id: 1}
+        });
       }
     })
   }
@@ -38,13 +51,16 @@ class DetallesNombramientoCtrl {
   }
 
   guardar() {
+    let dc = angular.copy(this.nombramiento.datos_comision);
+    dc.placasVI = this.placas._id;
+
     Nombramientos.update({
       _id: this.nombramientoId
     }, {
       $set: {
         datos_empleado: this.nombramiento.datos_empleado,
         datos_dependencia: this.nombramiento.datos_dependencia,
-        datos_comision: angular.copy(this.nombramiento.datos_comision)
+        datos_comision: dc
       }
     }, (error) => {
       if (error) {

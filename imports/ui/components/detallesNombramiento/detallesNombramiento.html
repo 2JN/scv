@@ -161,7 +161,18 @@
               <md-checkbox ng-model="detallesNombramiento.nombramiento.datos_comision.transUrbano" aria-label="transporte urbano">Transporte Extraurbano</md-checkbox>
             </div>
 
-            <md-input-container ng-if="detallesNombramiento.nombramiento.datos_comision.vehiculoInst">
+            <md-autocomplete ng-if="detallesNombramiento.nombramiento.datos_comision.vehiculoInst" required
+              md-selected-item="detallesNombramiento.placas"
+              md-search-text="detallesNombramiento.nombramiento.datos_comision.placasVI"
+              md-items="item in detallesNombramiento.vehiculosI"
+              md-item-text="item._id"
+              md-floating-label="Placa">
+
+              <md-item-template> {{ item._id }} </md-item-template>
+
+            </md-autocomplete>
+
+            <md-input-container ng-if="">
               <label>Placas</label>
               <input type="text" ng-model="detallesNombramiento.nombramiento.datos_comision.placasVI" required />
             </md-input-container>
