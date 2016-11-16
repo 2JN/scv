@@ -39,3 +39,11 @@ En esta página debemos de seleccionar los nombramientos de que conforman una so
 ![liquidacion](/manual/liquidacion.png)
 
 Al hacer esto se habilitara el boton de que nos pedira información adicional para la liquidación.
+
+![liquidacion prompt](/manual/liquidacion_prompt.png)
+
+En este ultimo formulario se ingresa de quien se recibe la liquidación de viaticos la fracción de días que se pasaron en los lugares correspondientes a los nombramientos seleccionados y anticipos que se pudieron haber tenido, estos son opcionales y se habilitan o desabilitan pulsando en el boton con las flehas que aparece en la barra del formulario.
+
+Al llenar todos los datos se habilitara la descarga del PDF.
+
+> Nota: A diferencia de los demás formularios, el de liquidación no se guardara.
