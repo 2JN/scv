@@ -52,7 +52,10 @@ class DetallesNombramientoCtrl {
 
   guardar() {
     let dc = angular.copy(this.nombramiento.datos_comision);
-    dc.placasVI = this.placas._id;
+
+    if (this.placas) {
+      dc.placasVI = this.placas._id;
+    }
 
     Nombramientos.update({
       _id: this.nombramientoId

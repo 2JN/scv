@@ -96,7 +96,9 @@ class NombramientoComisionCtrl {
     }
 
     // asignar el valor de las placas
-    datosComision.datos_comision.placasVI = this.placas._id
+    if (this.placas) {
+      datosComision.datos_comision.placasVI = this.placas._id
+    }
 
     Nombramientos.insert(datosComision, (error) => {
       if (error) {
