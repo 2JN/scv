@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import ngMessages from 'angular-messages';
 
 import template from './pVehiculoP.html';
 import { Nombramientos } from '../../../../api/nombramientos';
@@ -12,6 +13,8 @@ class PVehiculoPCtrl {
     $reactive(this).attach($scope);
 
     this.total = 0;
+    this.maxG = 0;
+    this.galonesR = [];
     this.pdfDisabled = true;
 
     this.vehiculop = {
@@ -28,7 +31,7 @@ class PVehiculoPCtrl {
         {
           fecha: new Date,
           numero: '',
-          galones: '',
+          galones: 0,
           proveedor: '',
           valor: 0
         }
@@ -55,8 +58,36 @@ class PVehiculoPCtrl {
       }
 
       this.totalFacturas = 0;
+
+      if (this.getReactively('vehiculop.vehiculo.combustible')) {
+          let KxG = {};
+          
+          if (this.vehiculop.vehiculo.combustible === 1) {
+            KxG = {'4': 30, '6': 25, '8': 15, '9': 12}
+          } else {
+            KxG = {'4': 30, '6': 20, '8': 15, '9': 10}
+          }
+          
+          if (this.getReactively('vehiculop.vehiculo.cilindros')) {
+            let index = this.vehiculop.vehiculo.cilindros;
+            this.restantesG = this.maxG = this.totalDistancia / KxG[`${index}`];
+          }
+      }
+
       for(let i = 0; i < sizef; i++) {
-        if(this.getReactively(`this.vehiculop.facturas[${i}].valor`)) {
+        if (this.getReactively(`this.vehiculop.facturas[${i}].galones`)) {
+          
+          this.galonesR[i] = this.restantesG;
+          
+          if (+this.vehiculop.facturas[i].galones <= this.restantesG) {
+            this.restantesG -= +this.vehiculop.facturas[i].galones;
+          } else {
+            this.restantesG = 0;
+          }
+          
+        }
+
+        if (this.getReactively(`this.vehiculop.facturas[${i}].valor`)) {
           this.totalFacturas += +this.vehiculop.facturas[i].valor;
         }
       }
@@ -86,7 +117,7 @@ class PVehiculoPCtrl {
     this.vehiculop.facturas.push({
       fecha: new Date,
       numero: '',
-      galones: '',
+      galones: 0,
       proveedor: '',
       valor: 0
     });
@@ -123,7 +154,8 @@ class PVehiculoPCtrl {
 const name = 'pVehiculoP';
 
 export default angular.module(name, [
-  angularMeteor
+  angularMeteor,
+  ngMessages
 ])
   .component(name, {
     templateUrl: template,

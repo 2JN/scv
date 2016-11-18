@@ -1,6 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import ngMaterial from 'angular-material';
+import ngMessages from 'angular-messages';
 import uiRouter from 'angular-ui-router';
 
 import template from './scv.html';
@@ -37,6 +38,7 @@ class SCVCtrl {
 export default angular.module('scv', [
   angularMeteor,
   ngMaterial,
+  ngMessages,
   uiRouter,
   Navigation,
   ListadoEmpleados,

@@ -80,7 +80,13 @@ export default function vhcPPDF(nombramiento, vehiculop, depreciacion, total) {
   doc.text(221, 165, vehiculop.vehiculo.chasis);
   doc.line(220, 166, 400, 166);
   doc.text(30, 175, 'COMBUSTIBLE');
-  doc.text(221, 175, vehiculop.vehiculo.combustible);
+
+  if (vehiculop.vehiculo.combustible === 1) {
+    doc.text(221, 175, 'Diesel');
+  } else {
+    doc.text(221, 175, 'Gasolina');
+  }
+
   doc.line(220, 176, 400, 176);
   doc.text(30, 185, 'USO');
   doc.text(221, 185, vehiculop.vehiculo.uso);
@@ -89,7 +95,13 @@ export default function vhcPPDF(nombramiento, vehiculop, depreciacion, total) {
   doc.text(221, 195, vehiculop.vehiculo.color);
   doc.line(220, 196, 400, 196);
   doc.text(30, 205, 'CILINDROS');
-  doc.text(221, 205, vehiculop.vehiculo.cilindros);
+
+  if (vehiculop.vehiculo.cilindros === 9) {
+    doc.text(221, 205, '8 de Lujo');
+  } else {
+    doc.text(221, 205, `${vehiculop.vehiculo.cilindros}`);
+  }
+  
   doc.line(220, 206, 400, 206);
 
   doc.setFontType('bold');

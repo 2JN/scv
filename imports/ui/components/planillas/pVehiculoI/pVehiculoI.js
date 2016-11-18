@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import ngMessages from 'angular-messages';
 
 import template from './pVehiculoI.html';
 import { Nombramientos } from '../../../../api/nombramientos';
@@ -15,6 +16,8 @@ class PVehiculoICtrl {
     this.subscribe('vehiculosI');
 
     this.total = 0;
+    this.maxG = 0;
+    this.galonesR = [];
     this.pdfDisabled = true;
     this.showFacturas = false;
 
@@ -34,7 +37,7 @@ class PVehiculoICtrl {
         {
           fecha: new Date,
           numero: '',
-          galones: '',
+          galones: 0,
           proveedor: '',
           valor: 0
         }
@@ -44,13 +47,13 @@ class PVehiculoICtrl {
     this.autorun(function() {
       if (this.getReactively('this.nombramiento.vehiculoi')) {
         this.vehiculoi = this.nombramiento.vehiculoi;
-      }
-    });
-
-    this.autorun(function() {
-      if (this.getReactively('nombramiento.datos_comision.placasVI')) {
-        let pvi = this.nombramiento.datos_comision.placasVI;
-        this.vehiculoi.vehiculo = Vehiculos.findOne(pvi);
+      } else {
+        
+        if (this.getReactively('nombramiento.datos_comision.placasVI')) {
+          let pvi = this.nombramiento.datos_comision.placasVI;
+          
+          this.vehiculoi.vehiculo = Vehiculos.findOne(pvi);
+        }
       }
     });
 
@@ -66,7 +69,34 @@ class PVehiculoICtrl {
       }
 
       this.totalFacturas = 0;
+
+      if (this.getReactively('vehiculoi.vehiculo.combustible')) {
+        let KxG = {};
+
+        if (this.vehiculoi.vehiculo.combustible === 1) {
+          KxG = {'4': 30, '6': 25, '8': 15, '9': 12}
+        } else {
+          KxG = {'4': 30, '6': 20, '8': 15, '9': 10}
+        }
+
+        if (this.getReactively('vehiculoi.vehiculo.cilindros')) {
+          let index = this.vehiculoi.vehiculo.cilindros;
+          this.restantesG = this.maxG = this.totalDistancia / KxG[`${index}`];
+        }
+      }
+
       for(let i = 0; i < sizef; i++) {
+        if (this.getReactively(`this.vehiculoi.facturas[${i}].galones`)) {
+          
+          this.galonesR[i] = this.restantesG;
+          
+          if (+this.vehiculoi.facturas[i].galones <= this.restantesG) {
+            this.restantesG -= +this.vehiculoi.facturas[i].galones;
+          } else {
+            this.restantesG = 0
+          }
+        }
+
         if(this.getReactively(`this.vehiculoi.facturas[${i}].valor`)) {
           this.totalFacturas += +this.vehiculoi.facturas[i].valor;
         }
@@ -94,7 +124,7 @@ class PVehiculoICtrl {
     this.vehiculoi.facturas.push({
       fecha: new Date,
       numero: '',
-      galones: '',
+      galones: 0,
       proveedor: '',
       valor: 0
     });
@@ -131,7 +161,8 @@ class PVehiculoICtrl {
 const name = 'pVehiculoI';
 
 export default angular.module(name, [
-  angularMeteor
+  angularMeteor,
+  ngMessages
 ])
   .component(name, {
     templateUrl: template,
