@@ -61,13 +61,13 @@ class PVehiculoPCtrl {
 
       if (this.getReactively('vehiculop.vehiculo.combustible')) {
           let KxG = {};
-          
+
           if (this.vehiculop.vehiculo.combustible === 1) {
             KxG = {'4': 30, '6': 25, '8': 15, '9': 12}
           } else {
             KxG = {'4': 30, '6': 20, '8': 15, '9': 10}
           }
-          
+
           if (this.getReactively('vehiculop.vehiculo.cilindros')) {
             let index = this.vehiculop.vehiculo.cilindros;
             this.restantesG = this.maxG = this.totalDistancia / KxG[`${index}`];
@@ -76,15 +76,14 @@ class PVehiculoPCtrl {
 
       for(let i = 0; i < sizef; i++) {
         if (this.getReactively(`this.vehiculop.facturas[${i}].galones`)) {
-          
+
           this.galonesR[i] = this.restantesG;
-          
+
           if (+this.vehiculop.facturas[i].galones <= this.restantesG) {
             this.restantesG -= +this.vehiculop.facturas[i].galones;
           } else {
             this.restantesG = 0;
           }
-          
         }
 
         if (this.getReactively(`this.vehiculop.facturas[${i}].valor`)) {

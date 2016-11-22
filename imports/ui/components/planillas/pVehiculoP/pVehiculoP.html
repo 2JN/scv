@@ -171,7 +171,7 @@
                 <input type="number" name="galones" ng-model="fp.galones" min="0" max="{{pVehiculoP.galonesR[$index]}}" required>
                 <div ng-messages="vpform.galones.$error">
                   <div ng-message="max">
-                    El limite de galones permitidos es {{ (pVehiculoP.maxG)/toFixed(2) }}
+                    El limite de galones permitidos es {{ (pVehiculoP.maxG).toFixed(2) }}
                   </div>
                 </div>
               </md-input-container>

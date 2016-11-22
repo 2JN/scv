@@ -48,10 +48,10 @@ class PVehiculoICtrl {
       if (this.getReactively('this.nombramiento.vehiculoi')) {
         this.vehiculoi = this.nombramiento.vehiculoi;
       } else {
-        
+
         if (this.getReactively('nombramiento.datos_comision.placasVI')) {
           let pvi = this.nombramiento.datos_comision.placasVI;
-          
+
           this.vehiculoi.vehiculo = Vehiculos.findOne(pvi);
         }
       }
@@ -87,13 +87,13 @@ class PVehiculoICtrl {
 
       for(let i = 0; i < sizef; i++) {
         if (this.getReactively(`this.vehiculoi.facturas[${i}].galones`)) {
-          
+
           this.galonesR[i] = this.restantesG;
-          
+
           if (+this.vehiculoi.facturas[i].galones <= this.restantesG) {
             this.restantesG -= +this.vehiculoi.facturas[i].galones;
           } else {
-            this.restantesG = 0
+            this.restantesG = 0;
           }
         }
 
