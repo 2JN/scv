@@ -4,6 +4,7 @@ import ngMessages from 'angular-messages';
 
 import template from './pVehiculoP.html';
 import { Nombramientos } from '../../../../api/nombramientos';
+import { Vehiculos } from '../../../../api/vehiculos';
 import vhcPPDF from './vehiculoPPDF';
 
 class PVehiculoPCtrl {
@@ -11,6 +12,8 @@ class PVehiculoPCtrl {
     'ngInject';
 
     $reactive(this).attach($scope);
+
+    this.subscribe('vehiculosP');
 
     this.total = 0;
     this.maxG = 0;
@@ -40,9 +43,28 @@ class PVehiculoPCtrl {
       depreciacion: 1
     }
 
+    this.helpers({
+      vehiculosP() {
+        return Vehiculos.find({
+          _id: {
+            $regex: `.*${this.getReactively('searchPlaca')}.*`,
+            $options: 'i'
+          }, user: Meteor.userId()
+        }, {
+          fields: {_id: 1}
+        });
+      }
+    });
+
     this.autorun(function() {
       if (this.getReactively('this.nombramiento.vehiculop')) {
         this.vehiculop = this.nombramiento.vehiculop;
+      }
+    });
+
+    this.autorun(function() {
+      if (this.getReactively('placas')) {
+        this.vehiculop.vehiculo = Vehiculos.findOne(this.placas);
       }
     });
 

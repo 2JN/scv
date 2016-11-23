@@ -10,10 +10,15 @@
 
       <div layout="column" layout-padding layout-margin>
 
-        <md-input-container>
-          <label>Placa:</label>
-          <input type="text" ng-model="pVehiculoP.vehiculop.vehiculo.placa" required />
-        </md-input-container>
+        <md-autocomplete required
+          md-selected-item="pVehiculoP.placas"
+          md-search-text="pVehiculoP.searchPlaca"
+          md-items="item in pVehiculoP.vehiculosP"
+          md-item-text="item._id"
+          md-floating-label="Placa">
+
+          <md-item-template> {{ item._id }} </md-item-template>
+        </md-autocomplete>
 
         <md-input-container>
           <label>Tipo:</label>
