@@ -16,6 +16,8 @@ import { name as NuevoVehiculoI } from '../nuevoVehiculoI/nuevoVehiculosI';
 import { name as ListadoVehiculosI } from '../listadoVehiculosI/listadoVehiculosI';
 import { name as DetallesVehiculoI } from '../detallesVehiculoI/detallesVehiculoI';
 import { name as NuevoVehiculoP } from '../nuevoVehiculoP/nuevoVehiculoP';
+import { name as ListadoVehiculosP } from '../listadoVehiculosP/listadoVehiculosP';
+import { name as DetallesVehiculoP } from '../detallesVehiculoP/detallesVehiculoP';
 import { name as NombramientoComision } from '../nombramientoComision/nombramientoComision';
 import { name as ListadoNombramientos } from '../listadoNombramientos/listadoNombramientos';
 import { name as DetallesNombramiento } from '../detallesNombramiento/detallesNombramiento';
@@ -52,6 +54,8 @@ export default angular.module('scv', [
   ListadoVehiculosI,
   DetallesVehiculoI,
   NuevoVehiculoP,
+  ListadoVehiculosP,
+  DetallesVehiculoP,
   NombramientoComision,
   ListadoNombramientos,
   DetallesNombramiento,

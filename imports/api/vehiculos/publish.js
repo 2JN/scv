@@ -21,4 +21,22 @@ if (Meteor.isServer) {
 
     return Vehiculos.find(selector, options);
   });
+
+  Meteor.publish('vehiculosP', function(options, searchString) {
+
+    const selector = {user: this.userId};
+
+    if (typeof searchString === 'string' && searchString.length) {
+      selector._id = {
+        $regex: `.*${searchString}.*`,
+        $options: 'i'
+      };
+    }
+
+    Counts.publish(this, 'numberOfVehiculos', Vehiculos.find(selector), {
+      noReady: true
+    });
+
+    return Vehiculos.find(selector, options);
+  })
 }
