@@ -59,12 +59,12 @@ class PVehiculoPCtrl {
     this.autorun(function() {
       if (this.getReactively('this.nombramiento.vehiculop')) {
         this.vehiculop = this.nombramiento.vehiculop;
-      }
-    });
-
-    this.autorun(function() {
-      if (this.getReactively('placas')) {
-        this.vehiculop.vehiculo = Vehiculos.findOne(this.placas);
+        this.placas = {_id: this.nombramiento.vehiculop.vehiculo.placa};
+      } else {
+        if (this.getReactively('placas')) {
+          this.vehiculop.vehiculo = Vehiculos.findOne(this.placas);
+          this.vehiculop.vehiculo.placa = this.placas._id;
+        }
       }
     });
 
@@ -149,6 +149,8 @@ class PVehiculoPCtrl {
   }
 
   guardar() {
+    this.vehiculop.vehiculo.placa = this.placas._id;
+
     Nombramientos.update({
       _id: this.nombramiento._id
     }, {
