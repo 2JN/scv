@@ -15,6 +15,7 @@ import { name as DetallesDependencia } from '../detallesDependencia/detallesDepe
 import { name as NuevoVehiculoI } from '../nuevoVehiculoI/nuevoVehiculosI';
 import { name as ListadoVehiculosI } from '../listadoVehiculosI/listadoVehiculosI';
 import { name as DetallesVehiculoI } from '../detallesVehiculoI/detallesVehiculoI';
+import { name as NuevoVehiculoP } from '../nuevoVehiculoP/nuevoVehiculoP';
 import { name as NombramientoComision } from '../nombramientoComision/nombramientoComision';
 import { name as ListadoNombramientos } from '../listadoNombramientos/listadoNombramientos';
 import { name as DetallesNombramiento } from '../detallesNombramiento/detallesNombramiento';
@@ -50,6 +51,7 @@ export default angular.module('scv', [
   NuevoVehiculoI,
   ListadoVehiculosI,
   DetallesVehiculoI,
+  NuevoVehiculoP,
   NombramientoComision,
   ListadoNombramientos,
   DetallesNombramiento,
