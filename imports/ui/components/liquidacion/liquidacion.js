@@ -40,7 +40,9 @@ class LiquidacionCtrl {
 
     this.helpers({
       nombramientos() {
-        return Nombramientos.find({});
+        return Nombramientos.find({}, {
+          sort: this.getReactively('sort')
+        });
       },
 
       nombramientosCount() {

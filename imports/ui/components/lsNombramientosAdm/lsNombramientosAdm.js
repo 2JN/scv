@@ -19,12 +19,12 @@ class LsNombramientosAdmCtrl {
     this.perPage = 15;
     this.page = 1;
     this.sort = {
-      _id: 1
+      nombramiento: 1
     };
     this.searchText = '';
 
     this.subscribe('nombramientosAdm', () => [
-      this.getReactively('dependencia'), 
+      this.getReactively('dependencia'),
       {
         limit: parseInt(this.perPage),
         skip: parseInt((this.getReactively('page') - 1) * this.perPage),
@@ -36,7 +36,9 @@ class LsNombramientosAdmCtrl {
 
     this.helpers({
       nombramientos() {
-        return Nombramientos.find({});
+        return Nombramientos.find({}, {
+          sort: this.getReactively('sort')
+        });
       },
 
       nombramientosCount() {

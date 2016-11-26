@@ -17,7 +17,7 @@ class ListadoNombramientosCtrl {
     this.perPage = 15;
     this.page = 1;
     this.sort = {
-      _id: 1
+      nombramiento: 1
     };
     this.searchText = '';
 
@@ -31,7 +31,9 @@ class ListadoNombramientosCtrl {
 
     this.helpers({
       nombramientos() {
-        return Nombramientos.find({});
+        return Nombramientos.find({}, {
+          sort: this.getReactively('sort')
+        });
       },
 
       nombramientosCount() {
