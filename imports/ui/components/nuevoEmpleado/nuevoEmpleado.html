@@ -8,6 +8,11 @@
     </md-toolbar>
 
     <form name="empleado" layout="column" layout-padding layout-margin>
+
+      <md-switch ng-model="nuevoEmpleado.encargado" aria-label="encargado">
+        Encargado
+      </md-switch>
+
       <md-input-container>
         <label>Primer Nombre</label>
         <input type="text" ng-model="nuevoEmpleado.empleado.pnombre" aria-label="p. nombre" required />
@@ -56,6 +61,11 @@
       <md-input-container>
         <label>Usuario</label>
         <input type="text" ng-model="nuevoEmpleado.credentials.username" aria-label="usuario" required />
+      </md-input-container>
+
+      <md-input-container ng-if="nuevoEmpleado.encargado">
+        <label>Email</label>
+        <input type="email" ng-model="nuevoEmpleado.credentials.email" aria-label="email" required />
       </md-input-container>
 
       <md-input-container>

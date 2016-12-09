@@ -18,8 +18,16 @@ function removeUser(username) {
   Meteor.users.remove({username: username});
 }
 
+function newEnc(credentials) {
+  Accounts.createUser(credentials);
+  Meteor.users.update({'emails.address': credentials.email}, {
+    $set: { encargado: true }
+  });
+}
+
 Meteor.methods({
   resetPass,
   newUser,
-  removeUser
+  removeUser,
+  newEnc
 })

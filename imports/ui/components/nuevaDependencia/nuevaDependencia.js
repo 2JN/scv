@@ -7,7 +7,7 @@ import { Dependencias } from '../../../api/dependencias';
 
 class NuevaDependenciaCtrl {
   constructor($mdToast) {
-    this.$mdToast = $mdToast
+    this.$mdToast = $mdToast;
     this.dependencia = {};
     this.dependencia.nombramiento = 0;
   }
@@ -74,5 +74,5 @@ function config($stateProvider) {
         return deferred.promise;
       }
     }
-  })
+  });
 }

@@ -31,7 +31,7 @@ class NuevoEmpleadoCtrl {
       if (error) {
         this.$mdToast.show(
           this.$mdToast.simple()
-            .textContent('Error, empleado no agregada...')
+            .textContent('Error, empleado no agregado...')
             .position('top right')
         );
       } else {
@@ -41,7 +41,28 @@ class NuevoEmpleadoCtrl {
             .position('top right')
         );
 
-        Meteor.call('newUser', this.credentials);
+        if (this.encargado) {
+          Meteor.call('newEnc', this.credentials, (error) => {
+            if (error) {
+              this.$mdToast.show(
+                this.$mdToast.simple()
+                  .textContent('Error, cuenta de usuario no agregada...')
+                  .position('top right')
+              );
+            }
+          });
+        } else {
+          Meteor.call('newUser', this.credentials, (error) => {
+            if (error) {
+              this.$mdToast.show(
+                this.$mdToast.simple()
+                  .textContent('Error, cuenta de usuario no agregada...')
+                  .position('top right')
+              );
+            }
+          });
+        }
+
         this.reset();
       }
     });
