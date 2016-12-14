@@ -85,10 +85,11 @@ class NombramientoComisionCtrl {
     let noNombramiento = ++this.dependencia.nombramiento + "-" +
       this.comision.fecha.getFullYear();
 
-    let unico = +this.dependencia._id + '-' + noNombramiento
+    let unico = +this.dependencia._id + '-' + noNombramiento;
 
     let datosComision = {
       _id: unico,
+      aprobado: false,
       nombramiento: noNombramiento,
       datos_empleado: this.datosUsuario,
       datos_dependencia: this.dependencia,

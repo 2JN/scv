@@ -8,7 +8,6 @@ import { Counts } from 'meteor/tmeasday:publish-counts';
 import template from './lsNombramientosAdm.html';
 import { Nombramientos } from '../../../api/nombramientos';
 import { Dependencias } from '../../../api/dependencias';
-import { name as Ordernar } from '../ordenar/ordenar';
 import { name as Ordenar } from '../ordenar/ordenar';
 import { name as NombramientoPDF } from '../nombramientoPDF/nombramientoPDF';
 

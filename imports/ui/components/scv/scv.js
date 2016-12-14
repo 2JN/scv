@@ -22,6 +22,7 @@ import { name as NombramientoComision } from '../nombramientoComision/nombramien
 import { name as ListadoNombramientos } from '../listadoNombramientos/listadoNombramientos';
 import { name as DetallesNombramiento } from '../detallesNombramiento/detallesNombramiento';
 import { name as LsNombramientosAdm } from '../lsNombramientosAdm/lsNombramientosAdm';
+import { name as LsNombramientosEnc } from '../lsNombramientosEnc/lsNombramientosEnc';
 import { name as Planillas } from '../planillas/planillas';
 import { name as Liquidacion } from '../liquidacion/liquidacion';
 import { name as ChangePass } from '../changePass/changePass';
@@ -60,6 +61,7 @@ export default angular.module('scv', [
   ListadoNombramientos,
   DetallesNombramiento,
   LsNombramientosAdm,
+  LsNombramientosEnc,
   Planillas,
   Liquidacion,
   ChangePass,

@@ -24,9 +24,9 @@ if (Meteor.isServer) {
       };
     }
 
-    Counts.publish(this, 'numberOfNombramientos', Nombramientos.find(selector), {
-      noReady: true
-    });
+    Counts.publish(this, 'numberOfNombramientos', Nombramientos.find(selector),
+      { noReady: true  }
+    );
 
     return Nombramientos.find(selector, options);
   });
@@ -34,7 +34,40 @@ if (Meteor.isServer) {
   Meteor.publish('nombramientosAdm', function(dependencia, options,
     searchString) {
 
+    const selector = {
+      'datos_dependencia._id': dependencia
+    };
+
     let user = Meteor.users.findOne({_id: this.userId});
+
+    if (typeof searchString === 'string' && searchString.length) {
+      selector.nombramiento = {
+        $regex: `.*${searchString}.*`,
+        $options: 'i'
+      };
+    }
+
+    Counts.publish(this, 'numberOfNombramientos', Nombramientos.find(selector),
+      { noReady: true }
+    );
+
+    if (user.admin) {
+      return Nombramientos.find(selector, options);
+    }
+  });
+
+  Meteor.publish('nombramientosEnc',
+    function(email, shown, options, searchString) {
+
+    const selector = {
+      'datos_dependencia.email': email
+    };
+
+    if (shown === 1) {
+      selector['aprobado'] = true
+    } else if (shown === 2) {
+      selector['aprobado'] = false
+    }
 
     if (typeof searchString === 'string' && searchString.length) {
       selector._id = {
@@ -43,16 +76,10 @@ if (Meteor.isServer) {
       };
     }
 
-    Counts.publish(this, 'numberOfNombramientos', Nombramientos.find({
-      'datos_dependencia._id': dependencia
-    }), {
+    Counts.publish(this, 'numberOfNombramientos', Nombramientos.find(selector), {
       noReady: true
     });
 
-    if (user.admin) {
-      return Nombramientos.find({
-        'datos_dependencia._id': dependencia
-      }, options);
-    }
+    return Nombramientos.find(selector, options);
   });
 }
