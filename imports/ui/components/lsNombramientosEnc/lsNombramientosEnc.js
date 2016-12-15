@@ -8,6 +8,7 @@ import { Counts } from 'meteor/tmeasday:publish-counts';
 import template from './lsNombramientosEnc.html';
 import { Nombramientos } from '../../../api/nombramientos';
 import { name as Ordenar } from '../ordenar/ordenar';
+import { name as AprobarComision } from '../aprobarComision/aprobarComision';
 import { name as NombramientoPDF } from '../nombramientoPDF/nombramientoPDF';
 
 class LsNombramientosEncCtrl {
@@ -62,6 +63,7 @@ export default angular.module(name, [
   uiRouter,
   utilsPagination,
   Ordenar,
+  AprobarComision,
   NombramientoPDF
 ])
   .component(name, {
